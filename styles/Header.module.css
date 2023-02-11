@@ -1,0 +1,67 @@
+.header { 
+  position: fixed; justify-content: center; align-items: center; font-weight: normal; 
+  width: 100%; height: 60px; left: 0; right: 0; top: 0; z-index: 10; background-color: var(--white);
+}
+.headerLogo { display: inline-flex; gap: 15px; }
+.headerLogo img { height: 35px; margin-top: 12px; }
+.headerTitle img { margin: 15px 0px 0px 0px; }
+.openNone { display: none; }
+.open, .close { 
+  position: absolute; display: flex; justify-content: flex-end; 
+  margin-bottom: 10px; left: 20px; font-size: 32px; cursor: pointer; 
+}
+.open { margin-top: -36px; }
+.close { margin-top: -5px; }
+
+.overlayNone { display: none; opacity: 0; }
+.overlayShow {
+  position: fixed; top: 0px; bottom: 0; right: 0; width: 100%; height: 100vh; background: rgba(244, 245, 240, 0.96); 
+  padding-top: 24px; opacity: 1; pointer-events: auto; transition: all 500ms 0s ease; z-index: 100;
+}
+.overlayShow a { color: var(--black); }
+.overlayShow a:hover { opacity: 0.6; }
+.overlayShow li { margin-top: 0px; text-decoration: none; font-size: 20px; }
+.overlayShow ul { list-style: none; display: inline-block; padding: 0; }
+
+.menu { margin-top: 20px; }
+.menuList li { margin: 15px 0px; }
+.menuList a { text-decoration: none; font-size: 20px; }
+.menuLogo img { width: 200px; margin: 10px 0px; }
+
+.snsList { margin: 30px 0px 15px 0px; }
+.snsButton { 
+  width: 40px; height: 40px; border-radius: 20px; 
+  margin: 5px 10px; padding: 0; background-color: var(--gray); 
+}
+.snsButton img { height: 25px; margin: 7.5px; }
+.contact li { 
+  font-size: 16px; padding: 5px; 
+  font-family:"游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+
+.loading { 
+  position: fixed; width: 100%; height: 110vh;
+  top: 0; left: 0; z-index: 999; opacity: 1;
+  background-color: var(--white); transition: all 3s ease;
+}
+.loaded {
+  position: fixed; width: 100%; height: 110vh;
+  top: 0; left: 0; z-index: 999; opacity: 0;
+  background-color: var(--white); transition: all 3s ease;
+}
+.vanish {
+  display: none;
+}
+
+.loading img, .loaded img, .vanish img { 
+  position: absolute; width: 300px; z-index: 1000;
+  top: 40%; left: 50%; transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 960px) {
+  .menu { display: inline-flex; gap: 50px; }
+  .menuLogo { margin: auto; }
+  .menuList { margin: auto 0; }
+  .snsList { margin: 15px; }
+}
+

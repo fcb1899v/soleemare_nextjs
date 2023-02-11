@@ -1,6 +1,14 @@
 import '../styles/globals.css'
+import 'swiper/css/bundle'
 import type { AppProps } from 'next/app'
+import { usePageView } from '../src/hooks/usePageView';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }: AppProps) {
+  // Google Analytics の PV をカウントするイベント
+  usePageView();
+
+  return <Component {...pageProps} />;
 }
+
+export default MyApp;
+

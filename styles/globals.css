@@ -1,26 +1,63 @@
-html,
+:root {
+  /* Color */
+  --green: #008C45;
+  --white: #F4F5F0;
+  --red: #CD212A;
+  --darkblue: #0069A3;
+  --blue: #3366FF;     /* 51, 101, 255 */
+  --yellow: #FFF450;   /* 255, 244, 80 */
+  --orange: #F3B400;   /* Giallo Pompeiano */
+  --gray: #7D7D7D;     /* Grigio */
+  --black: #333132;    /* Nero */
+  /* https://color-pallet.spark-a.com/itc-blue/ */
+}
+
+@font-face {
+	font-family: 'Kleymisska';
+	src: url(../public/font/Kleymisska.ttf);
+}
+
+@font-face {
+	font-family: 'Shippori';
+	src: url(../public/font/ShipporiMincho-Regular.ttf);
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit;  list-style-type: none; vertical-align: baseline; 
+  font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; 
+  background-color: transparent; color: var(--black);
+  font-size: 16px; font-weight: normal; background-color: var(--white); 
+  text-align: center; justify-content: center; align-items: center; line-height: 1.5; overflow-x: hidden
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.swiper-button-next,
+.swiper-button-prev {
+  height: 30px !important;
+  color: var(--white) !important;
 }
 
-* {
-  box-sizing: border-box;
+.swiper-pagination-bullet-active, 
+.swiper-pagination-bullet {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 10px !important;
+  background-color: var(--white) !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+p { 
+  color: #333132;
+  font-size: 14px !important;
+  text-align: left;
+  padding: 10px 30px 0px 30px;
 }
+
+.twitter-timeline, .tiktok-embed { 
+  width: calc(100vw - 30px) !important; max-width: 700px !important;
+  margin: 0px auto !important; padding-bottom: 15px !important;
+}
+
+@media screen and (min-width: 660px) {
+  .twitter-timeline { width: calc(50vw - 30px) !important; }
+}
+
+
