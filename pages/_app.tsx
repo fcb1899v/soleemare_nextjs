@@ -6,7 +6,7 @@ import { usePageView } from '../src/hooks/usePageView';
 function MyApp({ Component, pageProps }: AppProps) {
   // Google Analytics の PV をカウントするイベント
   usePageView();
-
+  
   return <Component {...pageProps} />;
 }
 

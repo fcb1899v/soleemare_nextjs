@@ -31,7 +31,7 @@ export default function HomeInstagram() {
       <div className={styles.border__yellow}>
         <div className={styles.box}>
           <div className={styles.title}>
-            <h2>Instagram</h2>
+            <h3>Instagram</h3>
             <a className={styles.snsIcon} href="https://www.instagram.com/soleemare_dolce">
               <img src="../sns/instagram_b.svg" alt="Instagram"/>
             </a>

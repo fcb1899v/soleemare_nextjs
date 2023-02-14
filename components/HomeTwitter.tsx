@@ -21,7 +21,7 @@ const HomeTwitter: NextPage = () => {
       <div className={styles.border__blue}>
         <div className={styles.box}>
           <div className={styles.title}>
-            <h2>Twitter</h2>
+            <h3>Twitter</h3>
             <a className={styles.snsIcon} href="https://twitter.com/soleemare_dolce">
               <img src="../sns/twitter_w.svg" alt="Twitter"/>
             </a>

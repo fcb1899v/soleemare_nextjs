@@ -30,6 +30,8 @@ body {
   text-align: center; justify-content: center; align-items: center; line-height: 1.5; overflow-x: hidden
 }
 
+h5 { margin: 0; text-align: left; font-size: 16px; font-weight: normal;  }
+
 .swiper-button-next,
 .swiper-button-prev {
   height: 30px !important;
@@ -52,12 +54,10 @@ p {
 }
 
 .twitter-timeline, .tiktok-embed { 
-  width: calc(100vw - 30px) !important; max-width: 700px !important;
+  width: calc(100vw - 30px) !important; max-width: 600px !important;
   margin: 0px auto !important; padding-bottom: 15px !important;
 }
 
-@media screen and (min-width: 660px) {
+@media screen and (min-width: 960px) {
   .twitter-timeline { width: calc(50vw - 30px) !important; }
 }
-
-

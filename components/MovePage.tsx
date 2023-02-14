@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import styles from '../styles/Header.module.css'
 
-interface Props  {
+interface Props {
   alt: string
   icon: string
   link: string

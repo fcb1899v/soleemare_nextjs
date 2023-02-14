@@ -1,14 +1,8 @@
 import React, {useEffect, useState} from "react"
 import styles from '../styles/HomeTop.module.css'
 import HomeTopCarousel from './HomeTopCarousel'
-import bg from 'public/images/wave_blue.png'
-import ShoppingButton from "./ShoppingButton";
 import PictureBlueContent from "./PictureBlueContent";
-
-const messages_info = [
-  'クラウドファンディングMakuake（マクアケ）にて、「スフォリアテッラ」の先行予約を開始し、予定数量を完売いたしました。',
-  'ご支援いただいた皆様には、感謝しかありません。おかげ様の精神で、皆様においしいスフォリアテッラがお届けできるように精進いたします。',
-];
+import ShoppingButton from "./ShoppingButton";
 
 const message1_soleemare = 
   '　ソレ エ マーレ（Sole e Mare）とは、神奈川県小田原市のイタリアンスイーツ店です。イタリア語で『太陽と海』という意味があリます。'
@@ -40,20 +34,6 @@ export default function HomeTop() {
     {/* <ShoppingButton isVisible={isVisible}/> */}
     <div className={styles.carouselstyle}>
       <HomeTopCarousel/>
-    </div>
-    <div className={styles.info}>
-      <h2>お知らせ</h2>
-    </div>
-    <div className={styles.border__info}>
-      <div className={styles.table} style={{backgroundImage: `linear-gradient(rgba(244, 245, 240, 0.6),rgba(244, 245, 240, 0.6)), url(${bg.src})`}}>
-        <table>
-          <tbody>
-            {
-              messages_info.map((value: string, i: number) => <tr key={i}><td>{value}</td></tr>) 
-            }
-          </tbody>
-        </table>
-      </div>
     </div>
     <div className={styles.container}>
       <PictureBlueContent

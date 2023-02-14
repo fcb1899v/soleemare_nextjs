@@ -22,7 +22,6 @@
 .border__yellow span { font-size: min(16vw, 80px); font-family: "Kleymisska"; }
 .border__yellow h1 { font-size: min(7vw, 35px); }
 .message { margin: 20px; }
-.message h5 { margin: 0; text-align: left; font-size: min(4vw, 16px); font-weight: normal; }
 .explain { margin: 20px 0; }
 .explain button { 
   margin: 0px auto 0px auto; padding-bottom: 30px; color: var(--gray); font-size: min(4.8vw, 18px);
