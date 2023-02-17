@@ -6,9 +6,7 @@ import SNSLink from './SNSLink';
 
 
 const HomeTwitter: NextPage = () => {
-
   const [isLoadwidgets, setIsLoad] = useState(false);
-
   useEffect(() => {
     if (!isLoadwidgets) {
       const s = document.createElement("script");
@@ -17,7 +15,6 @@ const HomeTwitter: NextPage = () => {
       setIsLoad(true);
     }
   }, [isLoadwidgets]);
-
   return (
     <div className={styles.container}>
       <div className={styles.border__blue}>

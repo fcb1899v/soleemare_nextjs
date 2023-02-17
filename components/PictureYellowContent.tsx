@@ -15,12 +15,10 @@ interface Props  {
 const PictureYellowContent: NextPage<Props> = ({ isTitle, itTitle, jaTitle, image, message1, messages }) => {
   const [showChild, setShowChild] = useState(false);
   const [vanishButton, setVanishButton] = useState(false);
-
   const handleClick = () => {
     setShowChild(!showChild);
     setVanishButton(!vanishButton);
   };
-
   return (
     <div className={styles.explain}> 
       <div className={styles.border__yellow}>

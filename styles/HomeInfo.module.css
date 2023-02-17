@@ -16,7 +16,10 @@
   position: relative; padding: 5px 5px 5px 5px; margin: 10px auto 30px auto; width: Calc(100% - 30px);
   background: linear-gradient(to right bottom, var(--blue), var(--darkblue)); 
 }
-.table { width: 100%; font-size: 16px; color: var(--black); }
+.table { 
+  width: 100%; font-size: 16px; color: var(--black); 
+  background-image: linear-gradient(rgba(244, 245, 240, 0.6),rgba(244, 245, 240, 0.6)), url('../public/images/wave_blue.png');
+}
 .table table { width: 100%; padding: 10px; }
 .table tbody { vertical-align: top;}
 .table td { text-align: left; padding: 10px; }
@@ -59,7 +62,7 @@
 
 @media screen and (min-width: 960px) {
   .border__info { width: Calc(100% - 200px); }
-  .contents { display: inline-flex; margin-bottom: 65px; }
+  .contents { display: inline-flex; margin-bottom: 30px; }
   .container { width: 50vw; }
   .insta_name { width: Calc(50vw - 30px); }
   .insta_container { width: Calc(50vw - 30px); max-width: 600px; }

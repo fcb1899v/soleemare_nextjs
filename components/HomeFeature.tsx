@@ -86,7 +86,7 @@ const HomeFeature: NextPage = () => {
     )
   }
   return (
-    <section id="features" className={styles.features} style={{backgroundImage: `linear-gradient(rgba(244, 245, 240, 0.6),rgba(244, 245, 240, 0.6)), url(${bg.src})`, height: '100%'}}>
+    <section id="features" className={styles.features}>
       <div className={styles.features_title}>
         <h2>当店のこだわり</h2>  
       </div>

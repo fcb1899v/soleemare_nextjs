@@ -1,4 +1,7 @@
-.features { margin-top: 10px; border-top: 10px double var(--blue); border-bottom: 10px double var(--blue); }
+.features { 
+  height: 100%; margin-top: 10px; border-top: 10px double var(--blue); border-bottom: 10px double var(--blue); 
+  background-image: linear-gradient(rgba(244, 245, 240, 0.6),rgba(244, 245, 240, 0.6)), url('../public/images/shikkui.jpg');
+}
 .features_title h2 { font-size: min(6vw, 2em); margin: 30px 0; }
 .title img { width: min(20vw, 6em); margin-top: 20px; }
 .title h2 { font-size: min(6vw, 1.5em); margin: 0; padding-bottom: 15px; }

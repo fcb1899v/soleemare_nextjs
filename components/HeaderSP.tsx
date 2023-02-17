@@ -18,7 +18,7 @@ const HeaderSP: NextPage<Props> = ({titles, links, isInpages}) => {
   if (titles.length > 0) {
     for (let i = 0; i < titles.length; i++) {
       menu_links.push(
-        <li onClick={toMenu}>
+        <li onClick={toMenu} key={"headersp_menu_" + i}>
           <LinkButton title={titles[i]} link={links[i]} isInpage={isInpages[i]}/>
         </li>
       )
@@ -54,8 +54,8 @@ const HeaderSP: NextPage<Props> = ({titles, links, isInpages}) => {
       </div>
       <SnsButtons/>
       <div className={styles.contact}>
-        <li>e-mail : info@sole-e-mare.com</li>    
-        <li>©Sole e Mare. ALL RIGHTS RESERVED.</li>
+        <li key={"e-mail"}>e-mail : info@sole-e-mare.com</li>    
+        <li key={"copyright"}>©Sole e Mare. ALL RIGHTS RESERVED.</li>
       </div>
     </div>
   </div>);

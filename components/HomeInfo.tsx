@@ -22,7 +22,7 @@ const HomeSNS: NextPage = () => {
         <h2>お知らせ</h2>
       </div>
       <div className={styles.border__info}>
-        <div className={styles.table} style={{backgroundImage: `linear-gradient(rgba(244, 245, 240, 0.6),rgba(244, 245, 240, 0.6)), url(${bg.src})`}}>
+        <div className={styles.table}>
           <table>
             <tbody>
               {

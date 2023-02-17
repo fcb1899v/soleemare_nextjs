@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 
 const alternatives: string[] = [
@@ -36,9 +37,9 @@ const SNSButtons: NextPage = () => {
   for (let i = 0; i < alternatives.length; i++) {
     sns_list.push( 
       <ul className={styles.snsButton}>
-        <a href={urls[i]} target="_blank" rel="noreferrer" className={styles.snsLink}>
+        <Link href={urls[i]} target="_blank" rel="noreferrer" className={styles.snsLink}>
           <img src={icons[i]} alt={alternatives[i]}/>
-        </a>
+        </Link>
       </ul>
     )
   }
