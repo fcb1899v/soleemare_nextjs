@@ -107,9 +107,7 @@ const conditions = [
 ];
 
 const PrivacyPolicyBody: NextPage = () => { 
-
   const item_list: any = []
-
   for (let i = 0; i < titles.length; i++) {
     item_list.push(<PrivacyPolicyItem
       title={titles[i]}
@@ -118,7 +116,6 @@ const PrivacyPolicyBody: NextPage = () => {
       conditions={conditions[i]}
     />)
   }
-
   return (
     <div id="privacypolicy" className={styles.info}>
       <div className={styles.policy_top}>
@@ -129,7 +126,7 @@ const PrivacyPolicyBody: NextPage = () => {
       <div>
         {item_list}
       </div>
-      <div className={styles.policy_last}>
+      <section id="contact" className={styles.policy_last}>
         <div>
           <h3>個人情報管理責任者</h3>
           <div className={styles.policy_name}>
@@ -149,7 +146,7 @@ const PrivacyPolicyBody: NextPage = () => {
             <p>お問い合わせは上記にご連絡ください</p>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

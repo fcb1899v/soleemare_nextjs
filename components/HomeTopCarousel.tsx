@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { NextPage } from 'next';
 import { useLayoutEffect, useState } from 'react';
 import styles from '../styles/HomeTop.module.css'
 import 'swiper/css';
@@ -34,22 +34,24 @@ const jaTitles = [
   // "ソスピーリ",
 ]
 
-const useWindowSize = (): number[] => {
-  const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-    const updateSize = (): void => {
-      setSize([window.innerWidth, window.innerHeight]);
-    };
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-  return size;
-};
+const HomeTopCarousel: NextPage = () => {
 
-export default function HomeTopCarousel() {
+  const useWindowSize = (): number[] => {
+    const [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+      const updateSize = (): void => {
+        setSize([window.innerWidth, window.innerHeight]);
+      };
+      window.addEventListener('resize', updateSize);
+      updateSize();
+      return () => window.removeEventListener('resize', updateSize);
+    }, []);
+    return size;
+  };
+  
   const [width, height] = useWindowSize();
   var images = width < 520 ? mobileImages: pcImages;
+  
   return (
     <Swiper
       modules={[Navigation, Pagination, EffectFade, Autoplay]}
@@ -78,3 +80,5 @@ export default function HomeTopCarousel() {
     })}</Swiper>
   )
 }
+
+export default HomeTopCarousel

@@ -35,7 +35,6 @@
 }
 
 @media screen and (min-width: 960px) {
-  .policy_top { margin-top: 50px; }
   .policy_item { margin: 20px 100px 30px 100px; }
-  .policy_last { display: inline-flex; margin-top: 0px; gap: 40px; }
+  .policy_last { display: inline-flex; margin-top: 0; margin-bottom: 60px; gap: 40px; }
 }

@@ -1,3 +1,4 @@
+import { NextPage } from "next";
 import React, {useEffect, useState} from "react"
 import styles from '../styles/HomeTop.module.css'
 import HomeTopCarousel from './HomeTopCarousel'
@@ -19,7 +20,7 @@ const messages_amalfi = [
   '　イタリアンスイーツを通じて、自家農園の季節の柑橘を感じていただきたい。私がソレエマーレを始めた理由です。',
 ];
 
-export default function HomeTop() {
+const HomeTop: NextPage = () => {
 
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => { 
@@ -30,7 +31,7 @@ export default function HomeTop() {
     return () => window.removeEventListener('scroll', toggleVisibility)
   }, [])
 
-  return <div>
+  return <section id="top">
     {/* <ShoppingButton isVisible={isVisible}/> */}
     <div className={styles.carouselstyle}>
       <HomeTopCarousel/>
@@ -53,5 +54,7 @@ export default function HomeTop() {
         messages={messages_amalfi}
       />
     </div>
-  </div>
+  </section>
 }
+
+export default HomeTop

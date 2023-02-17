@@ -40,7 +40,7 @@ const SNSButtons: NextPage = () => {
           <img src={icons[i]} alt={alternatives[i]}/>
         </a>
       </ul>
-   )
+    )
   }
   return (
     <div className={styles.snsList}> 

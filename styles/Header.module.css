@@ -3,31 +3,36 @@
   width: 100%; height: 60px; top: 0; z-index: 10; background-color: var(--white);
 }
 .headerLogo { display: inline-flex; }
-.headerLogo img { height: 35px; margin-top: 12px; }
-.headerTitle img { margin: 15px auto 0px 15px; }
+.headerLogo img { height: 32px; margin: 14px 5px; }
 .openNone { display: none; }
 .open, .close, .policyopen { 
   position: absolute; display: flex; justify-content: flex-end; 
   margin-bottom: 10px; left: 20px; font-size: 32px; cursor: pointer; 
+  
 }
-.open { margin-top: -36px; }
+.open { margin-top: -48px; }
 .close { margin-top: -5px; }
 
-.overlayNone { display: none; opacity: 0; }
+.overlayNone { display: none; opacity: 0; transition: all 3s ease-in-out; }
 .overlayShow {
-  position: fixed; top: 0px; bottom: 0; right: 0; width: 100%; height: 100vh; background: rgba(244, 245, 240, 0.96); 
-  padding-top: 24px; opacity: 1; pointer-events: auto; transition: all 500ms 0s ease; z-index: 100;
+  position: fixed; top: 0px; bottom: 0; right: 0; z-index: 100;
+  width: 100vw; height: 100vh; background: rgba(244, 245, 240, 0.96); 
+  padding-top: 24px; opacity: 1; pointer-events: auto; transition: all 3s ease-in-out; 
 }
 .overlayShow a { color: var(--black); }
 .overlayShow a:hover { opacity: 0.6; }
 .overlayShow li { margin-top: 0px; text-decoration: none; font-size: 20px; }
 .overlayShow ul { list-style: none; display: inline-block; padding: 0; }
 
-.menu { margin-top: 20px; }
-.menuList__pc { display: none; }
-.menuList li { margin: 10px 0px; }
-.menuList a { text-decoration: none; font-size: 18px; }
+.menu { margin: 20px 0; }
 .menuLogo img { width: 150px; margin: 10px 0px; }
+.menuList li { margin: 10px 0px; }
+.menuList a { font-size: 18px; text-decoration: underline; color: var(--black); }
+.menuList button { 
+  font-size: 18px; text-decoration: underline; color: var(--black); padding: 0;
+  border: none; outline: none; background-color: transparent;
+  font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; 
+}
 
 .loading { 
   position: fixed; width: 100%; height: 110vh;
@@ -48,20 +53,22 @@
   top: 40%; left: 50%; transform: translate(-50%, -50%);
 }
 
+.contact { margin-top: 10px; }
+.contact li { font-size: 16px; padding: 5px; }
+
+@media screen and (min-width: 520px) {
+  .headerLogo img { height: 40px; margin: 10px; }
+}
+
 @media screen and (min-width: 960px) {
-  .headerTitle { margin-right: 30px; }
   .headerContent { display: block; margin: 10px 10px; }
   .menuLogo { margin: auto; }
-  .menuList { display: none; margin: auto 0; }
-  .menuList__pc { display: inline-flex; margin-top: 15px; }
-  .menuList__pc li { margin: 10px 10px; }
-  .menuList__pc a { font-size: 16px; color: var(--black); }
-  .open { display: none; margin-top: -84px; }
+  .menuList { display: inline-flex; margin-top: 15px; margin-left: auto; }
+  .menuList li { margin: 10px; }
 }
 
 @media screen and (min-width: 1150px) {
   .headerLogo { display: flex; }
-  .header { width: Calc(100% - 100px); padding: 0 100px; }
-  .headerTitle { margin-right: auto; }
-  .menuList__pc { display: inline-flex; margin-right: 100px; }
+  .header { width: Calc(100% - 100px); padding: 0 50px; }
+  .menuList { margin-right: 100px; }
 }

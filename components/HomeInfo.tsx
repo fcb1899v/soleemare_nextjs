@@ -17,7 +17,7 @@ const HomeSNS: NextPage = () => {
   }
 
   return (
-    <div id="info" className={styles.info}>
+    <section id="info" className={styles.info}>
       <div className={styles.info}>
         <h2>お知らせ</h2>
       </div>
@@ -40,7 +40,7 @@ const HomeSNS: NextPage = () => {
       <div className={styles.toTop} onClick={onScrollTop}>
         <h4>ページトップへ戻る</h4> 
       </div>
-    </div>
+    </section>
   );
 };
 

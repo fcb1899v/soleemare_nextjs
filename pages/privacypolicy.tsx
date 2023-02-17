@@ -1,18 +1,36 @@
 import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
+import Head from '../components/Head'
 import Splash from '../components/Splash'
-import PrivacyHeader from '../components/PrivacyPolicyHeader'
-import HomeHead from '../components/Head'
+import Header from '../components/Header'
 import PrivacyPolicyBody from '../components/PrivacyPolicyBody'
 import Footer from '../components/Footer'
+
+const menu_titles: string[] = [
+  "ホーム",
+  "お問い合わせ",
+  "プライバシーポリシー",
+];
+
+const menu_links: string[] = [
+  "/",
+  "contact",
+  "/privacypolicy",
+];
+
+const menu_isinpages: boolean[] = [
+  false,
+  true,
+  false,
+];
 
 const Policy: NextPage = () => {
   return (
     <div>
-      <HomeHead/>
+      <Head/>
       <main className={styles.main}>
         <Splash/>
-        <PrivacyHeader/>
+        <Header titles={menu_titles} links={menu_links} isinpages={menu_isinpages}/>
         <PrivacyPolicyBody/>
       </main>
       <footer>

@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import styles from '../styles/Policy.module.css'
 
-interface Props  {
+interface Props {
   title: string
   explanations: string[]
   isconditions: boolean

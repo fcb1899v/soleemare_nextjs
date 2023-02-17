@@ -5,9 +5,7 @@ import styles from '../styles/HomeTop.module.css'
 interface Props  {
   isVisible: boolean
 }
-  
-let isLoadwidgets = false;
-export const ShoppingTitle = () => {
+const ShoppingTitle: NextPage = () => {
   const shoppingClick = () => {
     gtag('event','to_store',{'event_category':'want','event_label':'buy','value':1})
   }
@@ -17,7 +15,6 @@ export const ShoppingTitle = () => {
     </a>
   );
 };
-
 const ShoppingButton: NextPage<Props> = ({ isVisible }) => {
   return (
     <div className={isVisible ? styles.shopping: styles.shoppingNone}>

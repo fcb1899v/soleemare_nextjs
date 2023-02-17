@@ -1,6 +1,8 @@
 import { NextPage } from 'next'
+import Link from 'next/link';
 import React, { useEffect, useState } from "react"
 import styles from '../styles/HomeInfo.module.css'
+import SNSLink from './SNSLink';
 
 
 const HomeTwitter: NextPage = () => {
@@ -20,18 +22,9 @@ const HomeTwitter: NextPage = () => {
     <div className={styles.container}>
       <div className={styles.border__blue}>
         <div className={styles.box}>
-          <div className={styles.title}>
-            <h3>Twitter</h3>
-            <a className={styles.snsIcon} href="https://twitter.com/soleemare_dolce">
-              <img src="../sns/twitter_w.svg" alt="Twitter"/>
-            </a>
-          </div>
+          <SNSLink href="https://twitter.com/soleemare_dolce" src="../sns/twitter_w.svg" alt="Twitter"/>
           <div className={(isLoadwidgets) ? styles.twitter_box: styles.twitter_box_none}>
-            <a 
-              className="twitter-timeline" 
-              data-height="800"
-              href="https://twitter.com/soleemare_dolce?ref_src=twsrc%5Etfw">
-            </a>
+            <Link className="twitter-timeline" data-height="800" href="https://twitter.com/soleemare_dolce?ref_src=twsrc%5Etfw"/>
           </div>
         </div>
       </div>
