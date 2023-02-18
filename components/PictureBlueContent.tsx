@@ -40,7 +40,7 @@ const PictureYellowContent: NextPage<Props> = ({ isTitle, itTitle, jaTitle, imag
           }}>{value}</h5>)
         }
         <Button onClick={handleClick} style={{height: showChild ? "0px": "20px", display: showChild ? "none" : "block",}}>
-          ＋ 続きを読む
+          <h5>＋ 続きを読む</h5>
         </Button>
       </div>
     </div>

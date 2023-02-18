@@ -35,27 +35,12 @@ const HomeInstagram: NextPage = () => {
           <SNSLink href="https://www.instagram.com/soleemare_dolce" src="../sns/instagram_b.svg" alt="Instagram"/>
           <div className={styles.insta} >
             <div className={(instaItems.length == 0) ? styles.insta_box_none: styles.insta_box}>
-              <div className={(instaItems.length == 0) ? styles.insta_name_none: styles.insta_name}>
-                <img src="../images/soleemare_logo.png" alt="Sole e Mare"/>
-                <p>@soleemare_dolce</p>
-                <div className={styles.insta_logo}>
-                  <Link href="https://www.instagram.com/soleemare_dolce">
-                    <img src="../sns/instagram_logo.png" alt="Instagram"/>
-                  </Link>
-                </div>
-              </div>
               {
                 instaItems.map((item: any, i: number) => (
-                  <a key={i} href={item["permalink"]} className={styles.insta_link}>
-                    <Card className={styles.insta_container}>
-                      <CardMedia
-                        className={styles.insta_image}
-                        image={(item["media_type"] == "VIDEO") ? item["thumbnail_url"]: item["media_url"]}
-                        title="refrigerator"
-                      />
-                      <div className={styles.insta_like}>♥ {item["like_count"]}</div>
-                    </Card>
-                  </a>
+                  <Link key={i} href={item["permalink"]} className={styles.insta_container}>
+                    <img src={(item["media_type"] == "VIDEO") ? item["thumbnail_url"]: item["media_url"]}/>
+                    <div className={styles.insta_like}>♥ {item["like_count"]}</div>
+                  </Link>
                 ))
               }
             </div>

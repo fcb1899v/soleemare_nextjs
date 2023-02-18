@@ -31,7 +31,6 @@
 .menuList button { 
   font-size: 18px; text-decoration: underline; color: var(--black); padding: 0;
   border: none; outline: none; background-color: transparent;
-  font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; 
 }
 
 .loading { 
@@ -57,6 +56,7 @@
 .contact li { font-size: 16px; padding: 5px; }
 
 @media screen and (min-width: 520px) {
+  .menuList { display: none; }
   .headerLogo img { height: 40px; margin: 10px; }
 }
 

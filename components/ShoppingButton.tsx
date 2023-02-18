@@ -1,24 +1,21 @@
 import { NextPage } from 'next'
+import Link from 'next/link';
 import React, { useEffect } from "react"
 import styles from '../styles/HomeTop.module.css'
 
 interface Props  {
-  isVisible: boolean
+  id: number
 }
-const ShoppingTitle: NextPage = () => {
+
+const ShoppingButton: NextPage<Props> = ({ id }) => {
   const shoppingClick = () => {
-    gtag('event','to_store',{'event_category':'want','event_label':'buy','value':1})
+    gtag('event','to_buy',{'event_category':'want','event_label':'buy','value': 1})
   }
   return (
-    <a onClick={shoppingClick} href="https://shop.sole-e-mare.com" target="_blank" rel="noopener noreferrer">
-      オンラインショップはこちら
-    </a>
-  );
-};
-const ShoppingButton: NextPage<Props> = ({ isVisible }) => {
-  return (
-    <div className={isVisible ? styles.shopping: styles.shoppingNone}>
-      <ShoppingTitle/>
+    <div className={styles.shopping}>
+      <Link onClick={shoppingClick} href="https://shop.sole-e-mare.com" target="_blank" rel="noopener noreferrer">
+        購入する
+      </Link>
     </div>
   );
 };

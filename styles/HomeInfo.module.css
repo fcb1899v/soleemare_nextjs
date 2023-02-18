@@ -17,7 +17,7 @@
   background: linear-gradient(to right bottom, var(--blue), var(--darkblue)); 
 }
 .table { 
-  width: 100%; font-size: 16px; color: var(--black); 
+  width: 100%; font-size: 18px; color: var(--black); 
   background-image: linear-gradient(rgba(244, 245, 240, 0.6),rgba(244, 245, 240, 0.6)), url('../public/images/wave_blue.png');
 }
 .table table { width: 100%; padding: 10px; }
@@ -27,45 +27,34 @@
   width: 100%; margin: 0 auto; 
   display: flex !important; flex-wrap: wrap; justify-content: center; align-items: center;
 }
-.insta_name { 
-  display: inline-flex; position: sticky; top: 0; z-index: 1;
-  width: Calc(100vw - 30px); max-width: 600px;
-  font-size: 20px; font-weight: bold; 
-  background-color: #fff; border-bottom: 1px solid var(--gray); 
-  border-top-left-radius: 12px; border-top-right-radius: 12px;
-  border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;
-}
-.insta_name img { width: 50px; margin: 13px 0px 13px 13px;}
-.insta_logo { margin: 0px 15px auto auto; }
-.insta_logo img { width: 30px; }
-.insta_name p { font-size: 20px !important; font-weight: bold;  padding: 0; margin: auto 10px; }
-.insta_link a { text-decoration: none; }
-.insta_container { position: relative; width: Calc(100vw - 30px); max-width: 600px; padding: 15px 0px 35px 0px; } 
 .insta_box { 
-  height: 800px; margin-bottom: 15px; overflow: auto; 
-  border-top-left-radius: 0px; border-top-right-radius: 0px;
-  border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+  margin-bottom: 15px; overflow: hidden; 
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
 }
-.insta_image { width: Calc(100vw - 30px); max-width: 250px; aspect-ratio: 1; margin: 0 auto !important; }
-.insta_like { width: 100%; position: absolute; color: #CD212A; text-decoration: none !important; }
+.insta_container { position: relative; width: Calc(50vw - 15px); padding: 0; } 
+.insta_container img { width: Calc(50vw - 15px); max-width: 250px; aspect-ratio: 1; margin-bottom: 20px; }
+.insta_like { width: 100%; position: absolute; color: #CD212A; text-decoration: none; margin-top: -24px;}
 .insta_name_none, .insta_box_none, .twitter_box_none { display: none; }
 
-.twitter_box { height: 800px; padding-bottom: 15px; }
 .tiktokContent { max-width: 90%; margin: 0px auto; overflow-y: auto; }
 .tiktokEmbed { margin-top: 0 !important; }
 .toTop { padding: 0px; background: var(--gray); }  
-.toTop h4 { padding: 15px 0; font-size: 18px !important; font-weight: bold; color:#fff; }
+.toTop h4 { padding: 15px 0; font-size: 18px !important; font-weight: normal; color:#fff; }
 
 @media screen and (min-width: 520px) {
   .border__info { width: Calc(100% - 50px); }
+  .insta_box { height: 1150px; grid-template-columns: repeat(3, 1fr); height: auto; }
+  .insta_container { width: Calc(33vw - 15px); } 
+  .insta_container img { width: Calc(33vw - 15px); }
+
 }
 
 @media screen and (min-width: 960px) {
   .border__info { width: Calc(100% - 200px); }
-  .contents { display: inline-flex; margin-bottom: 30px; }
+  .contents { display: inline-flex; margin-bottom: 65px; }
   .container { width: 50vw; }
-  .insta_name { width: Calc(50vw - 30px); }
-  .insta_container { width: Calc(50vw - 30px); max-width: 600px; }
-  .insta_image { width: Calc(50vw - 30px); aspect-ratio: 1; }
+  .insta_box { grid-template-columns: repeat(2, 1fr); height: 1150px; }
+  .insta_container { width: Calc(25vw - 15px); } 
+  .insta_container img { width: Calc(25vw - 15px); }
   .toTop { display: none; ; }
 }

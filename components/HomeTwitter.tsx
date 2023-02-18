@@ -21,7 +21,7 @@ const HomeTwitter: NextPage = () => {
         <div className={styles.box}>
           <SNSLink href="https://twitter.com/soleemare_dolce" src="../sns/twitter_w.svg" alt="Twitter"/>
           <div className={(isLoadwidgets) ? styles.twitter_box: styles.twitter_box_none}>
-            <Link className="twitter-timeline" data-height="800" href="https://twitter.com/soleemare_dolce?ref_src=twsrc%5Etfw"/>
+            <Link className="twitter-timeline" data-height="1150" href="https://twitter.com/soleemare_dolce?ref_src=twsrc%5Etfw"/>
           </div>
         </div>
       </div>

@@ -23,10 +23,7 @@
 .border__yellow h1 { font-size: min(7vw, 35px); }
 .message { margin: 20px; }
 .explain { margin: 20px 0; }
-.explain button { 
-  margin: 0px auto 0px auto; padding-bottom: 30px; color: var(--gray); font-size: min(4.8vw, 18px);
-  font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; 
-}
+.explain button { margin: 0px auto 0px auto; padding-bottom: 30px; color: var(--gray); }
 
 @media screen and (min-width: 520px) {
   .title { top: 50%; }
