@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react"
 import styles from '../styles/HomeTop.module.css'
 import HomeTopCarousel from './HomeTopCarousel'
 import PictureBlueContent from "./PictureBlueContent";
-import ShoppingButton from "./ShoppingButton";
+// import ShoppingButton from "./ShopifyButton";
 
 const message1_soleemare = 
   '　ソレ エ マーレ（Sole e Mare）とは、神奈川県小田原市のイタリアンスイーツ店です。イタリア語で『太陽と海』という意味があリます。'

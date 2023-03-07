@@ -11,11 +11,7 @@ const messages_info = [
 ];
 
 const HomeSNS: NextPage = () => {
- 
-  const onScrollTop = () => {
-    window.scroll({ top: 0, behavior: 'smooth' })
-  }
-
+  const onScrollTop = () => window.scroll({ top: 0, behavior: 'smooth' });
   return (
     <section id="info" className={styles.info}>
       <div className={styles.info}>

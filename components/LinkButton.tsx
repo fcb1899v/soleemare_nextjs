@@ -20,13 +20,13 @@ const LinkButton: NextPage<Props> = ({ title, link, isInpage }) => {
     }
   };
   return (
-    <li>
+    <div>
       {
         isInpage ? 
         <button onClick={handleClick}>{title}</button>: 
         <Link href={link}>{title}</Link>  
       }
-    </li>
+    </div>
   );
 }
 

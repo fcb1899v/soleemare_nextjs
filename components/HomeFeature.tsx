@@ -82,6 +82,7 @@ const HomeFeature: NextPage = () => {
         messages1={messages[i][0]}
         message2={message[i][1]}
         messages2={messages[i][1]}
+        key={`homefeature_${i}`}
       />
     )
   }

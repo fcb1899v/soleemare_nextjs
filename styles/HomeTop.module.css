@@ -18,16 +18,17 @@
   position: absolute; width: 100%; margin: 0;
   top: Calc(30% + 70px); left: 50%; transform: translate(-50%, -50%);
 }
-.box img { width: 100%; aspect-ratio: 3/2; object-fit: cover; }
+.box img { width: 100%; object-fit: cover; }
 .border__blue { 
-  position: relative; padding: 5px 5px 0px 5px; margin: 10px; max-width: 500px;
+  position: relative; padding: 6px 6px 0px 6px; margin: 10px; max-width: 500px;
   background: linear-gradient(to right bottom, var(--blue), var(--darkblue)); 
 }
+.border__blue img { margin: 0; }
 .border__blue span { font-size: min(16vw, 80px); font-family: "Kleymisska"; }
 .border__blue h1 { font-size: min(7vw, 35px); }
 .message { margin: 20px 20px 0px 20px; }
 .explain { margin: 20px 0 30px 0; }
-.explain button { margin: 0px auto; padding-bottom: 30px; color: var(--gray); }
+.explain button { margin: 0px auto; padding-bottom: 30px; color: var(--blue); }
 .soleemare {
   position: absolute; width: 100%; margin: 0;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -66,6 +67,7 @@
 @media screen and (min-width: 960px) {
   .carouselstyle { width: Calc(100% - 200px); margin: 0 auto; margin: -90px auto 20px auto;  }
   .title { top: Calc(50% + 50px); }
+  .box img { aspect-ratio: 3/2; }
   .border__blue { width: 39vw; }
   .border__blue span { font-size: min(6vw, 72px); }
   .border__blue h1 { font-size: min(2.5vw, 30px); }

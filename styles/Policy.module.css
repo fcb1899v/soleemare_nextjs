@@ -3,7 +3,7 @@
 .policy_point { display: none; }
 .policy_item { text-align: left; margin: 20px 20px 30px 20px; }
 .policy_item h3 { font-size: 20px; margin-top: 20px }
-.policy_item a { color: #2d2926; text-decoration: underline; }
+.policy_item a { color: var(--black); text-decoration: underline; }
 .policy_item p { font-size: 16px; padding: 5px 0px; }
 .policy_item ul { font-size: 16px; padding: 5px 0px 5px 28px; text-indent: -32px; }
 .policy_item li { 
@@ -12,17 +12,14 @@
 .policy_last { margin: 0px 20px; }
 .policy_last p { font-size: 16px !important; margin: 20px auto 40px auto; padding: 0; text-align: center; }
 .policy_last br { display: none; }
-.policy_name  { margin-bottom: 30px; }
-.policy_name p { margin: 5px; }
 .policy_contact { margin: 20px auto; padding: 0; }
-.policy_contact h3 { font-size: 20px; margin: 5px auto ; padding: 0; text-align: center; }
+.policy_contact h3 { font-size: 20px; margin: 20px auto ; padding: 0; text-align: center; }
 .policy_contact p { font-size: 16px !important; margin: 5px auto ; padding: 0; text-align: center; }
 .policy_colon { display: none; }
 
-@media screen and (min-width: 520px) {
+@media screen and (min-width: 600px) {
   .policy_top { display: inline-flex; }
   .policy_contact { display: inline-flex; }
-  .policy_name { display: inline-flex; }
   .policy_point { display: block; }
   .policy_colon { display: block; }
   .policy_item { margin: 20px 40px 30px 40px; }
@@ -36,5 +33,5 @@
 
 @media screen and (min-width: 960px) {
   .policy_item { margin: 20px 100px 30px 100px; }
-  .policy_last { display: inline-flex; margin-top: 0; margin-bottom: 60px; gap: 40px; }
+  .policy_last { display: inline-flex; margin-top: 0; margin-bottom: 80px; gap: 80px; }
 }

@@ -19,7 +19,7 @@ const HeaderSP: NextPage<Props> = ({titles, links, isInpages}) => {
     for (let i = 0; i < titles.length; i++) {
       menu_links.push(
         <li onClick={toMenu} key={"headersp_menu_" + i}>
-          <LinkButton title={titles[i]} link={links[i]} isInpage={isInpages[i]}/>
+          <LinkButton title={titles[i]} link={links[i]} isInpage={isInpages[i]} key={`linksp_${i}`}/>
         </li>
       )
     }  

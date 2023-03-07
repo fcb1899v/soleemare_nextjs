@@ -1,9 +1,9 @@
-.title h3 { font-size: min(9vw, 3em); margin: 0; padding-top: 20px; font-family: 'Kleymisska'; }
+.title h3 { font-size: min(9vw, 3em); margin: 0; padding-top: 20px; }
 .snsIcon img { width: 50px; height: 50px; margin: 0px 0px 20px 0px; }
 .container { width: 100vw; border-bottom: 10px double var(--blue); }
 .contents { border-top: 10px double var(--blue); }
 .border__blue { 
-  color: #fff; text-shadow: 1px 2px 3px var(--black); position: relative; width: Calc(100% - 10px); margin: 0;
+  color: var(--white); text-shadow: 1px 2px 3px var(--black); position: relative; width: Calc(100% - 10px); margin: 0;
   padding: 5px 5px 0px 5px; background: linear-gradient(to right bottom, var(--blue), var(--darkblue)); 
 }
 .border__yellow { 
@@ -18,11 +18,11 @@
 }
 .table { 
   width: 100%; font-size: 18px; color: var(--black); 
-  background-image: linear-gradient(rgba(244, 245, 240, 0.6),rgba(244, 245, 240, 0.6)), url('../public/images/wave_blue.png');
+  background-image: linear-gradient(var(--gray), var(--gray)), url('../public/images/wave_blue.png');
 }
 .table table { width: 100%; padding: 10px; }
 .table tbody { vertical-align: top;}
-.table td { text-align: left; padding: 10px; }
+.table td { text-align: left; padding: 5px; }
 .insta { 
   width: 100%; margin: 0 auto; 
   display: flex !important; flex-wrap: wrap; justify-content: center; align-items: center;
@@ -33,20 +33,19 @@
 }
 .insta_container { position: relative; width: Calc(50vw - 15px); padding: 0; } 
 .insta_container img { width: Calc(50vw - 15px); max-width: 250px; aspect-ratio: 1; margin-bottom: 20px; }
-.insta_like { width: 100%; position: absolute; color: #CD212A; text-decoration: none; margin-top: -24px;}
+.insta_like { width: 100%; position: absolute; color: var(--red); text-decoration: none; margin-top: -24px;}
 .insta_name_none, .insta_box_none, .twitter_box_none { display: none; }
 
 .tiktokContent { max-width: 90%; margin: 0px auto; overflow-y: auto; }
 .tiktokEmbed { margin-top: 0 !important; }
-.toTop { padding: 0px; background: var(--gray); }  
-.toTop h4 { padding: 15px 0; font-size: 18px !important; font-weight: normal; color:#fff; }
+.toTop { padding: 0px; background: var(--black); }  
+.toTop h4 { padding: 15px 0; font-size: 18px !important; font-weight: normal; color:var(--white); }
 
 @media screen and (min-width: 520px) {
   .border__info { width: Calc(100% - 50px); }
   .insta_box { height: 1150px; grid-template-columns: repeat(3, 1fr); height: auto; }
   .insta_container { width: Calc(33vw - 15px); } 
   .insta_container img { width: Calc(33vw - 15px); }
-
 }
 
 @media screen and (min-width: 960px) {

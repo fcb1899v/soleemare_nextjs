@@ -3,7 +3,7 @@ module.exports = {
     return {
       '/': { page: '/' },
     }
-  }
+  },
 }
 
 // /** @type {import('next').NextConfig} */

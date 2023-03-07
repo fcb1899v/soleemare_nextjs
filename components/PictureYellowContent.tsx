@@ -31,7 +31,7 @@ const PictureYellowContent: NextPage<Props> = ({ isTitle, itTitle, jaTitle, imag
         </div>
       </div>
       <div className={styles.message}>
-        <h5>{message1}</h5>
+        <h5 style={{paddingBottom: showChild ? "5px": "0px"}}>{message1}</h5>
         {
           messages.map((value: string, i: number) => <h5 key={i} style={{
             height: showChild ? "auto" : "0px", 

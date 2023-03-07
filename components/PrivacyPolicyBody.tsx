@@ -128,8 +128,11 @@ const PrivacyPolicyBody: NextPage = () => {
       </div>
       <section id="contact" className={styles.policy_last}>
         <div>
-          <h3>個人情報管理責任者</h3>
-          <div className={styles.policy_name}>
+          <div className={styles.policy_contact}>
+            <h3>個人情報管理責任者</h3>
+          </div>
+          <br/>
+          <div className={styles.policy_contact}>
             <p>ソレ・エ・マーレ（Sole e Mare）</p>
             <p>中島 萌</p>
           </div>

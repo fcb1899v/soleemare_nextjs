@@ -36,7 +36,7 @@ const SNSButtons: NextPage = () => {
   const sns_list = [];
   for (let i = 0; i < alternatives.length; i++) {
     sns_list.push( 
-      <ul className={styles.snsButton}>
+      <ul className={styles.snsButton} key={`snsbutton_${i}`}>
         <Link href={urls[i]} target="_blank" rel="noreferrer" className={styles.snsLink}>
           <img src={icons[i]} alt={alternatives[i]}/>
         </Link>

@@ -7,8 +7,9 @@
   --blue: #3366FF;     /* 51, 101, 255 */
   --yellow: #FFF450;   /* 255, 244, 80 */
   --orange: #F3B400;   /* Giallo Pompeiano */
-  --gray: #7D7D7D;     /* Grigio */
   --black: #333132;    /* Nero */
+  --gray: rgba(244, 245, 240, 0.6);
+  --transpwhite: rgba(244, 245, 240, 0.95);
   /* https://color-pallet.spark-a.com/itc-blue/ */
 }
 
@@ -17,17 +18,11 @@
 	src: url(../public/font/Kleymisska.ttf);
 }
 
-@font-face {
-	font-family: 'Shippori';
-	src: url(../public/font/ShipporiMincho-Regular.ttf);
-}
-
 body {
-  margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit;  list-style-type: none; vertical-align: baseline; 
-  
-  background-color: transparent; color: var(--black); 
-  font-size: 16px; font-weight: normal; background-color: var(--white); 
-  text-align: center; justify-content: center; align-items: center; line-height: 1.5; overflow-x: hidden
+  margin: 0; padding: 0; border: 0; font: inherit;  list-style-type: none; vertical-align: baseline; 
+  background-color: var(--white); color: var(--black); 
+  font-size: 18px; font-weight: normal; line-height: 1.5; 
+  text-align: center; justify-content: center; align-items: center; overflow-x: hidden
 }
 
 section { scroll-margin-top: 80px; }
@@ -35,7 +30,8 @@ span { font-family: "Kleymisska"; }
 h1 { font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; }
 h2 { font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; }
 h3 { font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; }
-h5 { margin: 0; text-align: left; font-size: 18px; font-weight: normal;  }
+h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; }
+p { color: var(--black); font-size: 14px !important; text-align: left; padding: 10px 30px 0px 30px; }
 
 .swiper-button-next,
 .swiper-button-prev {
@@ -49,13 +45,6 @@ h5 { margin: 0; text-align: left; font-size: 18px; font-weight: normal;  }
   height: 16px !important;
   margin: 10px !important;
   background-color: var(--white) !important;
-}
-
-p { 
-  color: #333132;
-  font-size: 14px !important;
-  text-align: left;
-  padding: 10px 30px 0px 30px;
 }
 
 .twitter-timeline, .tiktok-embed { 

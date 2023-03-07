@@ -15,9 +15,12 @@ const HeaderPC: NextPage<Props> = ({titles, links, isInpages}) => {
   const menu_links = [];
   if (titles.length > 0) {
     for (let i = 0; i < titles.length; i++) {
-      menu_links.push(<LinkButton title={titles[i]} link={links[i]} isInpage={isInpages[i]}/>)
+      menu_links.push(<LinkButton title={titles[i]} link={links[i]} isInpage={isInpages[i]} key={`linkpc_${i}`}/>)
     }  
   }
+
+  
+
 
   return (<div id="header" className={styles.header}>
     <div>

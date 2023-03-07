@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import React from 'react'
 import styles from '../styles/HomeProduct.module.css'
 import HomeProductContent from './HomeProductContent';
+import ShopifyButton from './ShopifyButton';
 
 
 const itTitles = [
@@ -43,13 +44,16 @@ const HomeProduct: NextPage = () => {
   const product_contents = [];
   for (var i = 0; i < itTitles.length; i++) {
     product_contents.push(
-      <HomeProductContent
-        itTitle={itTitles[i]}
-        jaTitle={jaTitles[i]}
-        images={images[i]}
-        message={message[i]}
-        messages={messages[i]}
-      />
+      <div key={`homeproduct_${i}`}>
+        <HomeProductContent
+          itTitle={itTitles[i]}
+          jaTitle={jaTitles[i]}
+          images={images[i]}
+          message={message[i]}
+          messages={messages[i]}
+        />
+        <ShopifyButton i={i}/>
+      </div>
     )
   }
   return (

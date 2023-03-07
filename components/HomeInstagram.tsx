@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import {Card, CardMedia } from "@mui/material";
 import styles from '../styles/HomeInfo.module.css'
 import SNSLink from './SNSLink';
 
@@ -12,7 +11,7 @@ async function getInstaItems(): Promise<[]> {
     const token = process.env.NEXT_PUBLIC_INSTA_TOKEN;
     const instaUrl = `https://graph.facebook.com/v15.0/${userId}?fields=media.limit(10){id,caption,media_url,thumbnail_url,timestamp,media_type,permalink,like_count}&access_token=${token}`;
     const response: any = await axios.get<[]>(instaUrl);
-    console.log(response.data["media"]["data"])
+    // console.log(response.data["media"]["data"])
     return response.data["media"]["data"];
   } catch (error) {
     console.error(error);
@@ -38,7 +37,7 @@ const HomeInstagram: NextPage = () => {
               {
                 instaItems.map((item: any, i: number) => (
                   <Link key={i} href={item["permalink"]} className={styles.insta_container}>
-                    <img src={(item["media_type"] == "VIDEO") ? item["thumbnail_url"]: item["media_url"]}/>
+                    <img alt={`insta_image_${i}!`} src={(item["media_type"] == "VIDEO") ? item["thumbnail_url"]: item["media_url"]}/>
                     <div className={styles.insta_like}>♥ {item["like_count"]}</div>
                   </Link>
                 ))

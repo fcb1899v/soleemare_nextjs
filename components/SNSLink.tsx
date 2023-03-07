@@ -11,7 +11,7 @@ interface Props {
 const SNSLink: NextPage<Props> = ({ href, src, alt }) => {
   return (
     <div className={styles.title}>
-      <h3>{alt}</h3>
+      <h3><span>{alt}</span></h3>
       <div className={styles.snsIcon}>
         <Link href={href} target="_blank" rel="noreferrer" className={styles.snsLink}>
           <img src={src} alt={alt}/>

@@ -1,4 +1,4 @@
-export const GA_ID = process.env.GA_TRACKING_ID || "";
+export const GA_ID = process.env.NEXT_PUBLIC_INSTA_ID || "";
 
 // PV 数の計測
 export const pageview = (url: string) => {
