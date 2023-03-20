@@ -1,9 +1,8 @@
 import { NextPage } from 'next'
 import Link from 'next/link';
 import React, { useEffect, useState } from "react"
-import styles from '../styles/HomeInfo.module.css'
+import styles from '../styles/Info.module.css'
 import SNSLink from './SNSLink';
-
 
 const HomeTwitter: NextPage = () => {
   const [isLoadwidgets, setIsLoad] = useState(false);

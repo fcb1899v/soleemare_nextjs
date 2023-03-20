@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import styles from '../styles/HomeInfo.module.css'
+import styles from '../styles/Info.module.css'
 import SNSLink from './SNSLink';
 
 async function getInstaItems(): Promise<[]> {

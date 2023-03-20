@@ -1,9 +1,7 @@
 import { NextPage } from 'next';
 import React from 'react'
-import styles from '../styles/HomeProduct.module.css'
+import styles from '../styles/Product.module.css'
 import HomeProductContent from './HomeProductContent';
-import ShopifyButton from './ShopifyButton';
-
 
 const itTitles = [
   "Sfogliatella",
@@ -52,7 +50,6 @@ const HomeProduct: NextPage = () => {
           message={message[i]}
           messages={messages[i]}
         />
-        <ShopifyButton i={i}/>
       </div>
     )
   }

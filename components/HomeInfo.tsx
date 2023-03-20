@@ -1,6 +1,5 @@
 import { NextPage } from 'next'
-import styles from '../styles/HomeInfo.module.css'
-import bg from 'public/images/wave_blue.png'
+import styles from '../styles/Info.module.css'
 import HomeInstagram from './HomeInstagram'
 import HomeTwitter from './HomeTwitter'
 import HomeTiktok from './HomeTiktok'
@@ -11,7 +10,6 @@ const messages_info = [
 ];
 
 const HomeSNS: NextPage = () => {
-  const onScrollTop = () => window.scroll({ top: 0, behavior: 'smooth' });
   return (
     <section id="info" className={styles.info}>
       <div className={styles.info}>
@@ -32,9 +30,6 @@ const HomeSNS: NextPage = () => {
         <HomeInstagram/>
         <HomeTwitter/>
         {/* <HomeTiktok/> */}
-      </div>
-      <div className={styles.toTop} onClick={onScrollTop}>
-        <h4>ページトップへ戻る</h4> 
       </div>
     </section>
   );

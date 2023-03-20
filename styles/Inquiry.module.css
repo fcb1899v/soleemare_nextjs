@@ -1,0 +1,11 @@
+.container { display: flex; flex-direction: column; margin: 30px; }
+.text_field { width: 100%; margin-bottom: 20px !important; }
+.send_button { font-size: 16px !important; width: 100%; background-color: var(--blue) !important; }
+
+@media screen and (min-width: 520px) {
+  .container { margin: 30px 50px; }
+}
+
+@media screen and (min-width: 960px) {
+  .container { margin: 30px 150px; }
+}

@@ -1,6 +1,5 @@
 import { NextPage } from 'next'
-import styles from '../styles/HomeFeature.module.css'
-import bg from 'public/images/shikkui.jpg'
+import styles from '../styles/Feature.module.css'
 import HomeFeatureContent from './HomeFeatureContent'
 
 const titles = [
@@ -83,7 +82,7 @@ const HomeFeature: NextPage = () => {
         message2={message[i][1]}
         messages2={messages[i][1]}
         key={`homefeature_${i}`}
-      />
+      />,
     )
   }
   return (

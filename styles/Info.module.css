@@ -35,11 +35,8 @@
 .insta_container img { width: Calc(50vw - 15px); max-width: 250px; aspect-ratio: 1; margin-bottom: 20px; }
 .insta_like { width: 100%; position: absolute; color: var(--red); text-decoration: none; margin-top: -24px;}
 .insta_name_none, .insta_box_none, .twitter_box_none { display: none; }
-
 .tiktokContent { max-width: 90%; margin: 0px auto; overflow-y: auto; }
 .tiktokEmbed { margin-top: 0 !important; }
-.toTop { padding: 0px; background: var(--black); }  
-.toTop h4 { padding: 15px 0; font-size: 18px !important; font-weight: normal; color:var(--white); }
 
 @media screen and (min-width: 520px) {
   .border__info { width: Calc(100% - 50px); }
@@ -50,10 +47,9 @@
 
 @media screen and (min-width: 960px) {
   .border__info { width: Calc(100% - 200px); }
-  .contents { display: inline-flex; margin-bottom: 65px; }
+  .contents { display: inline-flex; }
   .container { width: 50vw; }
   .insta_box { grid-template-columns: repeat(2, 1fr); height: 1150px; }
   .insta_container { width: Calc(25vw - 15px); } 
   .insta_container img { width: Calc(25vw - 15px); }
-  .toTop { display: none; ; }
 }

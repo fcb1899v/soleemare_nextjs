@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { useLayoutEffect, useState } from 'react';
-import styles from '../styles/HomeTop.module.css'
+import styles from '../styles/Top.module.css'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

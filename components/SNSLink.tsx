@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import styles from '../styles/HomeInfo.module.css'
+import styles from '../styles/Info.module.css'
 
 interface Props {
   href: string

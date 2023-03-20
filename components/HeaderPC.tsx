@@ -19,9 +19,6 @@ const HeaderPC: NextPage<Props> = ({titles, links, isInpages}) => {
     }  
   }
 
-  
-
-
   return (<div id="header" className={styles.header}>
     <div>
       <div className={styles.headerLogo}>

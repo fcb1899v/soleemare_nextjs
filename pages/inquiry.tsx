@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import styles from '../styles/Footer.module.css'
 import Head from '../components/Head'
 import Splash from '../components/Splash'
-import PrivacyPolicyHeader from '../components/PrivacyPolicyHeader'
-import PrivacyPolicyBody from '../components/PrivacyPolicyBody'
+import InquaryHeader from '../components/InquiryHeader'
+import InquaryBody from '../components/InquiryBody'
 import Footer from '../components/Footer'
 
 const Policy: NextPage = () => {
@@ -12,8 +12,8 @@ const Policy: NextPage = () => {
       <Head/>
       <main className={styles.main}>
         <Splash/>
-        <PrivacyPolicyHeader/>
-        <PrivacyPolicyBody/>
+        <InquaryHeader/>
+        <InquaryBody/>
       </main>
       <footer>
         <Footer/>

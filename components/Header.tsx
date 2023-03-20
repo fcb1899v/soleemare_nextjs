@@ -10,7 +10,7 @@ interface Props {
   isinpages: boolean[]
 }
 
-const HomeHeader: NextPage<Props> = ({ titles, links, isinpages }) => {
+const Header: NextPage<Props> = ({ titles, links, isinpages }) => {
   const [windowSize, setWindowSize] = useState({width: 0, height: 0});
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -34,4 +34,4 @@ const HomeHeader: NextPage<Props> = ({ titles, links, isinpages }) => {
   </div>);
 }
 
-export default HomeHeader
+export default Header

@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import React, { useEffect } from "react"
-import styles from '../styles/HomeInfo.module.css'
+import styles from '../styles/Info.module.css'
 import SNSLink from './SNSLink';
 
 let isLoadwidgets = false;

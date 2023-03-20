@@ -1,3 +1,4 @@
+.top { border-bottom: 10px double var(--blue); }
 .border__blue span, .carouselstyle span,
 .border__blue h1, .carouselstyle h1, 
 .border__blue h3, .carouselstyle h3 {

@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import React, { useEffect, useRef, useState } from "react";
-import styles from '../styles/HomeProduct.module.css'
+import styles from '../styles/Product.module.css'
 import PictureYellowContent from './PictureYellowContent'
 
 interface Props  {

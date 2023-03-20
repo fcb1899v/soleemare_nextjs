@@ -1,4 +1,4 @@
-.products { border-top: 10px double var(--blue); }
+.products { border-bottom: 10px double var(--blue); }
 .products_title { margin-top: 30px;}
 .products_title h2{ font-size: min(6vw, 2em); }
 .title {
@@ -23,12 +23,6 @@
 .explain { margin: 20px 0; }
 .explain button { margin: 0px auto 0px auto; padding-bottom: 30px; color: var(--blue); }
 
-.shopify_button {
-  width: 200px; padding: 20px; max-width: 500px; font-weight: bold;
-  color: white; text-decoration: none; background-color: var(--blue); border-radius: 30px;
-}
-.shopify_container { margin: 50px 0; }
-
 @media screen and (min-width: 520px) {
   .title { top: 50%; }
   .border__yellow { width: 500px; margin: auto; }
@@ -47,5 +41,4 @@
   .explain { width: 40vw; margin-top: 0; }
   .message { width: 40vw; margin: 20px auto 0 auto; }
   .message h5 { margin: 0; padding-bottom: 5px; }
-  .shopify_container { margin-top: 20px; }
 }

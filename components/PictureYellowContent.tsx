@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { NextPage } from 'next'
 import { useState } from 'react'
-import styles from '../styles/HomeProduct.module.css'
+import styles from '../styles/Product.module.css'
 
 interface Props  {
   isTitle: boolean

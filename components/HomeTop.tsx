@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import React, {useEffect, useState} from "react"
-import styles from '../styles/HomeTop.module.css'
+import styles from '../styles/Top.module.css'
 import HomeTopCarousel from './HomeTopCarousel'
 import PictureBlueContent from "./PictureBlueContent";
 // import ShoppingButton from "./ShopifyButton";
@@ -31,7 +31,7 @@ const HomeTop: NextPage = () => {
     return () => window.removeEventListener('scroll', toggleVisibility)
   }, [])
 
-  return <section id="top">
+  return <section id="top" className={styles.top}>
     {/* <ShoppingButton isVisible={isVisible}/> */}
     <div className={styles.carouselstyle}>
       <HomeTopCarousel/>

@@ -1,7 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import React, {useEffect, useState} from "react"
-import styles from '../styles/HomeTop.module.css'
+import React from "react"
 
 interface Props {
   title: string
@@ -13,10 +12,7 @@ const LinkButton: NextPage<Props> = ({ title, link, isInpage }) => {
   const handleClick = () => {
     const target = document.getElementById(link);
     if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      target.scrollIntoView({behavior: "smooth", block: "start",});
     }
   };
   return (

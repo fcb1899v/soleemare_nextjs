@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import styles from '../styles/Policy.module.css'
+import styles from '../styles/PrivacyPolicy.module.css'
 import PrivacyPolicyItem from './PrivacyPolicyItem';
 
 const titles = [
@@ -114,10 +114,11 @@ const PrivacyPolicyBody: NextPage = () => {
       explanations={explanations[i]}
       isconditions={isConditions[i]}
       conditions={conditions[i]}
+      key={`privacypolicyitem_${i}`}
     />)
   }
   return (
-    <div id="privacypolicy" className={styles.info}>
+    <div id="privacypolicy">
       <div className={styles.policy_top}>
         <h2>利用規約</h2>
         <h2 className={styles.policy_point}>・</h2>

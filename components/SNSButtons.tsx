@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Footer.module.css'
 
 const alternatives: string[] = [
   "Twitter",
