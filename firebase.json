@@ -1,13 +1,12 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "out",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
-        "source": "/api/sendgrid",
-        "function": "sendgrid"
+        "source": "**",
+        "function": "nextjsFunc"
       }
     ]
   }
 }
-

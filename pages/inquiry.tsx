@@ -6,7 +6,7 @@ import InquaryHeader from '../components/InquiryHeader'
 import InquaryBody from '../components/InquiryBody'
 import Footer from '../components/Footer'
 
-const Policy: NextPage = () => {
+const Inquiry: NextPage = () => {
   return (
     <div>
       <Head/>
@@ -22,4 +22,4 @@ const Policy: NextPage = () => {
   )
 }
 
-export default Policy
+export default Inquiry

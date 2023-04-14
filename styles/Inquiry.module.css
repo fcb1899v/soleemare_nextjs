@@ -1,11 +1,22 @@
-.container { display: flex; flex-direction: column; margin: 30px; }
-.text_field { width: 100%; margin-bottom: 20px !important; }
-.send_button { font-size: 16px !important; width: 100%; background-color: var(--blue) !important; }
+.container { display: flex; flex-direction: column; margin: 50px 20px 20px 20px; max-width: 500px; }
+.container h2 { margin-bottom: 20px; }
+.container h4 { font-weight: normal; font-size: 16px; margin: 20px 0;}
+.name_container { display: inline-flex; gap: 30px; width: 100%; }
+.text_field { width: 100%; margin-bottom: 20px !important; background-color: white; }
+.send_button { width: 100%; background-color: var(--blue) !important; margin-bottom: 20px; border-radius:30px; }
+.send_button_off { width: 100%; background-color: var(--transpblack) !important; margin-bottom: 20px; border-radius:30px; }
+.send_button p { margin: 0; padding: 0; color: white; font-size: 18px !important; }
+.send_button_off p { margin: 0; padding: 0; color: white; font-size: 18px !important; }
 
 @media screen and (min-width: 520px) {
-  .container { margin: 30px 50px; }
+  .container { margin: 50px auto 20px auto; }
+  .container h2 { margin-bottom: 30px; }
+  .name_container { gap: 30px; }
+  .text_field { margin-bottom: 30px !important; }
 }
 
 @media screen and (min-width: 960px) {
-  .container { margin: 30px 150px; }
+  .container h2 { margin-bottom: 40px; }
+  .name_container { gap: 40px; }
+  .text_field { margin-bottom: 40px !important; }
 }
