@@ -10,9 +10,9 @@ const NO_MESSAGE: string = 'お問い合わせ内容を入力してください'
 const INVALID_EMAIL: string = 'メールアドレスをご確認ください'
 const INVALID_PHONE: string = '電話番号をご確認ください'
 const SEND_PLEASE: string = '送信ボタンを押してください'
-const SEND_ERROR: string = '送信エラー'
 const THANKS_INQUIRY: string = 'お問い合わせありがとうございました'
-
+const CONFIRM_EMAIL: string = 'メールをご確認ください。\n確認メールが届かない場合はもう一度お問い合わせください。'
+// const SEND_ERROR: string = '送信エラー'
 
 const InquaryBody: NextPage = () => { 
 
@@ -72,6 +72,7 @@ const InquaryBody: NextPage = () => {
     e.preventDefault();
     if (buttonStyle == styles.send_button) {
       setSubmitted(true);
+      alert(CONFIRM_EMAIL);
       e.target.submit();
     } 
   };
