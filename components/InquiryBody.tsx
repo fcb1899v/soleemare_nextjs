@@ -21,9 +21,20 @@ const InquaryBody: NextPage = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [buttonStyle, setButtonStyle] = useState(styles.send_button_off);
   const [submitted, setSubmitted] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [sentMessage, setSentMessage] = useState(false);
+
+  const formUrl = `https://docs.google.com/forms/u/0/d/e/${process.env.NEXT_PUBLIC_GOOGLE_FORM}/formResponse`;
+  const formLabel = ["姓", "名", "メールアドレス", "電話番号", "お問い合わせ内容"]
+  const formPlaceholder = ['青海', '陽葵', 'himari_aomi@sole-e-mare.jp', '09012345678', NO_MESSAGE]
+  const formNumber = ["entry.803558779", "entry.1764860706", "entry.1965966452", "entry.1268666368", "entry.282686394"];
+  const handleFamilyNameChange = (e: any) => { setFamilyName(e.target.value); };
+  const handleFirstNameChange = (e: any) => { setFirstName(e.target.value); };
+  const handleEmailChange = (e: any) => { setEmail(e.target.value); };
+  const handlePhoneChange = (e: any) => { setPhone(e.target.value); };
+  const handleMessageChange = (e: any) => { setMessage(e.target.value); };
 
   useEffect(() => {
     setAlertMessage(
@@ -36,94 +47,69 @@ const InquaryBody: NextPage = () => {
       (message === "") ? NO_MESSAGE:
       SEND_PLEASE
     );
-  }, [familyName, firstName, email, phone, message, sentMessage]);
+    setButtonStyle(
+      (
+        familyName != "" && 
+        firstName != "" && 
+        email != "" && 
+        email.match(/.+@.+\..+/) && 
+        phone != "" && phone.match(/^0\d{9,10}$/) && 
+        message != "" 
+      ) ? styles.send_button: styles.send_button_off
+    );
+    if (submitted) {
+      setFamilyName("");
+      setFirstName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");  
+      setSentMessage(true);
+      setTimeout(() => { window.location.href = "/";}, 3000);     
+    }
+  }, [familyName, firstName, email, phone, message, sentMessage, submitted]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (familyName != "" && firstName != "" && message != "" && email != "" && email.match(/.+@.+\..+/) && phone != "" && phone.match(/^0\d{9,10}$/) && message != "" ) {
+    if (buttonStyle == styles.send_button) {
       setSubmitted(true);
       e.target.submit();
     } 
   };
 
-  const handleFamilyNameChange = (e: any) => {
-    setFamilyName(e.target.value);
-  };
-
-  const handleFirstNameChange = (e: any) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleEmailChange = (e: any) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePhoneChange = (e: any) => {
-    setPhone(e.target.value);
-  };
-
-  const handleMessageChange = (e: any) => {
-    setMessage(e.target.value);
-  };
-
-  const handleIframeLoad = (e: any) => {
-    if (submitted) {
-        setFamilyName("");
-        setFirstName("");
-        setEmail("");
-        setPhone("");
-        setMessage("");  
-        setSentMessage(true);
-        setTimeout(() => { window.location.href = "/";}, 3000);   
-    }
-  };
+  const handleIframeLoad = (e: any) => {};
 
   return (
     <div id="inquary" className={styles.container}>
       <h2>お問い合わせ</h2>
-      <form 
-        action={`https://docs.google.com/forms/u/0/d/e/${process.env.NEXT_PUBLIC_GOOGLE_FORM}/formResponse`}
-        method="POST"
-        target="hidden_iframe"
-        onSubmit={handleSubmit}
-      >
+      <form action={formUrl} method="POST" target="hidden_iframe" onSubmit={handleSubmit}>
         <div className={styles.name_container}>
-          <TextField className={styles.text_field} type="text" 
-            name="entry.803558779" label="姓" placeholder='青海' 
+          <TextField className={styles.text_field} type="text" required
+            name={formNumber[0]} label={formLabel[0]} placeholder={formPlaceholder[0]}
             value={familyName} onChange={handleFamilyNameChange}
           />
-          <TextField className={styles.text_field} type="text" 
-            name="entry.1764860706" label="名" placeholder='陽葵'
+          <TextField className={styles.text_field} type="text" required
+            name={formNumber[1]} label={formLabel[1]} placeholder={formPlaceholder[1]}
             value={firstName} onChange={handleFirstNameChange}
           />
         </div>
-        <TextField className={styles.text_field} type="text" 
-          name="entry.1965966452" label="メールアドレス" placeholder='himari_aomi@sole-e-mare.jp'
-          value={email} onChange={handleEmailChange}
+        <TextField className={styles.text_field} type="text" required
+            name={formNumber[2]} label={formLabel[2]} placeholder={formPlaceholder[2]}
+            value={email} onChange={handleEmailChange}
         />
-        <TextField className={styles.text_field} type="text" 
-          name="entry.1268666368" label="電話番号" placeholder='09012345678'
-          value={phone} onChange={handlePhoneChange}
+        <TextField className={styles.text_field} type="text" required
+            name={formNumber[3]} label={formLabel[3]} placeholder={formPlaceholder[3]}
+            value={phone} onChange={handlePhoneChange}
         />
-        <TextField className={styles.text_field} type="text" multiline rows={10}
-          name="entry.282686394" label="お問い合わせ内容" placeholder={NO_MESSAGE}
-          value={message} onChange={handleMessageChange}
+        <TextField className={styles.text_field} type="text" required multiline rows={10}
+            name={formNumber[4]} label={formLabel[4]} placeholder={formPlaceholder[4]}
+            value={message} onChange={handleMessageChange}
         />
-        <Button type="submit"
-          className={
-            (familyName != "" && firstName != "" && email != "" && email.match(/.+@.+\..+/) && 
-            phone != "" && phone.match(/^0\d{9,10}$/) && message != "" ) ? styles.send_button: styles.send_button_off
-          } 
-        >
+        <Button type="submit" className={buttonStyle}>
           <p>送信</p>
         </Button>
       </form>
-      <iframe
-        name="hidden_iframe"
-        style={{ display: "none" }}
-        onLoad={handleIframeLoad}
-      ></iframe>
-      { <h4>{alertMessage}</h4> }
+      <iframe name="hidden_iframe" style={{display:"none"}} onLoad={handleIframeLoad}></iframe>
+      {<h4>{alertMessage}</h4>}
     </div>
   );
 };
