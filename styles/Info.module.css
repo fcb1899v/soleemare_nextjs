@@ -18,7 +18,7 @@
 }
 .table { 
   width: 100%; font-size: 18px; color: var(--black); 
-  background-image: linear-gradient(var(--gray), var(--gray)), url('../public/images/wave_blue.png');
+  background-image: linear-gradient(var(--transpgray), var(--transpgray)), url('../public/images/wave_blue.png');
 }
 .table table { width: 100%; padding: 10px; }
 .table tbody { vertical-align: top;}

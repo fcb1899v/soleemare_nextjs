@@ -134,8 +134,8 @@ const PrivacyPolicyBody: NextPage = () => {
           </div>
           <br/>
           <div className={styles.policy_contact}>
-            <p>ソレ・エ・マーレ（Sole e Mare）</p>
-            <p>中島 萌</p>
+            <p>ソレ・エ・マーレ　中島 萌</p>
+            <p> </p>
           </div>
         </div>
         <div>

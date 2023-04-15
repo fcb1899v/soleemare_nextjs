@@ -1,17 +1,18 @@
 :root {
   /* Color */
-  --green: #008C45;
-  --white: #F4F5F0;
-  --red: #CD212A;
-  --darkblue: #0069A3;
-  --blue: #3366FF;     /* 51, 101, 255 */
-  --yellow: #FFF450;   /* 255, 244, 80 */
-  --orange: #F3B400;   /* Giallo Pompeiano */
-  --black: #333132;    /* Nero */
-  --gray: rgba(244, 245, 240, 0.6);
+  --green: #008C45;    /* PANTONE® 17-6153 TCX : 0, 140, 69 */ 
+  --white: #F4F5F0;    /* PANTONE® 11-0601 TCX : 244, 245, 240 */ 
+  --red: #CD212A;      /* PANTONE® 18-1662 TCX : 205, 33, 42 */
+  --darkblue: #0069A3; /* Azzurri : 0, 105, 163 */
+  --blue: #3366FF;     /* Azzurro : 51, 101, 255 */
+  --yellow: #E5E200;   /* Giallo Limone : 229, 226, 0 */
+  --orange: #F3B400;   /* Giallo Pompeiano : 243, 180, 0 */
+  --black: #333132;    /* Nero : 51, 49, 50 */
+  --gray: #7D7D7D;     /* Grigio : 125, 125, 125 */
   --transpwhite: rgba(244, 245, 240, 0.95);
-  --transpblack: rgba(51, 49, 50, 0.6);    /* Nero */
-  /* https://color-pallet.spark-a.com/itc-blue/ */
+  --transpgray: rgba(244, 245, 240, 0.6);
+  --transpblack: rgba(51, 49, 50, 0.6);
+  /* https://color-pallet.spark-a.com/?s=イタリア*/
 }
 
 @font-face {

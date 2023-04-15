@@ -3,10 +3,15 @@
 .container h4 { font-weight: normal; font-size: 16px; margin: 10px 0 30px 0;}
 .name_container { display: inline-flex; gap: 30px; width: 100%; }
 .text_field { width: 100%; margin-bottom: 20px !important; background-color: white; }
-.send_button { width: 100%; background-color: var(--blue) !important; margin-bottom: 20px; border-radius:30px; }
-.send_button_off { width: 100%; background-color: var(--transpblack) !important; margin-bottom: 20px; border-radius:30px; }
-.send_button p { margin: 0; padding: 0; color: white; font-size: 18px !important; }
-.send_button_off p { margin: 0; padding: 0; color: white; font-size: 18px !important; }
+.send_button { 
+  width: 100%; margin-bottom: 20px !important; border-radius:30px !important; 
+  background: linear-gradient(to right bottom, var(--blue), var(--darkblue)) !important;
+}
+.send_button_off { 
+  width: 100%; margin-bottom: 20px !important; border-radius:30px !important; 
+  background: linear-gradient(to right bottom, var(--gray), var(--transpgray)) !important;
+}
+.send_button p, .send_button_off p { margin: 0; padding: 0; color: white; font-size: 18px !important; }
 
 @media screen and (min-width: 520px) {
   .container { margin: 50px auto 20px auto; }
