@@ -20,18 +20,36 @@
 	src: url(../public/font/Kleymisska.ttf);
 }
 
+@font-face {
+	font-family: 'NotoSansJP';
+	src: url(../public/font/NotoSansJP-Regular.otf);
+}
+
+@font-face {
+	font-family: 'NotoSerifJP';
+	src: url(../public/font/NotoSerifCJKjp-Regular.otf);
+}
+
+@font-face {
+	font-family: 'SourceHanSans';
+	src: url(../public/font/SourceHanSans-Regular.otf);
+}
+
+@font-face {
+	font-family: 'SourceHanSerif';
+	src: url(../public/font/SourceHanSerif-Regular.otf);
+}
+
 body {
   margin: 0; padding: 0; border: 0; font: inherit;  list-style-type: none; vertical-align: baseline; 
   background-color: var(--white); color: var(--black); font-size: 18px; font-weight: normal; line-height: 1.5; 
-  font-family: "Noto Sans JP", "MyYuGothicM", "YuGothic", "Hiragino kaku Gothic ProN", "BlinkMacSystemFont", "Meiryo", sans-serif;
+  font-family: "YuGothic", "Hiragino kaku Gothic ProN", 'SourceHanSans', 'NotoSansJP', "Meiryo", sans-serif;
   text-align: center; justify-content: center; align-items: center; overflow-x: hidden
 }
 
 section { scroll-margin-top: 80px; }
 span { font-family: "Kleymisska"; }
-h1 { font-family: "游教科書体", "YuKyokasho", "游明朝", "YuMincho", 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; }
-h2 { font-family: "游教科書体", "YuKyokasho", "游明朝", "YuMincho", 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; }
-h3 { font-family: "游教科書体", "YuKyokasho", "游明朝", "YuMincho", 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif; }
+h1, h2, h3 { font-family: "游教科書体", 'SourceHanSerif', "YuKyokasho", "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", 'NotoSerifJP', serif; }
 h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; }
 p { color: var(--black); font-size: 14px !important; text-align: left; padding: 10px 30px 0px 30px; }
 
