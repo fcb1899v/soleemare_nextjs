@@ -2,11 +2,14 @@ module.exports = {
   exportPathMap: async function (defaultPathMap) {
     return {
       '/': { page: '/' },
+      '/inquiry': { page: '/inquiry' },
+      '/privacypolicy': { page: '/privacypolicy' },
     }
   },
 
   reactStrictMode: true,
-  // ↓追加
+  trailingSlash: true,
+
   async headers() {
     return [
       {
