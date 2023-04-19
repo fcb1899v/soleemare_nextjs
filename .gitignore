@@ -41,3 +41,6 @@ next-env.d.ts
 #firebase
 /.firebase/
 .firebase/hosting.b3V0.cache
+.github/workflows/firebase-deploy.yml
+.github/workflows/firebase-hosting-merge.yml
+.github/workflows/firebase-hosting-merge.yml
