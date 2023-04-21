@@ -88,7 +88,7 @@ const HomeFeature: NextPage = () => {
   return (
     <section id="features" className={styles.features}>
       <div className={styles.features_title}>
-        <h2>当店のこだわり</h2>  
+        <h2><span>Qualità</span><br/>当店のこだわり</h2>  
       </div>
       {feature_contents}
     </section>

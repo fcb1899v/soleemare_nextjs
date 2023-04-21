@@ -1,4 +1,6 @@
-.title h3 { font-size: min(9vw, 3em); margin: 0; padding-top: 20px; }
+.info h2 { font-size: 24px; margin-bottom: 20px; }
+.info h3{ margin: 0; padding-top: 15px; }
+.info span{ font-size: 48px; margin-bottom: 0; }
 .snsIcon img { width: 50px; height: 50px; margin: 0px 0px 20px 0px; }
 .container { width: 100vw; border-bottom: 10px double var(--blue); }
 .contents { border-top: 10px double var(--blue); }
@@ -11,7 +13,6 @@
   color: #000; text-shadow: 1px 2px 3px var(--white); position: relative; width: Calc(100% - 10px); margin: 0;
   padding: 5px 5px 0px 5px; background: linear-gradient(to right bottom, var(--yellow), var(--orange)); 
 }
-.info h2 { font-size: min(6vw, 2em); margin-bottom: 20px; }
 .border__info { 
   position: relative; padding: 5px 5px 5px 5px; margin: 10px auto 30px auto; width: Calc(100% - 30px);
   background: linear-gradient(to right bottom, var(--blue), var(--darkblue)); 
@@ -39,6 +40,10 @@
 .tiktokEmbed { margin-top: 0 !important; }
 
 @media screen and (min-width: 520px) {
+  .info h2{ font-size: min(6vw, 1.6em); margin-bottom: 0; }
+  .info h3{ font-size: min(6vw, 1.6em); }
+  .info span{ font-size: min(8vw, 2em); margin: 0px 30px; }
+  .info br { display: none; }
   .border__info { width: Calc(100% - 50px); }
   .insta_box { height: 1150px; grid-template-columns: repeat(3, 1fr); height: auto; }
   .insta_container { width: Calc(33vw - 15px); } 

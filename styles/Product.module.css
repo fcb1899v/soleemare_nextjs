@@ -1,6 +1,7 @@
 .products { border-bottom: 10px double var(--blue); }
-.products_title { margin-top: 30px;}
-.products_title h2{ font-size: min(6vw, 2em); }
+.products_title { margin-top: 30px; margin-bottom: 0; }
+.products_title h2{ font-size: 24px; margin-bottom: 20px; }
+.products_title span{ font-size: 48px; }
 .title {
   position: absolute; width: 100%; margin: 0;
   top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -25,6 +26,9 @@
 
 @media screen and (min-width: 520px) {
   .title { top: 50%; }
+  .products_title h2{ font-size: min(6vw, 1.6em); }
+  .products_title span{ font-size: min(8vw, 2em); margin-right: 30px; }
+  .products_title br { display: none; }
   .border__yellow { width: 500px; margin: auto; }
   .message { margin: 20px 30px 0 30px; }
   .explain button { margin-top: 0px }
@@ -32,7 +36,7 @@
 
 @media screen and (min-width: 960px) {
   .title { top: 50%; }
-  .products_title { margin: 40px;}
+  .products_title { margin: 40px 0 20px 0;}
   .container { display: inline-flex; gap: 50px; margin: 0px auto 10px auto; }
   .box img { aspect-ratio: 3/2; }
   .border__yellow { width: 39vw; }

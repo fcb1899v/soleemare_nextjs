@@ -27,11 +27,11 @@
 .menuList { margin-top: 10px; }
 .menuList li { margin: 15px 0px; }
 .menuList a { 
-  font-size: 18px; text-decoration: underline; color: var(--black); 
+  font-size: 16px; text-decoration: underline; color: var(--black); 
   font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
 }
 .menuList button { 
-  font-size: 18px; text-decoration: underline; color: var(--black); padding: 0;
+  font-size: 16px; text-decoration: underline; color: var(--black); padding: 0;
   border: none; outline: none; background-color: transparent;
   font-family: "游教科書体", "YuKyokasho", "游明朝", YuMincho, 'ShipporiMincho_B', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
 }
@@ -56,7 +56,6 @@
   top: 40%; left: 50%; transform: translate(-50%, -50%);
 }
 
-
 @media screen and (min-width: 520px) {
   .headerLogo img { height: 40px; margin: 10px; }
   .menuList { margin-bottom: 20px; }
@@ -70,7 +69,7 @@
   .menuList a, .menuList button { margin: 0px 10px 0px 0px; }
 }
 
-@media screen and (min-width: 1150px) {
+@media screen and (min-width: 1200px) {
   .headerLogo { display: flex; }
   .header { width: Calc(100% - 100px); padding: 0 50px; }
   .menuList { margin-right: 100px; margin-left: auto; }

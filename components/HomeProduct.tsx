@@ -56,7 +56,7 @@ const HomeProduct: NextPage = () => {
   return (
     <section id="products" className={styles.products}>
       <div className={styles.products_title}>
-        <h2>商品紹介</h2>
+        <h2><span>Prodotto</span><br/>商品紹介</h2>
       </div>
       {product_contents}
     </section>

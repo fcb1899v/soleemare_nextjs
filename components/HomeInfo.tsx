@@ -13,7 +13,7 @@ const HomeSNS: NextPage = () => {
   return (
     <section id="info" className={styles.info}>
       <div className={styles.info}>
-        <h2>お知らせ</h2>
+        <h2><span>Comunicazione</span><br/>お知らせ</h2>
       </div>
       <div className={styles.border__info}>
         <div className={styles.table}>
