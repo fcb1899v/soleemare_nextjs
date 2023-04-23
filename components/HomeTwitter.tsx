@@ -10,7 +10,8 @@ const HomeTwitter: NextPage = () => {
     if (!isLoadwidgets) {
       const s = document.createElement("script");
       s.setAttribute("src", "https://platform.twitter.com/widgets.js");
-      document.body.appendChild(s)
+      s.setAttribute("async", "");
+      document.body.appendChild(s);
       setIsLoad(true);
     }
   }, [isLoadwidgets]);
@@ -20,7 +21,15 @@ const HomeTwitter: NextPage = () => {
         <div className={styles.box}>
           <SNSLink href="https://twitter.com/soleemare_dolce" src="../sns/twitter_w.svg" alt="Twitter"/>
           <div className={(isLoadwidgets) ? styles.twitter_box: styles.twitter_box_none}>
-            <Link className="twitter-timeline" data-height="1150" href="https://twitter.com/soleemare_dolce?ref_src=twsrc%5Etfw"/>
+            <Link className="twitter-timeline" 
+              data-height="1150" 
+              data-theme="light" 
+              data-lang="ja"
+              data-conversation="none"
+              data-align="center"
+              data-chrome="noheader nofooter noborders"
+              href="https://twitter.com/soleemare_dolce?ref_src=twsrc%5Etfw"
+            />
           </div>
         </div>
       </div>

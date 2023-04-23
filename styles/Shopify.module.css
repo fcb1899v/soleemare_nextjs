@@ -1,24 +1,22 @@
 .shopify { padding-top: 40px; border-bottom: 10px double var(--blue); }
-.shopify_container { margin: 0 0 40px 0; display: block; }
-.shopify_container label { color: var(--black); font-size: 24px; top: -10px; }
+.container { margin: 0 0 40px 0; display: block; }
+.container label { color: var(--black); font-size: 24px; top: -10px; }
 .buy_button {
   display: block; width: 240px; height: 36px; padding: 10px; margin: 30px auto; 
   border-radius: 30px; background: linear-gradient(to right bottom, var(--yellow), var(--orange)); 
-  border: solid 1px var(--black);
+}
+.soldout_button {
+  display: block; width: 240px; height: 36px; padding: 10px; margin: 30px auto; 
+  border-radius: 30px; background: linear-gradient(to right bottom, var(--gray), var(--transpgray));
 }
 .buy_button a { font-size: 22px; font-weight: bold; color: var(--black); text-decoration: none; }
-.buy_button_off {
-  display: block; width: 240px; height: 36px; padding: 10px; margin: 30px auto; 
-  border-radius: 30px; background: linear-gradient(to right bottom, var(--yellow), var(--orange)); 
-  border: solid 1px var(--transpblack);
-}
-.progress { color: var(--black); width: 36px !important; height: 36px !important; }
+.soldout_button a { font-size: 22px; font-weight: bold; color: var(--white); text-decoration: none; }
+.progress { color: var(--white); width: 36px !important; height: 36px !important; }
 .select_amount { width: 260px; height: 60px !important; background-color: var(--white); }
 .select_amount div { font-size: 22px; margin: 10px 0 0 0; }
 
 @media screen and (min-width: 960px) {
-  .shopify_container { display: inline-flex; }
-  .buy_button { margin: 8px 0 0 50px; }
-  .buy_button_off { margin: 8px 0 0 50px; }
+  .container { display: inline-flex; }
+  .buy_button, .soldout_button { margin: 8px 0 0 50px; }
   .sp_br { display: none; }
 }

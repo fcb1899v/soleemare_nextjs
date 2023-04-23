@@ -8,7 +8,9 @@ import HomeFeature from '../components/HomeFeature'
 import HomeProduct from '../components/HomeProduct'
 import HomeSNS from '../components/HomeInfo'
 import Footer from '../components/Footer'
-import ShopifyButton from '../components/ShopifyButton'
+import ShopifyProduct from '../components/ShopifyProduct'
+
+const sfogliatellaID = `${process.env.NEXT_PUBLIC_SHOPIFY_SFOGLIATELLA_ID}`
 
 const Main: NextPage = () => {
   return (
@@ -19,11 +21,11 @@ const Main: NextPage = () => {
         <HomeHeader/>
         <HomeTop/>
         <HomeProduct/>
-        {/* <ShopifyButton num={0}/> */}
+        <ShopifyProduct id={sfogliatellaID} unit='箱' variantNumber={0}/>
         <HomeFeature/>
-        {/* <ShopifyButton num={0}/> */}
+        <ShopifyProduct id={sfogliatellaID} unit='箱' variantNumber={0}/>
         <HomeSNS/>
-        {/* <ShopifyButton num={0}/> */}
+        <ShopifyProduct id={sfogliatellaID} unit='箱' variantNumber={0}/>
       </main>
       <footer>
         <Footer/>
