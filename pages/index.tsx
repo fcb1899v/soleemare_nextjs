@@ -1,16 +1,18 @@
 import type { NextPage } from 'next'
 import styles from '../styles/Footer.module.css'
-import Head from '../components/Head'
-import Splash from '../components/Splash'
-import HomeHeader from '../components/HomeHeader'
-import HomeTop from '../components/HomeTop'
-import HomeFeature from '../components/HomeFeature'
-import HomeProduct from '../components/HomeProduct'
-import HomeSNS from '../components/HomeInfo'
-import Footer from '../components/Footer'
+import Head from '../components/Common/Head'
+import Splash from '../components/Common/Splash'
+import HomeHeader from '../components/Home/HomeHeader'
+import HomeProduct from '../components/Home/HomeProduct/HomeProduct'
+import HomeFeature from '../components/Home/HomeFeature/HomeFeature'
+import HomeSNS from '../components/Home/HomeInfo/HomeInfo'
+import Footer from '../components/Common/Footer'
 import ShopifyProduct from '../components/ShopifyProduct'
+import HomeTop from '../components/Home/HomeTop/HomeTop'
 
-const sfogliatellaID = `${process.env.NEXT_PUBLIC_SHOPIFY_SFOGLIATELLA_ID}`
+const ids = [`${process.env.NEXT_PUBLIC_SHOPIFY_SFOGLIATELLA_ID}`];
+const variants = [0]
+const images = [0]
 
 const Main: NextPage = () => {
   return (
@@ -21,11 +23,11 @@ const Main: NextPage = () => {
         <HomeHeader/>
         <HomeTop/>
         <HomeProduct/>
-        <ShopifyProduct id={sfogliatellaID} unit='箱' variantNumber={0}/>
+        <ShopifyProduct id={ids[0]} unit='箱' variantNumber={variants[0]}/>
         <HomeFeature/>
-        <ShopifyProduct id={sfogliatellaID} unit='箱' variantNumber={0}/>
+        <ShopifyProduct id={ids[0]} unit='箱' variantNumber={variants[0]}/>
         <HomeSNS/>
-        <ShopifyProduct id={sfogliatellaID} unit='箱' variantNumber={0}/>
+        <ShopifyProduct id={ids[0]} unit='箱' variantNumber={variants[0]}/>
       </main>
       <footer>
         <Footer/>

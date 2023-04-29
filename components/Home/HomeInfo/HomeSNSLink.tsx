@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import styles from '../styles/Info.module.css'
+import styles from '/styles/Info.module.css'
 
 interface Props {
   href: string
@@ -8,7 +8,7 @@ interface Props {
   alt: string
 }
   
-const SNSLink: NextPage<Props> = ({ href, src, alt }) => {
+const HomeSNSLink: NextPage<Props> = ({ href, src, alt }) => {
   return (
     <div className={styles.title}>
       <h3><span>{alt}</span></h3>
@@ -21,4 +21,4 @@ const SNSLink: NextPage<Props> = ({ href, src, alt }) => {
   );
 };
 
-export default SNSLink
+export default HomeSNSLink

@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import Header from "./Header";
+import Header from "../Common/Header";
 
 const titles: string[] = [
   "ホーム",

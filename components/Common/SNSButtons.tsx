@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link';
-import styles from '../styles/Footer.module.css'
+import styles from '/styles/Footer.module.css'
 
 const alternatives: string[] = [
   "Twitter",
@@ -29,7 +29,7 @@ const urls: string[] = [
   "https://lin.ee/65M8hVl",
   "https://www.facebook.com/soleemaredolce",
   // "https://www.tiktok.com/@soleemare_dolce",
-  // "https://jp.mercari.com/",
+  // "https://mercari-shops.com/shops/jDp6gDDhYbMb8kTq8ZSWcX",
 ];
 
 const SNSButtons: NextPage = () => {

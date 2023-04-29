@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import styles from '../styles/Feature.module.css'
+import styles from '/styles/Feature.module.css'
 import HomeFeatureContent from './HomeFeatureContent'
 
 const titles = [

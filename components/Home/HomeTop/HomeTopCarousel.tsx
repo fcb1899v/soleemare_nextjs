@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { useLayoutEffect, useState } from 'react';
-import styles from '../styles/Top.module.css'
+import styles from '/styles/Top.module.css'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -49,8 +49,7 @@ const HomeTopCarousel: NextPage = () => {
     return size;
   };
   
-  const [width, height] = useWindowSize();
-  var images = width < 520 ? mobileImages: pcImages;
+  var images = useWindowSize()[0] < 520 ? mobileImages: pcImages;
   
   return (
     <Swiper
@@ -64,7 +63,7 @@ const HomeTopCarousel: NextPage = () => {
       effect={"fade"}
       fadeEffect={{ crossFade: true }}
       loop={true}
-      className={styles.mySwiper} 
+      className={styles.mySwiper}
     >
     {images.map((src: string, index: number) => {
       return (

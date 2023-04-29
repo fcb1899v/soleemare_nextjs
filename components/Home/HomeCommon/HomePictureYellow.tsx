@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { NextPage } from 'next'
 import { useState } from 'react'
-import styles from '../styles/Product.module.css'
+import styles from '/styles/Product.module.css'
 
 interface Props  {
   isTitle: boolean
@@ -12,7 +12,7 @@ interface Props  {
   messages: string[]
 }
   
-const PictureYellowContent: NextPage<Props> = ({ isTitle, itTitle, jaTitle, image, message1, messages }) => {
+const HomePictureYellow: NextPage<Props> = ({ isTitle, itTitle, jaTitle, image, message1, messages }) => {
   const [showChild, setShowChild] = useState(false);
   const [vanishButton, setVanishButton] = useState(false);
   const handleClick = () => {
@@ -47,6 +47,4 @@ const PictureYellowContent: NextPage<Props> = ({ isTitle, itTitle, jaTitle, imag
   );
 };
 
-
-
-export default PictureYellowContent
+export default HomePictureYellow

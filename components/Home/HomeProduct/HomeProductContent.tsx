@@ -1,21 +1,18 @@
-import { NextPage } from 'next'
+import { NextPage } from "next";
 import React, { useEffect, useRef, useState } from "react";
-import styles from '../styles/Feature.module.css'
-import PictureYellowContent from './PictureYellowContent'
+import styles from '/styles/Product.module.css'
+import HomePictureYellow from '../HomeCommon/HomePictureYellow'
 
-interface Props {
-  num: string
-  title: string
-  image1: string
-  image2: string
-  message1: string
-  messages1: string[]
-  message2: string
-  messages2: string[]
+interface Props  {
+  jaTitle: string
+  itTitle: string
+  images: string[]
+  message: string[]
+  messages: string[][]
 }
   
 const useOnScreen = (ref: React.RefObject<Element>) => {
-const [isIntersecting, setIntersecting] = useState(false);
+  const [isIntersecting, setIntersecting] = useState(false);
   useEffect(() => {
     const blockRef = ref.current;
     const observer = new IntersectionObserver(([entry]) => {
@@ -37,7 +34,7 @@ const [isIntersecting, setIntersecting] = useState(false);
   return isIntersecting;
 };
 
-const HomeFeatureContent: NextPage<Props> = ({ num, title, image1, image2, message1, messages1, message2, messages2 }) => {
+const HomeProductContent: NextPage<Props> = ({ jaTitle, itTitle, images, message, messages }) => {
   const fadeInUpStyle: React.CSSProperties = {
     opacity: 0,
     transform: "translateY(50px)",
@@ -56,32 +53,26 @@ const HomeFeatureContent: NextPage<Props> = ({ num, title, image1, image2, messa
   }, [blockRef, isVisible]);
   return (
     <div ref={blockRef} style={fadeInUpStyle}>
-      <div className={styles.contents}>
-        <div className={styles.title}>
-          <img src={num} alt={title}></img>
-          <h2>{title}</h2>
-        </div>
-        <div className={styles.container}> 
-          <PictureYellowContent
-            isTitle={false}
-            itTitle=''
-            jaTitle=''
-            image={image1}
-            message1={message1}
-            messages={messages1}
-          />
-          <PictureYellowContent
-            isTitle={false}
-            itTitle=''
-            jaTitle=''
-            image={image2}
-            message1={message2}
-            messages={messages2}
-          />
-        </div>
+      <div className={styles.container}> 
+        <HomePictureYellow
+          isTitle={true}
+          itTitle={itTitle}
+          jaTitle={jaTitle}
+          image={images[0]}
+          message1={message[0]}
+          messages={messages[0]}
+        />
+        <HomePictureYellow
+          isTitle={false}
+          itTitle=""
+          jaTitle=''
+          image={images[1]}
+          message1={message[1]}
+          messages={messages[1]}
+        />
       </div>
     </div>
   );
 };
 
-export default HomeFeatureContent
+export default HomeProductContent

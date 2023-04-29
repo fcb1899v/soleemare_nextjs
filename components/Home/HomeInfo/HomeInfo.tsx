@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import styles from '../styles/Info.module.css'
+import styles from '/styles/Info.module.css'
 import HomeInstagram from './HomeInstagram'
 import HomeTwitter from './HomeTwitter'
 import HomeTiktok from './HomeTiktok'

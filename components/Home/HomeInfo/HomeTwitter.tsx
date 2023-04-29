@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import Link from 'next/link';
 import React, { useEffect, useState } from "react"
-import styles from '../styles/Info.module.css'
-import SNSLink from './SNSLink';
+import styles from '/styles/Info.module.css'
+import HomeSNSLink from './HomeSNSLink';
 
 const HomeTwitter: NextPage = () => {
   const [isLoadwidgets, setIsLoad] = useState(false);
@@ -19,7 +19,7 @@ const HomeTwitter: NextPage = () => {
     <div className={styles.container}>
       <div className={styles.border__blue}>
         <div className={styles.box}>
-          <SNSLink href="https://twitter.com/soleemare_dolce" src="../sns/twitter_w.svg" alt="Twitter"/>
+          <HomeSNSLink href="https://twitter.com/soleemare_dolce" src="../sns/twitter_w.svg" alt="Twitter"/>
           <div className={(isLoadwidgets) ? styles.twitter_box: styles.twitter_box_none}>
             <Link className="twitter-timeline" 
               data-height="1150" 

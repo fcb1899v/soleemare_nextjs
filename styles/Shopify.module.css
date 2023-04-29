@@ -1,19 +1,29 @@
-.shopify { padding-top: 40px; border-bottom: 10px double var(--blue); }
+.shopify { padding-top: 30px; margin: 0; border-bottom: 10px double var(--blue); }
 .container { margin: 0 0 40px 0; display: block; }
 .container label { color: var(--black); font-size: 24px; top: -10px; }
+.box img { width: 100%; object-fit: cover; }
+.border__yellow { 
+  display: flex; justify-content: center; align-items: center;
+  position: relative; padding: 6px 6px 0px 6px; margin: 0px 10px 40px 10px; max-width: 500px;
+  background: linear-gradient(to right bottom, var(--yellow), var(--orange)); 
+}
 .buy_button {
   display: block; width: 240px; height: 36px; padding: 10px; margin: 30px auto; 
   border-radius: 30px; background: linear-gradient(to right bottom, var(--yellow), var(--orange)); 
 }
+.buy_button a { font-size: 22px; font-weight: bold; color: var(--black); text-decoration: none; }
 .soldout_button {
   display: block; width: 240px; height: 36px; padding: 10px; margin: 30px auto; 
   border-radius: 30px; background: linear-gradient(to right bottom, var(--gray), var(--transpgray));
 }
-.buy_button a { font-size: 22px; font-weight: bold; color: var(--black); text-decoration: none; }
 .soldout_button a { font-size: 22px; font-weight: bold; color: var(--white); text-decoration: none; }
 .progress { color: var(--white); width: 36px !important; height: 36px !important; }
 .select_amount { width: 260px; height: 60px !important; background-color: var(--white); }
 .select_amount div { font-size: 22px; margin: 10px 0 0 0; }
+
+@media screen and (min-width: 520px) {
+  .border__yellow { margin: 0px auto 40px auto; }
+}
 
 @media screen and (min-width: 960px) {
   .container { display: inline-flex; }

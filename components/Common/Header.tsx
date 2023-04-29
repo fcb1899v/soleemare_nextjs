@@ -1,6 +1,6 @@
 import { NextPage } from "next"
 import React, {useEffect, useState} from "react"
-import styles from '../styles/Header.module.css'
+import styles from '/styles/Header.module.css'
 import HeaderPC from "./HeaderPC";
 import HeaderSP from "./HeaderSP";
 

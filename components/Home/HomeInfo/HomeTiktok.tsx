@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import React, { useEffect } from "react"
-import styles from '../styles/Info.module.css'
-import SNSLink from './SNSLink';
+import styles from '/styles/Info.module.css'
+import HomeSNSLink from './HomeSNSLink';
 
 let isLoadwidgets = false;
 export const EmbededTiktok = () => {
@@ -29,7 +29,7 @@ const HomeTiktok: NextPage = () => {
         <div className={styles.box}>
           <div className={styles.title}>
             <h2>Tiktok</h2>
-            <SNSLink href="https://www.tiktok.com/@sole_e_mare_dolce" src="../sns/tiktok_b.svg" alt="Tiktok"/>
+            <HomeSNSLink href="https://www.tiktok.com/@sole_e_mare_dolce" src="../sns/tiktok_b.svg" alt="Tiktok"/>
           </div>
           <EmbededTiktok/>
         </div>

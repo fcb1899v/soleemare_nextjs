@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import styles from '../styles/Footer.module.css'
-import Head from '../components/Head'
-import Splash from '../components/Splash'
-import PrivacyPolicyHeader from '../components/PrivacyPolicyHeader'
-import PrivacyPolicyBody from '../components/PrivacyPolicyBody'
-import Footer from '../components/Footer'
+import Head from '../components/Common/Head'
+import Splash from '../components/Common/Splash'
+import PrivacyPolicyBody from '../components/PrivacyPolicy/PrivacyPolicyBody'
+import Footer from '../components/Common/Footer'
+import PrivacyPolicyHeader from '../components/PrivacyPolicy/PrivacyPolicyHeader'
 
 const Policy: NextPage = () => {
   return (

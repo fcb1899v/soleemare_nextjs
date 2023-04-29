@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import styles from '../styles/Inquiry.module.css'
+import styles from '/styles/Inquiry.module.css'
 import React, { useEffect, useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import AccountIcon from '@mui/icons-material/AccountCircle';

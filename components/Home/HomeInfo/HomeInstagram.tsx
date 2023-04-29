@@ -2,8 +2,8 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import styles from '../styles/Info.module.css'
-import SNSLink from './SNSLink';
+import styles from '/styles/Info.module.css'
+import HomeSNSLink from './HomeSNSLink';
 
 async function getInstaItems(): Promise<[]> {
   try {
@@ -31,7 +31,7 @@ const HomeInstagram: NextPage = () => {
     <div className={styles.container}>
       <div className={styles.border__yellow}>
         <div className={styles.box}>
-          <SNSLink href="https://www.instagram.com/soleemare_dolce" src="../sns/instagram_b.svg" alt="Instagram"/>
+          <HomeSNSLink href="https://www.instagram.com/soleemare_dolce" src="../sns/instagram_b.svg" alt="Instagram"/>
           <div className={styles.insta} >
             <div className={(instaItems.length == 0) ? styles.insta_box_none: styles.insta_box}>
               {

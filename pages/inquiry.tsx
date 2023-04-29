@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import styles from '../styles/Footer.module.css'
-import Head from '../components/Head'
-import Splash from '../components/Splash'
-import InquaryHeader from '../components/InquiryHeader'
-import InquaryBody from '../components/InquiryBody'
-import Footer from '../components/Footer'
+import Head from '../components/Common/Head'
+import Splash from '../components/Common/Splash'
+import InquaryHeader from '../components/Inquiry/InquiryHeader'
+import InquaryBody from '../components/Inquiry/InquiryBody'
+import Footer from '../components/Common/Footer'
 
 const Inquiry: NextPage = () => {
   return (

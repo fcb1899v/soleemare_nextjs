@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import React, {useEffect, useState} from "react"
-import styles from '../styles/Top.module.css'
+import styles from '/styles/Top.module.css'
 import HomeTopCarousel from './HomeTopCarousel'
-import PictureBlueContent from "./PictureBlueContent";
+import HomePictureBlue from "../HomeCommon/HomePictureBlue";
 // import ShoppingButton from "./ShopifyButton";
 
 const message1_soleemare = 
@@ -21,23 +21,12 @@ const messages_amalfi = [
 ];
 
 const HomeTop: NextPage = () => {
-
-  const [isVisible, setIsVisible] = useState(false);
-  const toggleVisibility = () => { 
-    window.scrollY > 0 ? setIsVisible(true): setIsVisible(false)
-  }
-  useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility)
-    return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
-
   return <section id="top" className={styles.top}>
-    {/* <ShoppingButton isVisible={isVisible}/> */}
     <div className={styles.carouselstyle}>
       <HomeTopCarousel/>
     </div>
     <div className={styles.container}>
-      <PictureBlueContent
+      <HomePictureBlue
         isTitle={true}
         itTitle='Sole e Mare'
         jaTitle='ソレ・エ・マーレ'
@@ -45,7 +34,7 @@ const HomeTop: NextPage = () => {
         message1={message1_soleemare}
         messages={messages_soleemare}
       />
-      <PictureBlueContent
+      <HomePictureBlue
         isTitle={false}
         itTitle=''
         jaTitle=''

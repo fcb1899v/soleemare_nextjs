@@ -1,7 +1,7 @@
-.container { display: flex; flex-direction: column; margin: 50px 20px 20px 20px; max-width: 500px; }
+.container { display: flex; flex-direction: column; margin: 50px 20px 0px 20px; max-width: 500px; }
 .container h2 { font-size: 24px; margin-bottom: 20px; }
 .container span{ font-size: 48px; margin-right: 15px; }
-.container h4 { font-weight: normal; font-size: 16px; margin: 10px 0 30px 0;}
+.container h4 { font-weight: normal; font-size: 16px; margin: 10px 0 20px 0;}
 .name_container { display: inline-flex; gap: 30px; width: 100%; }
 .text_field { width: 100%; margin-bottom: 20px !important; background-color: white; }
 .label_icon { margin: -4px 6px 0px 0px !important; padding: 6px !important; vertical-align: bottom !important; }
@@ -16,7 +16,7 @@
 .send_button p, .send_button_off p { margin: 0; padding: 0; color: white; font-size: 18px !important; }
 
 @media screen and (min-width: 520px) {
-  .container { margin: 50px auto 20px auto; }
+  .container { margin: 50px auto 0px auto; }
   .container h2{ font-size: min(6vw, 1.4em); }
   .container span{ font-size: min(8vw, 2em); margin-right: 30px; }
   .container br { display: none; }

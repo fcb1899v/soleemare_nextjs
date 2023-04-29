@@ -1,6 +1,6 @@
 import { NextPage } from "next"
 import React from "react"
-import styles from '../styles/Header.module.css'
+import styles from '/styles/Header.module.css'
 import Link from "next/link";
 import LinkButton from "./LinkButton";
 

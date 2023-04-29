@@ -9,7 +9,7 @@
 .policy_item li { 
     font-size: 16px; padding: 5px 0px 5px 36px; text-indent: -21px; list-style-type: disc;  
 }
-.policy_last { margin: 0px 20px; }
+.policy_last { margin: 20px 10px 50px 10px; }
 .policy_last p { font-size: 16px !important; margin: 20px auto 40px auto; padding: 0; text-align: center; }
 .policy_last br { display: none; }
 .policy_contact { margin: 20px auto; padding: 0; }
@@ -23,7 +23,7 @@
   .policy_point { display: block; }
   .policy_colon { display: block; }
   .policy_item { margin: 20px 40px 30px 40px; }
-  .policy_last { margin-top: 40px; }
+  .policy_last { margin: 20px; }
   .policy_last p {margin-bottom: 20px; }
   .policy_last br { display: block; }
   .policy_contact { margin: 18px 0px 4px 0px; }
@@ -33,5 +33,5 @@
 
 @media screen and (min-width: 960px) {
   .policy_item { margin: 20px 100px 30px 100px; }
-  .policy_last { display: inline-flex; margin-top: 0; margin-bottom: 80px; gap: 80px; }
+  .policy_last { display: inline-flex; margin: 0; gap: 80px; }
 }

@@ -1,6 +1,6 @@
 import { NextPage } from "next"
 import React, {useState} from "react"
-import styles from '../styles/Header.module.css'
+import styles from '/styles/Header.module.css'
 import SnsButtons from "./SNSButtons";
 import Link from "next/link";
 import LinkButton from "./LinkButton";

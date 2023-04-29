@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import styles from '../styles/PrivacyPolicy.module.css'
+import styles from '/styles/PrivacyPolicy.module.css'
 import PrivacyPolicyItem from './PrivacyPolicyItem';
 
 const titles = [
