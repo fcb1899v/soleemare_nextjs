@@ -1,0 +1,55 @@
+:root {
+  /* Color */
+  --green: #008C45;    /* PANTONE® 17-6153 TCX : 0, 140, 69 */ 
+  --white: #F4F5F0;    /* PANTONE® 11-0601 TCX : 244, 245, 240 */ 
+  --red: #CD212A;      /* PANTONE® 18-1662 TCX : 205, 33, 42 */
+  --darkblue: #0069A3; /* Azzurri : 0, 105, 163 */
+  --blue: #3366FF;     /* Azzurro : 51, 101, 255 */
+  --yellow: #E5E200;   /* Giallo Limone : 229, 226, 0 */
+  --orange: #F3B400;   /* Giallo Pompeiano : 243, 180, 0 */
+  --black: #333132;    /* Nero : 51, 49, 50 */
+  --gray: #7D7D7D;     /* Grigio : 125, 125, 125 */
+  --transpwhite: rgba(244, 245, 240, 0.95);
+  --transpgray: rgba(244, 245, 240, 0.6);
+  --transpblack: rgba(51, 49, 50, 0.6);
+  /* https://color-pallet.spark-a.com/?s=イタリア*/
+}
+
+@font-face {font-family: 'Kleymisska'; src: url(../public/font/Kleymisska.ttf); }
+@font-face { font-family: 'NotoSansJP'; src: url(../public/font/NotoSansJP-Regular.otf); }
+@font-face { font-family: 'NotoSerifJP'; src: url(../public/font/NotoSerifCJKjp-Regular.otf); }
+@font-face { font-family: 'SourceHanSans'; src: url(../public/font/SourceHanSans-Regular.otf); }
+@font-face { font-family: 'SourceHanSerif'; src: url(../public/font/SourceHanSerif-Regular.otf); }
+
+body {
+  margin: 0; padding: 0; border: 0; font: inherit;  list-style-type: none; vertical-align: baseline; 
+  background-color: var(--white); color: var(--black); font-size: 18px; font-weight: normal; line-height: 1.5; 
+  font-family: "YuGothic", "Hiragino kaku Gothic ProN", 'SourceHanSans', 'NotoSansJP', "Meiryo", sans-serif;
+  text-align: center; justify-content: center; align-items: center; overflow-x: hidden
+}
+
+section { scroll-margin-top: 80px; }
+h1, h2, h3 { font-family: "游教科書体", 'SourceHanSerif', "YuKyokasho", "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", 'NotoSerifJP', serif; }
+h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; }
+
+.swiper-button-next,
+.swiper-button-prev { height: 30px !important; color: var(--white) !important; }
+.swiper-pagination-bullet-active, 
+.swiper-pagination-bullet { width: 16px !important; height: 16px !important; margin: 10px !important; background-color: var(--white) !important;}
+
+.twitter-timeline, .tiktok-embed { 
+  width: calc(100vw - 30px) !important; max-width: 1000px !important;
+  margin: 0px auto !important; padding-bottom: 15px !important;
+}
+
+.container { width: 100vw; margin: 0 auto; padding: 0 }
+.large_container { width: Calc(100vw - 200px); margin: 0 auto; padding: 0 }
+.flex_center { display: flex; justify-content: center; }
+.flex_center_wrap { display: flex; justify-content: center; flex-wrap: wrap; }
+.fixed_center { position: fixed; justify-content: center; align-items: center; }
+.placeCenter { position: absolute; width: 100%; top: 45%; left: 50%;  transform: translate(-50%, -50%); } 
+.loading { opacity: 1; }
+.loaded { opacity: 0; }
+.vanish { display: none; }
+
+@keyframes animationZoom { 50% { transform:scale(1.5) } }

@@ -1,0 +1,56 @@
+{
+  "name": "soleemare-webpage",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export",
+    "deploy": "npm run export && firebase deploy"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@firebase/functions": "^0.9.4",
+    "@firebase/functions-types": "^0.6.0",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.8",
+    "@sendgrid/mail": "^7.7.0",
+    "@shopify/shopify-api": "^6.2.0",
+    "axios": "^1.2.2",
+    "cors": "^2.8.5",
+    "eslint": "8.28.0",
+    "eslint-config-next": "13.0.4",
+    "firebase": "^9.17.2",
+    "firebase-functions": "^4.2.1",
+    "instagram-graph-api": "^5.0.0",
+    "next": "^13.3.0",
+    "ngx-twitter-timeline": "^0.1.5",
+    "nodemailer": "^6.9.1",
+    "react-firebase-hooks": "^5.1.1",
+    "react-i18next": "^12.1.5",
+    "shopify-buy": "^2.18.0",
+    "swiper": "^8.4.4"
+  },
+  "devDependencies": {
+    "@types/gtag.js": "^0.0.12",
+    "@types/node": "18.11.9",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.10",
+    "@types/react-scroll": "^1.8.6",
+    "@types/shopify-buy": "^2.17.0",
+    "firebase-tools": "^11.22.0",
+    "instagram-web-api": "^2.2.2",
+    "react-scripts": "^5.0.1",
+    "react-scroll": "^1.8.9",
+    "sass": "^1.56.1",
+    "typescript": "^4.9.3"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  }
+}
