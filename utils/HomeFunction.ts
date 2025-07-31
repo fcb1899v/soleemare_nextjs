@@ -13,7 +13,7 @@ export const useWindowSize = (): number[] => {
     return size;
   };
 
-  export const useOnScreen = (ref: RefObject<Element>) => {
+  export const useOnScreen = (ref: RefObject<HTMLElement | null | undefined>) => {
     const [isIntersecting, setIntersecting] = useState(false);
     useEffect(() => {
       const blockRef = ref.current;

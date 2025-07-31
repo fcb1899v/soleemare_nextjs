@@ -5,12 +5,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
-import SwiperCore, { Pagination, Navigation, EffectFade, Autoplay } from 'swiper'
+import { Pagination, Navigation, EffectFade, Autoplay } from 'swiper/modules'
 import HomePicture from "./HomePicture";
 import { homeTop, homeCarousel } from "../../utils/HomeConstant";
 import { useOnScreen } from "../../utils/HomeFunction";
-// import ShoppingButton from "./ShopifyButton";
-SwiperCore.use([Pagination, Navigation]) 
+// import ShoppingButton from "./ShopifyButton"; 
 
 interface Props  {
   width: number
@@ -25,11 +24,9 @@ const HomeTop: NextPage<Props> = ({width}) => {
   const isVisible = useOnScreen(blockRef);
   useEffect(() => {
     const blockElement = blockRef.current;
-    if (blockElement) {
-      if (isVisible) {
-        blockRef.current.style.opacity = "1";
-        blockRef.current.style.transform = "translateY(0)";
-      }
+    if (blockElement && isVisible) {
+      blockElement.style.opacity = "1";
+      blockElement.style.transform = "translateY(0)";
     }
   }, [blockRef, isVisible]);
   

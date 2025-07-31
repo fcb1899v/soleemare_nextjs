@@ -4,7 +4,7 @@ import { CSSProperties, useEffect, useState } from 'react';
 import Client, {Checkout, Product} from 'shopify-buy'
 import { CircularProgress, FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Autoplay } from 'swiper'
+import { Autoplay } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -55,7 +55,7 @@ const HomeShopify: NextPage<Props> = ({width, item}) => {
     },
   };
 
-  SwiperCore.use([Autoplay]);
+
 
   useEffect(() => {(async () => {
     setIsChangeQuantity(true);
@@ -75,7 +75,7 @@ const HomeShopify: NextPage<Props> = ({width, item}) => {
       console.error(error);
       setIsChangeQuantity(false);
     }
-  })();}, [quantity]);
+  })();}, [quantity, client, productID, item.variant]);
 
   if (checkoutLink == "" || salesProduct == null) return null;
 
@@ -118,7 +118,6 @@ const HomeShopify: NextPage<Props> = ({width, item}) => {
   return (<div style={{margin: "20px 0 0"}}>
     <Swiper
       loop={true}    
-      loopedSlides={100}
       slidesPerView={1}
       centeredSlides={true}
       spaceBetween={10}

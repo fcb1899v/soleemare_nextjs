@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import { usePageView } from '../src/hooks/usePageView';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // Google Analytics の PV をカウントするイベント
+
   usePageView();
   return <>
     {process.env.NEXT_PUBLIC_GA_ID && (

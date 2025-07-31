@@ -14,6 +14,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -33,16 +34,19 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
-#env
+# env
 .env
 
-#firebase
+# firebase
 /.firebase/
-.firebase/hosting.b3V0.cashe/
-.firebase/hosting.b3V0.cache
-.github/workflows/firebase-deploy.yml
-.github/workflows/firebase-hosting-merge.yml
-.github/workflows/firebase-hosting-merge.yml
-.cashe
+.firebase/hosting.*.cache
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db

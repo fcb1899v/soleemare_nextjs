@@ -8,7 +8,7 @@ interface Props  {
   width: number
 }
 
-const useOnScreen = (ref: RefObject<Element>) => {
+const useOnScreen = (ref: RefObject<Element | null>) => {
   const [isIntersecting, setIntersecting] = useState(false);
   useEffect(() => {
     const blockRef = ref.current;
@@ -36,11 +36,9 @@ const HomeFeature: NextPage<Props> = ({ width }) => {
   const isVisible = useOnScreen(blockRef);
   useEffect(() => {
     const blockElement = blockRef.current;
-    if (blockElement) {
-      if (isVisible) {
-        blockRef.current.style.opacity = "1";
-        blockRef.current.style.transform = "translateY(0)";
-      }
+    if (blockElement && isVisible) {
+      blockElement.style.opacity = "1";
+      blockElement.style.transform = "translateY(0)";
     }
   }, [blockRef, isVisible]);
 

@@ -18,11 +18,9 @@ const HomeProduct: NextPage<Props> = ({width}) => {
   const isVisible = useOnScreen(blockRef);
   useEffect(() => {
     const blockElement = blockRef.current;
-    if (blockElement) {
-      if (isVisible) {
-        blockRef.current.style.opacity = "1";
-        blockRef.current.style.transform = "translateY(0)";
-      }
+    if (blockElement && isVisible) {
+      blockElement.style.opacity = "1";
+      blockElement.style.transform = "translateY(0)";
     }
   }, [blockRef, isVisible]);
 
