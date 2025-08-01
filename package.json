@@ -1,7 +1,30 @@
 {
   "name": "soleemare-webpage",
   "version": "0.2.0",
+  "description": "ソレ・エ・マーレ〜太陽と海〜 Sole e Mare - 自家農園の季節の柑橘を贅沢に使用した手作りイタリアンスイーツ店の公式ウェブサイト",
+  "keywords": [
+    "soleemare",
+    "sole-e-mare",
+    "イタリアンスイーツ",
+    "スフォリアテッラ",
+    "sfogliatella",
+    "小田原",
+    "根府川",
+    "nextjs",
+    "typescript",
+    "firebase"
+  ],
+  "author": "Nakajima Masao",
+  "license": "UNLICENSED",
   "private": true,
+  "homepage": "https://sole-e-mare.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fcb1899v/soleemare_nextjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fcb1899v/soleemare_nextjs/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -21,13 +44,11 @@
     "@shopify/shopify-api": "^11.14.1",
     "axios": "^1.11.0",
     "cors": "^2.8.5",
-    "eslint": "^9.32.0",
     "eslint-config-next": "^15.4.5",
     "firebase": "^12.0.0",
     "firebase-functions": "^6.4.0",
     "instagram-graph-api": "^7.0.0",
     "next": "^15.4.5",
-    "ngx-twitter-timeline": "^0.1.5",
     "nodemailer": "^7.0.5",
     "react-firebase-hooks": "^5.1.1",
     "react-i18next": "^15.6.1",
@@ -35,18 +56,23 @@
     "swiper": "^11.2.10"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "@types/react-scroll": "^1.8.10",
     "@types/shopify-buy": "^3.0.0",
+    "eslint": "^9.32.0",
     "firebase-tools": "^14.11.2",
-    "instagram-web-api": "^2.2.2",
-    "react-scripts": "^5.0.1",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.5.6",
     "react-scroll": "^1.9.3",
+    "resolve-url-loader": "^5.0.0",
     "sass": "^1.89.2",
-    "typescript": "^5.8.3"
+    "svgo": "^4.0.0",
+    "typescript": "^5.9.2",
+    "webpack-dev-server": "^5.2.2"
   },
   "browser": {
     "fs": false,

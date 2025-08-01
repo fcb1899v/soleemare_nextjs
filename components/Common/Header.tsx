@@ -1,28 +1,60 @@
+/**
+ * Header.tsx
+ * 
+ * Common header navigation component
+ * 
+ * Features:
+ * - Responsive navigation menu
+ * - Mobile hamburger menu
+ * - Smooth scroll to sections
+ * - SNS buttons integration
+ * - Footer menu in mobile view
+ * - Logo and branding display
+ * 
+ * Dependencies:
+ * - SNSButtons component for social media links
+ * - HomeConstant for menu data
+ * - Next.js Link component for navigation
+ */
+
 import { NextPage } from "next"
 import Link from "next/link";
 import { CSSProperties, useState } from "react";
 import { myFooterMenu, myHeaderMenu } from "../../utils/HomeConstant";
 import SNSButtons from "./SNSButtons";
 
+/**
+ * Props interface
+ * @param width - Screen width for responsive design
+ * @param isHome - Whether current page is home page
+ */
 interface Props {
   width: number
   isHome: boolean
 }
 
+/**
+ * Header component
+ * Provides navigation menu with responsive design
+ */
 const Header: NextPage<Props> = ({ width, isHome }) => {
   
+  // Responsive breakpoint detection
   const isSP = (width < 600)
   const isPC = (width > 1024)
 
+  // Mobile menu state
   const [openMenu, setOpenMenu] = useState(false);
   const toMenu = () => setOpenMenu(!openMenu);
 
+  // Smooth scroll to section
   const handleClick = (i: number) => {
     const target = document.getElementById(myHeaderMenu[i].link);
     if (target) target.scrollIntoView({behavior: "smooth", block: "start",});
     setOpenMenu(false);
   };
   
+  // Style definitions
   const headerStyle: CSSProperties = {
     width: "100%", 
     height: 60,
@@ -87,24 +119,32 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
 
   return (<header id="header" className="fixed_center" style={headerStyle}>
     <div style={headerContainerStyle}>
+      {/* Mobile hamburger menu button */}
       {(!isPC || !isHome) && <div style={menuOpenStyle} onClick={toMenu}>
         <img src={`/images/${openMenu ? "close": "menu"}.svg`} alt="open"/>
       </div>}
+      {/* Logo and title (hidden when menu is open) */}
       {(!openMenu) && <Link href="/" style={{margin: (isPC && isHome) ? 0: "0 auto"}}>
         {(width > 360) && <img style={headerLogoStyle} src="../images/soleemare_icon.png" alt="ソレ・エ・マーレ"/>}
         <img style={headerTitleStyle} src="../images/soleemare.png" alt="ソレ・エ・マーレ"/>
       </Link>}
+      {/* Navigation menu */}
       {(isPC || openMenu) && <div style={headerMenuStyle} >
+        {/* Logo in mobile menu */}
         {(!isPC || openMenu) && <Link href="/">
           <img style={menuLogoStyle} src="../images/soleemare_logo.png" alt="ソレ・エ・マーレ"/>
         </Link>}
+        {/* Navigation links (home page only) */}
         {isHome && myHeaderMenu.map((_, i) => <div style={{padding: "10px 0"}} key={`menu_link_${i}`}>
           <button style={menuButtonStyle} onClick={() => handleClick(i)}>
             {myHeaderMenu[i].title}
           </button>
         </div>)}
+        {/* Mobile menu content */}
         {(openMenu) && <div style={{padding: "20px 0"}}>
+          {/* SNS buttons */}
           <SNSButtons width={width}/>
+          {/* Footer menu links */}
           <div style={menuContactStyle} className="flex_center_wrap">
             {myFooterMenu.map((_, j) => <div style={{padding: "5px 0"}} key={`footermenu_${j}`}>
               <Link style={menuLinkStyle} href={myFooterMenu[j].link} onClick={() => setOpenMenu(false)}>
@@ -112,6 +152,7 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
               </Link>  
             </div>)}
           </div>
+          {/* Copyright notice */}
           <li style={{fontSize: 14}} key={"copyright"}>©Sole e Mare. ALL RIGHTS RESERVED.</li>
         </div>}
       </div>}

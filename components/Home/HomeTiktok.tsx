@@ -1,21 +1,53 @@
+/**
+ * HomeTiktok.tsx
+ * 
+ * Home page TikTok embed component
+ * 
+ * Features:
+ * - Embeds TikTok creator profile widget
+ * - Dynamic script loading for TikTok API
+ * - Responsive design for different screen sizes
+ * - SNS link integration
+ * 
+ * Dependencies:
+ * - TikTok Embed API
+ * - HomeSNSLink component for SNS navigation
+ * - HomeConstant for SNS data
+ */
+
 import { NextPage } from 'next'
 import { CSSProperties, useEffect, useState } from "react"
 import HomeSNSLink from './HomeSNSTitle';
 import { mySNS } from '../../utils/HomeConstant';
 
+/**
+ * Props interface
+ * @param width - Screen width for responsive design
+ */
 interface Props  {
   width: number
 }
 
+/**
+ * HomeTiktok component
+ * Displays embedded TikTok creator profile with SNS navigation
+ */
 const HomeTiktok: NextPage<Props> = ({width}) => {
 
+  // Responsive breakpoint detection
   const isSP = (width < 600)
   const isPC = (width > 1024)
 
+  // SNS index for TikTok
   const snsNumber = 4;
 
+  // TikTok widget loading state
   const [isLoadwidgets, setLoadwidgets] = useState(false);
 
+  /**
+   * Embedded TikTok component
+   * Loads TikTok embed script and renders creator profile
+   */
   const EmbededTiktok = () => {
     useEffect(() => {
       if (!isLoadwidgets) {
@@ -34,6 +66,7 @@ const HomeTiktok: NextPage<Props> = ({width}) => {
     );
   };
   
+  // Style definitions
   const tiktokStyle: CSSProperties = { 
     width: "100%",
     margin: "0 auto",
@@ -46,7 +79,9 @@ const HomeTiktok: NextPage<Props> = ({width}) => {
 
   return (
     <div style={tiktokStyle}>
+      {/* SNS navigation link */}
       <HomeSNSLink sns={mySNS[snsNumber]} isDark={true}/>
+      {/* TikTok creator profile embed */}
       <EmbededTiktok/>
     </div>
   );

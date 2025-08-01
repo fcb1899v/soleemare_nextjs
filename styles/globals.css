@@ -1,3 +1,23 @@
+/**
+ * styles/globals.css
+ * 
+ * Global CSS styles for the application
+ * 
+ * Features:
+ * - CSS custom properties for color theming
+ * - Font face declarations for custom fonts
+ * - Global body and typography styles
+ * - Swiper carousel customizations
+ * - Layout utility classes
+ * - Animation keyframes
+ * 
+ * Color Palette:
+ * - Italian-inspired color scheme
+ * - PANTONE color references
+ * - Transparent color variants
+ */
+
+/* CSS Custom Properties for Color Theming */
 :root {
   /* Color */
   --green: #008C45;    /* PANTONE® 17-6153 TCX : 0, 140, 69 */ 
@@ -15,12 +35,14 @@
   /* https://color-pallet.spark-a.com/?s=イタリア*/
 }
 
+/* Custom Font Face Declarations */
 @font-face {font-family: 'Kleymisska'; src: url(../public/font/Kleymisska.ttf); }
 @font-face { font-family: 'NotoSansJP'; src: url(../public/font/NotoSansJP-Regular.otf); }
 @font-face { font-family: 'NotoSerifJP'; src: url(../public/font/NotoSerifCJKjp-Regular.otf); }
 @font-face { font-family: 'SourceHanSans'; src: url(../public/font/SourceHanSans-Regular.otf); }
 @font-face { font-family: 'SourceHanSerif'; src: url(../public/font/SourceHanSerif-Regular.otf); }
 
+/* Global Body Styles */
 body {
   margin: 0; padding: 0; border: 0; font: inherit;  list-style-type: none; vertical-align: baseline; 
   background-color: var(--white); color: var(--black); font-size: 18px; font-weight: normal; line-height: 1.5; 
@@ -28,28 +50,35 @@ body {
   text-align: center; justify-content: center; align-items: center; overflow-x: hidden
 }
 
+/* Section and Typography Styles */
 section { scroll-margin-top: 80px; }
 h1, h2, h3 { font-family: "游教科書体", 'SourceHanSerif', "YuKyokasho", "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", 'NotoSerifJP', serif; }
 h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; }
 
+/* Swiper Carousel Customizations */
 .swiper-button-next,
 .swiper-button-prev { height: 30px !important; color: var(--white) !important; }
 .swiper-pagination-bullet-active, 
 .swiper-pagination-bullet { width: 16px !important; height: 16px !important; margin: 10px !important; background-color: var(--white) !important;}
 
+/* Social Media Embed Styles */
 .twitter-timeline, .tiktok-embed { 
   width: calc(100vw - 30px) !important; max-width: 1000px !important;
   margin: 0px auto !important; padding-bottom: 15px !important;
 }
 
+/* Layout Utility Classes */
 .container { width: 100vw; margin: 0 auto; padding: 0 }
 .large_container { width: Calc(100vw - 200px); margin: 0 auto; padding: 0 }
 .flex_center { display: flex; justify-content: center; }
 .flex_center_wrap { display: flex; justify-content: center; flex-wrap: wrap; }
 .fixed_center { position: fixed; justify-content: center; align-items: center; }
 .placeCenter { position: absolute; width: 100%; top: 45%; left: 50%;  transform: translate(-50%, -50%); } 
+
+/* Animation State Classes */
 .loading { opacity: 1; }
 .loaded { opacity: 0; }
 .vanish { display: none; }
 
+/* Animation Keyframes */
 @keyframes animationZoom { 50% { transform:scale(1.5) } }

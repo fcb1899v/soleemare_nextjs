@@ -1,3 +1,18 @@
+/**
+ * firebaseConfig.ts
+ * 
+ * Firebase configuration file
+ * 
+ * Features:
+ * - Firebase project configuration object
+ * - Environment-specific settings
+ * - Authentication and analytics setup
+ * 
+ * Dependencies:
+ * - Firebase SDK
+ * 
+ * Note: Replace placeholder values with actual Firebase project credentials
+ */
 
 export const firebaseConfig = {
   apiKey: "YOUR_API_KEY",

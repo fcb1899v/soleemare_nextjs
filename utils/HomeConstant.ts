@@ -1,8 +1,30 @@
+/**
+ * utils/HomeConstant.ts
+ * 
+ * Home page content and configuration constants
+ * 
+ * Features:
+ * - Information messages and announcements
+ * - Shopify product configuration
+ * - Home page carousel content
+ * - Product features and descriptions
+ * - SNS configuration
+ * - Menu items and navigation
+ * 
+ * Content:
+ * - Japanese and Italian bilingual content
+ * - Product descriptions and features
+ * - Company information and story
+ * - Image paths and configurations
+ */
+
+// Information messages for announcements
 export const infoMessage = [
   'クラウドファンディングMakuake（マクアケ）にて、「スフォリアテッラ」の先行予約を開始し、予定数量を完売いたしました。',
   'ご支援いただいた皆様には、感謝しかありません。おかげ様の精神で、皆様においしいスフォリアテッラがお届けできるように精進いたします。',
 ];
 
+// Shopify product configuration
 export const shopifyItems = [
   {
     id: `${process.env.NEXT_PUBLIC_SHOPIFY_SFOGLIATELLA_ID}`,
@@ -11,6 +33,7 @@ export const shopifyItems = [
   }
 ]
     
+// Home page carousel content (responsive)
 export const homeCarousel = (isSP: boolean) => [
   {
     title: ["スフォリアテッラ", "Sfogliatella",],
@@ -26,6 +49,7 @@ export const homeCarousel = (isSP: boolean) => [
 //   }
 ]
 
+// Home page top section content
 export const homeTop = [
   {
     title: ['ソレ・エ・マーレ', 'Sole e Mare'],
@@ -48,6 +72,7 @@ export const homeTop = [
   }
 ]
 
+// Home page features section content
 export const homeFeatures = [
   {
     title: '自家農園の柑橘を贅沢に使用', 
@@ -93,10 +118,12 @@ export const homeFeatures = [
   },
 ]
 
+// Additional product information (commented out)
 // '最強力粉とは強力粉の中でも最もたんぱく質を多く含む小麦粉です。灰分が高いため小麦の風味が強く、また、スフォリアテッラの特徴である表面のパリパリ感を生み出すことができます。'
 // 'てんさい糖とは、イタリアで主流のてんさい（ビート・砂糖大根）が原料の砂糖です。腸内環境を整える天然のオリゴ糖が含まれているため、血糖値の上昇を緩やかにし、身体を温める効果が期待できます。'
 // 'イタリアが発祥地のリコッタチーズは、チーズ製造時に出るホエイを煮詰めて固めたフレッシュチーズです。高タンパク・低脂肪・低カロリーな上、カルシウムやカリウム、ビタミンなどが含んでおり、さっぱりとした口当たりと自然なミルク甘さが特徴です。'
 
+// Home page products section content
 export const homeProducts = [
   { 
     title: [

@@ -1,34 +1,186 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sole e Mare - Sun and Sea
 
-## Getting Started
+Official website for Sole e Mare, a handmade Italian dessert shop that uses seasonal citrus fruits from our own farm.
 
-First, run the development server:
+## Project Overview
+
+This project is a Next.js-based website that integrates with the predecessor `web-sole-e-mare` repository. It's built as a sales site for the traditional Italian Neapolitan pastry 'Sfogliatella', which uses premium lemons from our own farm.
+
+### Key Features
+
+- **Responsive Design**: Compatible with mobile, tablet, and desktop
+- **Shopify Integration**: Product sales functionality with Shopify Buy SDK
+- **Social Media Integration**: Instagram, Twitter, TikTok, and other social media platforms
+- **Contact Form**: Customer inquiry reception with Google Forms integration
+- **Email Service**: SendGrid integration for automated email responses
+- **Firebase Hosting**: Static site deployment with Firebase Hosting
+
+### Technology Stack
+
+- **Framework**: Next.js 15.4.5
+- **Language**: TypeScript 5.9.2
+- **Styling**: Material-UI (MUI) 7.2.0
+- **Hosting**: Firebase Hosting (static export)
+- **E-commerce**: Shopify Buy SDK 3.0.7
+- **Animation**: Swiper 11.2.10
+- **Email**: SendGrid 8.1.5
+- **Social Media**: Instagram Graph API, Twitter Timeline
+
+## Development Environment Setup
+
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- npm or yarn
+- Firebase CLI (for deployment)
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp env.example .env.local
+# Edit .env.local file to add required configuration
+
+# Start development server
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The following environment variables are required:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### Shopify Configuration
+- **NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN**: Your Shopify store domain
+- **NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN**: Shopify Storefront API access token
+- **NEXT_PUBLIC_SHOPIFY_SFOGLIATELLA_ID**: Product ID
 
-## Learn More
+#### Social Media APIs
+- **NEXT_PUBLIC_INSTA_ID**: Instagram user ID
+- **NEXT_PUBLIC_INSTA_TOKEN**: Facebook Graph API access token
 
-To learn more about Next.js, take a look at the following resources:
+#### Email Service
+- **NEXT_PUBLIC_SENDGRID_APIKEY**: SendGrid API key
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Google Analytics
+- **NEXT_PUBLIC_GA_ID**: Google Analytics measurement ID
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Google Forms
+- **NEXT_PUBLIC_GOOGLE_FORM**: Google Form ID for contact form
 
-## Deploy on Vercel
+#### How to obtain Shopify API tokens:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Log in to Shopify admin panel
+2. Apps > Private apps > Create new app
+3. Enable Storefront API permissions
+4. Copy the access token and set it in `.env.local`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Please refer to the `env.example` file for details.
+
+### Available Scripts
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm run start
+
+# Run linter
+npm run lint
+
+# Static export (for Firebase Hosting)
+npm run export
+
+# Deploy to Firebase
+npm run deploy
+```
+
+## Project Structure
+
+```
+soleemare-webpage/
+├── components/          # React components
+│   ├── Common/         # Common components (Header, Footer, etc.)
+│   ├── Home/           # Home page components
+│   ├── Inquiry/        # Contact page components
+│   └── PrivacyPolicy/  # Privacy policy page components
+├── pages/              # Next.js pages and API routes
+│   └── api/            # API endpoints (CORS, SendGrid, etc.)
+├── public/             # Static files (images, fonts, etc.)
+├── styles/             # Global styles (globals.css)
+├── utils/              # Utility functions and constants
+├── src/                # Source code
+│   └── hooks/          # Custom React hooks
+├── lib/                # Library configurations (gtag.ts)
+└── firebase.json       # Firebase hosting configuration
+```
+
+## Deployment
+
+This project is deployed using Firebase Hosting with static export.
+
+### Build Process
+
+The project uses Next.js static export for Firebase Hosting:
+
+1. `npm run export` - Builds static files in `out/` directory
+2. `npm run deploy` - Deploys to Firebase Hosting
+
+### GitHub Actions
+
+Automatic deployment to Firebase Hosting occurs when pushing to the main branch.
+
+### Manual Deployment
+
+```bash
+# Build and deploy
+npm run deploy
+```
+
+## Features in Detail
+
+### Shopify Integration
+- Product display with images and descriptions
+- Quantity selection and pricing
+- Checkout process integration
+- Real-time inventory status
+
+### Social Media Integration
+- Instagram feed display with Graph API
+- Twitter timeline embedding
+- TikTok creator profile embedding
+- SNS navigation links
+
+### Contact Form
+- Google Forms integration
+- Form validation
+- Automated email responses via SendGrid
+- Success/error message handling
+
+### Responsive Design
+- Mobile-first approach
+- Breakpoint-based layouts
+- Touch-friendly interactions
+- Optimized images for different screen sizes
+
+## License
+
+This project is a private project.
+
+## Author
+
+2022 Nakajima Masao
+
+---
+
+## Integration History
+
+This project has been integrated with the predecessor `web-sole-e-mare` repository and rebuilt as a modern Next.js-based website with enhanced features and improved performance.

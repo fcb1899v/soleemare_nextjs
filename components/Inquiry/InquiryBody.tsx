@@ -1,3 +1,22 @@
+/**
+ * InquiryBody.tsx
+ * 
+ * Contact form component
+ * 
+ * Features:
+ * - Contact form with validation
+ * - Real-time form validation
+ * - Email and phone number validation
+ * - Form submission handling
+ * - Success/error message display
+ * - Responsive design for different screen sizes
+ * 
+ * Dependencies:
+ * - Material-UI components (Button, TextField, Icons)
+ * - InquiryConstant for form data and messages
+ * - InquiryTitle component for section title
+ */
+
 import { NextPage } from 'next'
 import React, { CSSProperties, useEffect, useState } from 'react';
 import { Button, TextField } from '@mui/material';
@@ -8,15 +27,25 @@ import Edit from '@mui/icons-material/Edit';
 import { alertMessageText, myForm } from '../../utils/InquiryConstant';
 import InquiryTitle from '../Common/Title';
 
+/**
+ * Props interface
+ * @param width - Screen width for responsive design
+ */
 interface Props  {
   width: number
 }
 
+/**
+ * InquaryBody component
+ * Displays contact form with validation and submission handling
+ */
 const InquaryBody: NextPage<Props> = ({width}) => { 
 
+  // Responsive breakpoint detection
   const isSP = (width < 600)
   const isPC = (width > 1024)
 
+  // Form state management
   const [familyName, setFamilyName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,12 +56,14 @@ const InquaryBody: NextPage<Props> = ({width}) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [sentMessage, setSentMessage] = useState(false);
 
+  // Form input handlers
   const handleFamilyNameChange = (e: any) => { setFamilyName(e.target.value); };
   const handleFirstNameChange = (e: any) => { setFirstName(e.target.value); };
   const handleEmailChange = (e: any) => { setEmail(e.target.value); };
   const handlePhoneChange = (e: any) => { setPhone(e.target.value); };
   const handleMessageChange = (e: any) => { setMessage(e.target.value); };
 
+  // Form validation and submission handling
   useEffect(() => {
     setButtonStyle(
       (
@@ -63,6 +94,7 @@ const InquaryBody: NextPage<Props> = ({width}) => {
     }
   }, [familyName, firstName, email, phone, message, sentMessage, isButtonOn, submitted]);
 
+  // Form submission handler
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (isButtonOn) {
@@ -72,8 +104,10 @@ const InquaryBody: NextPage<Props> = ({width}) => {
     } 
   };
 
+  // Iframe load handler (placeholder)
   const handleIframeLoad = (e: any) => {};
 
+  // Style definitions
   const inquiryStyle: CSSProperties = {
     display: "flex", 
     flexDirection: "column",

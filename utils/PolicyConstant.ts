@@ -1,3 +1,22 @@
+/**
+ * utils/PolicyConstant.ts
+ * 
+ * Privacy policy and terms of service content
+ * 
+ * Features:
+ * - Privacy policy sections and content
+ * - Terms of service information
+ * - Legal compliance content
+ * - Japanese business privacy policy
+ * 
+ * Content:
+ * - Personal information handling
+ * - Data collection and usage
+ * - Security measures
+ * - User rights and procedures
+ */
+
+// Privacy policy content with sections and explanations
 export const privacyPolicy = [
   {
     title: "個人情報とは",

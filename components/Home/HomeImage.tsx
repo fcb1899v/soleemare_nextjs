@@ -1,6 +1,29 @@
+/**
+ * HomeImage.tsx
+ * 
+ * Home page image display component
+ * 
+ * Features:
+ * - Displays images with overlay titles
+ * - Responsive design for different screen sizes
+ * - Custom gradient backgrounds
+ * - Bilingual title support (Japanese/Italian)
+ * - Conditional title visibility
+ * 
+ * Dependencies:
+ * - CSS custom properties for theming
+ */
+
 import { NextPage } from 'next'
 import { CSSProperties } from 'react'
 
+/**
+ * Props interface
+ * @param width - Screen width for responsive design
+ * @param color - Background gradient color
+ * @param title - Array of titles [Japanese, Italian]
+ * @param image - Image URL
+ */
 interface Props  {
   width: number
   color: string 
@@ -8,11 +31,17 @@ interface Props  {
   image: string
 }
   
+/**
+ * HomeImage component
+ * Displays images with overlay titles and responsive styling
+ */
 const HomeImage: NextPage<Props> = ({ width, color, title, image }) => {
 
+  // Responsive breakpoint detection
   const isSP = (width < 600)
   const isPC = (width > 1024)
 
+  // Style definitions
   const border: CSSProperties = { 
     color: "#F4F5F0",
     textShadow: "1px 2px 3px var(--black)",
@@ -44,7 +73,9 @@ const HomeImage: NextPage<Props> = ({ width, color, title, image }) => {
   }
 
   return (<div style={border}>
+    {/* Product image */}
     <img style={borderImage} src={image} alt={title[0]}/>
+    {/* Overlay titles (Japanese and Italian) */}
     <div className="placeCenter" style={borderTitle}>
       <h1 style={borderJaTitle}>{title[0]}</h1>
       <h1 style={borderItTitle}>{title[1]}</h1>

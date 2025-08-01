@@ -1,3 +1,23 @@
+/**
+ * utils/InquiryConstant.ts
+ * 
+ * Contact form configuration and validation messages
+ * 
+ * Features:
+ * - Form validation error messages
+ * - Google Forms integration configuration
+ * - Form field definitions and placeholders
+ * - Success and error message handling
+ * 
+ * Dependencies:
+ * - Google Forms API
+ * - Environment variables for form configuration
+ * 
+ * Required environment variables:
+ * - NEXT_PUBLIC_GOOGLE_FORM: Google Form ID
+ */
+
+// Validation and alert messages for contact form
 export const alertMessageText = {
   noName: 'お名前を入力してください',
   noEmail: 'メールアドレスを入力してください',
@@ -11,6 +31,7 @@ export const alertMessageText = {
   sendError: '送信エラー',  
 }
 
+// Google Forms configuration and field definitions
 export const myForm = {
   url: `https://docs.google.com/forms/u/0/d/e/${process.env.NEXT_PUBLIC_GOOGLE_FORM}/formResponse`,
   familyName: {

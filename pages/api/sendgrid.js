@@ -1,16 +1,39 @@
+/**
+ * pages/api/sendgrid.js
+ * 
+ * SendGrid email API endpoint
+ * 
+ * Features:
+ * - Sends automated email responses for contact form submissions
+ * - HTML and text email formats
+ * - Error handling for email sending
+ * - Japanese business email template
+ * 
+ * Dependencies:
+ * - SendGrid mail library
+ * - Environment variables for API key
+ * 
+ * Required environment variables:
+ * - NEXT_PUBLIC_SENDGRID_APIKEY: SendGrid API key
+ */
+
 import sgMail from '@sendgrid/mail';
 sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_APIKEY || "");
 
 /**
- * @param {{ body: { name: string; email: string; message: string; }; }} req
- * @param {{ status: (arg0: number) => { (): any; new (): any; json: { (arg0: { error: string; }): any; new (): any; }; }; }} res
+ * Sends automated email response for contact form submissions
+ * @param {any} req - Request object containing form data
+ * @param {any} res - Response object
+ * @returns {Promise<any>} Response with status and error message
  */
 async function sendEmail(req, res) {
   try {
+    // Send email using SendGrid
     await sgMail.send({
       to: [`${req.body.email}`, "info@sole-e-mare.com",],
       from: "info@sole-e-mare.com",
       subject: "【自動返信】お問い合わせありがとうございます",
+      // Plain text version of the email
       text: `
         ${req.body.name} 様\n
 
@@ -33,6 +56,7 @@ async function sendEmail(req, res) {
         敬具\n
         ソレ・エ・マーレ
       `,
+      // HTML version of the email
       html: `
         <div style="font-size: 14px; font-family: Arial, sans-serif; line-height: 1;">
           <p>${req.body.name} 様</p>
@@ -59,6 +83,7 @@ async function sendEmail(req, res) {
       `,
     });
   } catch (error) {
+    // Error handling (currently empty - could be enhanced)
   }
   return res.status(200).json({ error: "" });
 }

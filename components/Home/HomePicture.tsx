@@ -1,8 +1,34 @@
+/**
+ * HomePicture.tsx
+ * 
+ * Home page picture component with expandable content
+ * 
+ * Features:
+ * - Displays product images with titles
+ * - Expandable content with "read more" functionality
+ * - Responsive design for different screen sizes
+ * - Animated content reveal
+ * - Custom styling with gradient backgrounds
+ * 
+ * Dependencies:
+ * - HomeImage component for image display
+ * - Material-UI Button component
+ */
+
 import { Button } from '@mui/material'
 import { NextPage } from 'next'
 import { CSSProperties, useState } from 'react'
 import HomeImage from './HomeImage'
 
+/**
+ * Props interface
+ * @param width - Screen width for responsive design
+ * @param color - Background gradient color
+ * @param title - Array of titles [Japanese, Italian]
+ * @param image - Image URL
+ * @param features - Product features text
+ * @param message - Array of message texts
+ */
 interface Props  {
   width: number
   color: string 
@@ -17,19 +43,27 @@ interface Props  {
 // features={homeProducts[i].features[i]}
 // message={homeProducts[i].message[i]}
 
-
+/**
+ * HomePicture component
+ * Displays product images with expandable content sections
+ */
 const HomePicture: NextPage<Props> = ({ width, color, title, image, features, message }) => {
 
+  // Responsive breakpoint detection
   const isSP = (width < 600)
   const isPC = (width > 1024)
 
+  // Expandable content state
   const [showChild, setShowChild] = useState(false);
   const [vanishButton, setVanishButton] = useState(false);
+  
+  // Toggle content visibility
   const handleClick = () => {
     setShowChild(!showChild);
     setVanishButton(!vanishButton);
   };
 
+  // Style definitions
   const border: CSSProperties = { 
     color: "#F4F5F0",
     textShadow: "1px 2px 3px var(--black)",
@@ -74,10 +108,15 @@ const HomePicture: NextPage<Props> = ({ width, color, title, image, features, me
 
   return (
     <div style={{ width: isPC ? "50%": "Calc(100% - 20px)", margin: "0 auto 30px", }}> 
+      {/* Product image display */}
       <HomeImage width={width} color={color} title={title} image={image}/>
+      {/* Product information and expandable content */}
       <div style={{ margin: "20px auto 0px", padding: 10, maxWidth: 600, }}>
+        {/* Product features */}
         <h5 style={{ paddingBottom: showChild ? "5px": "0px" }}>{features}</h5>
+        {/* Expandable message content */}
         {message.map((_, i) => <h5 style={messageStyle} key={`blue_message_${i}`}>{message[i]}</h5>)}
+        {/* Read more button */}
         <Button onClick={handleClick} style={buttonStyle}><h5>＋ 続きを読む</h5></Button>
       </div>
     </div>
