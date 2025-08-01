@@ -1,13 +1,7 @@
 module.exports = {
-  exportPathMap: async function (defaultPathMap) {
-    return {
-      '/': { page: '/'},
-      '/inquiry': { page: '/inquiry'},
-      '/privacypolicy': { page: '/privacypolicy'},
-    }
-  },
-  reactStrictMode: true,
+  output: 'export',
   trailingSlash: true,
+  reactStrictMode: true,
 
   images: {
     unoptimized: true,
