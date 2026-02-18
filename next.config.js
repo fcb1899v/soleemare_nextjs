@@ -1,5 +1,6 @@
 module.exports = {
-  output: 'export',
+  // Static export only for production build (enables API Routes in dev)
+  ...(process.env.NODE_ENV === 'production' && { output: 'export' }),
   trailingSlash: true,
   reactStrictMode: true,
 
@@ -7,27 +8,16 @@ module.exports = {
     unoptimized: true,
   },
 
-  webpack: (config, { isServer }) => {
+  // Next.js 16: satisfy Turbopack when only webpack is configured
+  turbopack: {},
+
+  webpack: (config) => {
     // Suppress punycode deprecation warning
     config.ignoreWarnings = [
       { module: /node_modules\/punycode/ },
       /the `punycode` module is deprecated/
     ];
     return config;
-  },
-  
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-          { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Shopify-Access-Token" },
-          { key: "Access-Control-Allow-Credentials", value: "true" }
-        ]
-      },
-    ]
   },
 }
 

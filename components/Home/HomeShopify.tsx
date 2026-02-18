@@ -18,7 +18,7 @@
 
 import { NextPage } from 'next'
 import Link from 'next/link';
-import { CSSProperties, useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useMemo, useState } from 'react';
 import Client, {Checkout, Product} from 'shopify-buy'
 import { CircularProgress, FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -42,6 +42,30 @@ interface Props{
 
 // Quantity selection options
 const options = [1, 2, 4];
+
+/** Custom fetch that logs request/response for debugging Shopify API issues */
+function createShopifyFetch() {
+  return (url: string, options?: { body?: string; method?: string; mode?: string; headers?: Record<string, string> }) => {
+    console.log('[Shopify] Request URL:', url);
+    console.log('[Shopify] Request method:', options?.method ?? 'POST');
+    return fetch(url, options as RequestInit)
+      .then((response) => {
+        console.log('[Shopify] Response status:', response.status, response.statusText, 'URL:', url);
+        if (!response.ok) {
+          response
+            .clone()
+            .json()
+            .then((body) => console.error('[Shopify] Error response body:', body))
+            .catch(() => console.error('[Shopify] Could not parse error body as JSON'));
+        }
+        return response;
+      })
+      .catch((err) => {
+        console.error('[Shopify] Fetch failed:', err?.message ?? err, { url });
+        throw err;
+      });
+  };
+}
 
 /**
  * HomeShopify component
@@ -70,14 +94,25 @@ const HomeShopify: NextPage<Props> = ({width, item}) => {
   // Get environment variables
   const shopifyDomain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
   const shopifyToken = process.env.NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN;
-  
-  // Initialize Shopify client
-  const client = Client.buildClient({
-    domain: shopifyDomain || "",
-    storefrontAccessToken: shopifyToken || "",
-    apiVersion: '2023-10',
-    language: 'ja-JP'
-  });        
+
+  // Shopify expects hostname only (e.g. "store.myshopify.com"), no protocol or path
+  const normalizedDomain = shopifyDomain
+    ? shopifyDomain.replace(/^https?:\/\//i, '').split('/')[0].trim()
+    : '';
+
+  // Initialize Shopify client with logging fetch (client-side only; stable via useMemo)
+  const client = useMemo(() => {
+    if (!normalizedDomain || !shopifyToken) return null;
+    return Client.buildClient(
+      {
+        domain: normalizedDomain,
+        storefrontAccessToken: shopifyToken,
+        apiVersion: '2023-10',
+        language: 'ja-JP',
+      },
+      createShopifyFetch() as (url: string, options: { body: string; method: string; mode: string; headers: Record<string, string> }) => Promise<unknown>
+    );
+  }, [normalizedDomain, shopifyToken]);        
 
   // Admin URL (unused but for future expansion)
   const adminUrl = process.env.NEXT_PUBLIC_SHOPIFY_ADMIN_DOMAIN || '';
@@ -94,46 +129,61 @@ const HomeShopify: NextPage<Props> = ({width, item}) => {
 
   /**
    * Main process for fetching product information and creating checkout
-   * Re-executes when quantity changes
+   * Re-executes when quantity changes. Runs only on the client to avoid "Failed to fetch" in SSR/build.
    */
-  useEffect(() => {(async () => {
-    // Error handling for missing environment variables
-    if (!shopifyDomain || !shopifyToken) {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!normalizedDomain || !shopifyToken) {
       setError("Shopify environment variables are not set. Please configure NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN and NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN.");
       return;
     }
+    if (!client) return;
 
+    let cancelled = false;
     setIsChangeQuantity(true);
-    try {
-      console.log("Shopify API connection started:", { domain: shopifyDomain, productID });
-      
-      // Fetch product information
-      const fetchedProduct: Product = await client.product.fetch(productID);
-      console.log("Product fetched successfully:", fetchedProduct.title);
-      
-      setSalesProduct(fetchedProduct);
-      setIsSoldOut(!fetchedProduct.availableForSale);  
-      
-      // Create checkout
-      console.log("Checkout creation started");
-      const checkout: Checkout = await client.checkout.create();
-      console.log("Checkout created successfully:", checkout.id);
-      
-      // Add product to checkout
-      await client.checkout.addLineItems(checkout.id, [{ 
-        variantId: fetchedProduct.variants[item.variant].id, 
-        quantity: quantity
-      }]).then((checkoutResult) => {
-        console.log("Product added successfully:", checkoutResult.webUrl);
+    setError('');
+
+    (async () => {
+      try {
+        console.log("[Shopify] API connection started:", { domain: normalizedDomain, productID });
+
+        const fetchedProduct: Product = await client.product.fetch(productID);
+        if (cancelled) return;
+        console.log("[Shopify] Product fetched:", fetchedProduct.title);
+
+        setSalesProduct(fetchedProduct);
+        setIsSoldOut(!fetchedProduct.availableForSale);
+
+        console.log("[Shopify] Creating checkout");
+        const checkout: Checkout = await client.checkout.create();
+        if (cancelled) return;
+        console.log("[Shopify] Checkout created:", checkout.id);
+
+        const checkoutResult = await client.checkout.addLineItems(checkout.id, [
+          { variantId: fetchedProduct.variants[item.variant].id, quantity },
+        ]);
+        if (cancelled) return;
+        console.log("[Shopify] Line items added, checkout URL:", checkoutResult.webUrl);
         setCheckoutLink(checkoutResult.webUrl);
-        setIsChangeQuantity(false);
-      });
-    } catch (error) {
-      console.error("Shopify API error:", error);
-      setError(`Shopify API error: ${error}`);
-      setIsChangeQuantity(false);
-    }
-  })();}, [quantity, client, productID, item.variant, shopifyDomain, shopifyToken]);
+      } catch (err) {
+        if (cancelled) return;
+        const message = err instanceof Error ? err.message : String(err);
+        console.error("[Shopify] API error:", err);
+        if (message === "Failed to fetch") {
+          setError(
+            "Shopify への接続に失敗しました（Failed to fetch）。確認: 1) NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN は「ストア名.myshopify.com」形式のみ（https:// なし）、" +
+              "2) NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN、3) ネットワーク・ブラウザのコンソールで [Shopify] のログを確認。"
+          );
+        } else {
+          setError(`Shopify API error: ${message}`);
+        }
+      } finally {
+        if (!cancelled) setIsChangeQuantity(false);
+      }
+    })();
+
+    return () => { cancelled = true; };
+  }, [quantity, client, productID, item.variant, normalizedDomain, shopifyToken]);
 
   // Display error if occurred
   if (error) {
