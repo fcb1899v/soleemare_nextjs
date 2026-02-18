@@ -36,10 +36,10 @@ interface Props  {
 }
 
 /**
- * InquaryBody component
+ * InquiryBody component
  * Displays contact form with validation and submission handling
  */
-const InquaryBody: NextPage<Props> = ({width}) => { 
+const InquiryBody: NextPage<Props> = ({width}) => { 
 
   // Responsive breakpoint detection
   const isSP = (width < 600)
@@ -149,7 +149,7 @@ const InquaryBody: NextPage<Props> = ({width}) => {
   }
 
   return (
-    <div id="inquary" style={inquiryStyle}>
+    <div id="inquiry" style={inquiryStyle}>
       <InquiryTitle width={width} title={["お問い合わせフォーム", "Richiesta"]} index={0}/>
       <form action={myForm.url} method="POST" target="hidden_iframe" onSubmit={handleSubmit} style={{margin: 15}}>
         <div style={nameStyle}>
@@ -189,48 +189,25 @@ const InquaryBody: NextPage<Props> = ({width}) => {
   );
 };
 
-export default InquaryBody
-  
-  // SendGrid
-  //
-  // useEffect(() => {
-  //   setSubmitted(
-  //     (familyName != "" && firstName != "" && email != "" && email.match(/.+@.+\..+/) && email != confirmEmail && phone.match(/^0\d{9,10}$/) && message != "") ? true: false
-  //   );
-  //   setAlertMessage(
-  //     (familyName == "" || firstName == "") ? NO_NAME: (email == "") ? NO_EMAIL: (email != confirmEmail) ? WRONG_EMAIL: (message == "") ? NO_MESSAGE: SEND_ERROR
-  //   );
-  //   setData(JSON.stringify({
-  //     familyname: familyName,
-  //     firstname: firstName,
-  //     email: email,
-  //     confirmmail: confirmEmail,
-  //     phone: phone,
-  //     message: message,
-  //   }));
-  // }, [familyName, firstName, email, confirmEmail, phone, message]);
-  //
-  // const handleSubmit = async (e: any) => {
-  //   e.preventDefault();
-  //   if isSubmitted {
-  //     await fetch("/api/sendgrid", {      
-  //       body: data,
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       method: "POST"
-  //     }).then(function () {
-  //       alert(THANKS_INQUIRY);
-  //       setFamilyName("");
-  //       setFirstName("");
-  //       setEmail("");
-  //       setConfirmEmail("");
-  //       setMessage("");
-  //     })
-  //     .catch(function (error) {
-  //       console.log(`${SEND_ERROR}: ${error}`);
-  //     });
-  //   } else {
-  //     alert(alertMessage);
-  //   }
-  // }  
+export default InquiryBody
+
+// SendGrid (currently disabled: call is commented out)
+//
+// Purpose: Example of calling /api/sendgrid for auto-reply in addition to Google Forms submission.
+// Note: This app uses static export in production, so /api/* routes do not run in production.
+//
+// const sendInquiryBySendGrid = async () => {
+//   const payload = {
+//     name: `${familyName} ${firstName}`,
+//     email,
+//     message,
+//   }
+//   await fetch('/api/sendgrid', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(payload),
+//   })
+// }
+//
+// Usage: Make handleSubmit async and call before e.target.submit():
+//   await sendInquiryBySendGrid()

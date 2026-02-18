@@ -12,19 +12,17 @@
  * 
  * Dependencies:
  * - Facebook Graph API for Instagram data
- * - Axios for HTTP requests
  * - HomeSNSLink component for SNS navigation
  * - BlueBorder component for styling
  * - HomeConstant for SNS data
  * 
- * Required environment variables:
- * - NEXT_PUBLIC_INSTA_ID: Instagram user ID
- * - NEXT_PUBLIC_INSTA_TOKEN: Facebook Graph API access token
+ * In dev: uses /api/instagram (INSTA_ID, INSTA_TOKEN server-side).
+ * In production static export: API routes are unavailable, so falls back to
+ * client-side fetch with NEXT_PUBLIC_INSTA_ID and NEXT_PUBLIC_INSTA_TOKEN.
  */
 
 import { NextPage } from 'next';
 import Link from 'next/link';
-import axios from 'axios';
 import React, { useState, useEffect, CSSProperties } from 'react'
 import HomeSNSLink from './HomeSNSTitle';
 import { mySNS } from '../../utils/HomeConstant';
@@ -39,20 +37,33 @@ interface Props  {
 }
 
 /**
- * Fetches Instagram posts from Facebook Graph API
- * @returns Array of Instagram post data
+ * Fetches Instagram media: tries API route first, then client-side Graph API for static export.
  */
-async function getInstaItems(): Promise<[]> {
+async function fetchInstaItems(): Promise<Array<Record<string, unknown>>> {
+  // Prefer API route when available (dev or server deployment)
   try {
-    const userId = process.env.NEXT_PUBLIC_INSTA_ID;
-    const token = process.env.NEXT_PUBLIC_INSTA_TOKEN;
-    const instaUrl = `https://graph.facebook.com/v15.0/${userId}?fields=media.limit(10){id,caption,media_url,thumbnail_url,timestamp,media_type,permalink,like_count}&access_token=${token}`;
-    const response: any = await axios.get<[]>(instaUrl);
-    // console.log(response.data["media"]["data"])
-    return response.data["media"]["data"];
-  } catch (error) {
-    console.error(error);
-    return []
+    const res = await fetch('/api/instagram');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data)) return data;
+    }
+  } catch {
+    // API route not available (e.g. static export)
+  }
+
+  // Fallback: direct Graph API (required for static export; token is client-visible)
+  const userId = process.env.NEXT_PUBLIC_INSTA_ID;
+  const token = process.env.NEXT_PUBLIC_INSTA_TOKEN;
+  if (!userId || !token) return [];
+
+  try {
+    const url = `https://graph.facebook.com/v15.0/${userId}?fields=media.limit(10){id,caption,media_url,thumbnail_url,timestamp,media_type,permalink,like_count}&access_token=${token}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const media = data?.media?.data ?? [];
+    return Array.isArray(media) ? media : [];
+  } catch {
+    return [];
   }
 }
 
@@ -70,13 +81,12 @@ const HomeInstagram: NextPage<Props> = ({width}) => {
   const snsNumber = 2;
 
   // Instagram posts state
-  const [instaItems, setInstaItems] = useState<[] |[]>([]);
-  
-  // Fetch Instagram posts on component mount
+  const [instaItems, setInstaItems] = useState<Array<Record<string, unknown>>>([]);
+
   useEffect(() => {
     (async () => {
-      const instaItems: [] = await getInstaItems();
-      setInstaItems(instaItems);
+      const items = await fetchInstaItems();
+      setInstaItems(items);
     })();
   }, []);
 
@@ -118,13 +128,13 @@ const HomeInstagram: NextPage<Props> = ({width}) => {
       <HomeSNSLink sns={mySNS[snsNumber]} isDark={true}/>
       <div className="flex_center_wrap">
         {/* Instagram feed grid */}
-        {(instaItems.length != 0) && <div style={instaContainerStyle}>
-          {instaItems.map((item: any, i: number) => (
-            <Link key={i} href={item["permalink"]} style={instaLinkStyle} >
+        {(instaItems.length !== 0) && <div style={instaContainerStyle}>
+          {instaItems.map((item, i) => (
+            <Link key={i} href={String(item.permalink ?? '')} style={instaLinkStyle} >
               {/* Instagram post image (video thumbnail for videos) */}
-              <img style={instaImageStyle} alt={`insta_image_${i}!`} src={(item["media_type"] == "VIDEO") ? item["thumbnail_url"]: item["media_url"]}/>
+              <img style={instaImageStyle} alt={`insta_image_${i}`} src={String((item.media_type === 'VIDEO') ? item.thumbnail_url : item.media_url)}/>
               {/* Like count display */}
-              <div style={instaLikeStyle}>♥ {item["like_count"]}</div>
+              <div style={instaLikeStyle}>♥ {Number(item.like_count) || 0}</div>
             </Link>
           ))}
         </div>}

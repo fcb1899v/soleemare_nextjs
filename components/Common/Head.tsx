@@ -1,33 +1,32 @@
 /**
  * Head.tsx
- * 
- * Common head component for SEO and meta tags
- * 
- * Features:
- * - SEO meta tags for search engines
- * - Open Graph tags for social media sharing
- * - Twitter Card tags for Twitter sharing
- * - Favicon and app icon links
- * - Viewport and compatibility settings
- * - Canonical URL and author information
- * 
- * Dependencies:
- * - Next.js Head component
+ *
+ * Common head component for SEO and meta tags.
+ * Accepts optional title, description, and path for page-specific meta (og:url, canonical).
  */
 
-import type {NextPage} from 'next'
 import Head from 'next/head'
 
-// SEO content constants
-const title = "ソレ・エ・マーレ〜太陽と海〜 Sole e Mare"
-const description = "自家農園の季節の柑橘を贅沢に使用した手作りイタリアンスイーツ店『ソレ・エ・マーレ〜太陽と海〜 Sole e Mare』 自家農園のレモンを贅沢に使用したイタリア・ナポリの伝統焼菓子『スフォリアテッラ Sfogliatella』を販売しています"
-const url = "https://sole-e-mare.com"
+const BASE_URL = 'https://sole-e-mare.com'
+const DEFAULT_TITLE = 'ソレ・エ・マーレ〜太陽と海〜 Sole e Mare'
+const DEFAULT_DESCRIPTION = '自家農園の季節の柑橘を贅沢に使用した手作りイタリアンスイーツ店『ソレ・エ・マーレ〜太陽と海〜 Sole e Mare』 自家農園のレモンを贅沢に使用したイタリア・ナポリの伝統焼菓子『スフォリアテッラ Sfogliatella』を販売しています'
+const SITE_NAME = 'ソレ・エ・マーレ〜太陽と海〜 Sole e Mare'
+const OG_IMAGE = 'https://sole-e-mare.com/images/soleemare_icon.png'
+const TWITTER_IMAGE = 'https://sole-e-mare.com/images/keyvisual.png'
+const KEYWORDS = 'ソレエマーレ, ソレ・エ・マーレ, ソレ エ マーレ, Sole e Mare, soleemare, 太陽と海, スフォリアテッラ, sfogliatella, sfogliatelle, 小田原, 根府川, 片浦, 湘南, 農園, 自家農園, Lemon, Limone, レモン, イタリア, イタリアンスイーツ, ドルチェ, お取り寄せ, マクアケ, Makuake'
 
-/**
- * HomeHead component
- * Provides comprehensive SEO and meta tag configuration
- */
-const HomeHead: NextPage = () => {
+export interface PageHeadProps {
+  /** Page title (default: site title) */
+  title?: string
+  /** Meta description (default: site description) */
+  description?: string
+  /** Path for canonical and og:url, e.g. "/inquiry/" (default: "/") */
+  path?: string
+}
+
+export default function PageHead({ title = DEFAULT_TITLE, description = DEFAULT_DESCRIPTION, path = '/' }: PageHeadProps) {
+  const url = path === '/' ? BASE_URL : `${BASE_URL}${path.startsWith('/') ? path : `/${path}`}`
+
   return (
     <Head>
       {/* Basic SEO meta tags */}
@@ -37,19 +36,19 @@ const HomeHead: NextPage = () => {
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta name="format-detection" content="email=no,telephone=no,address=no"/>
       <meta name="author" content="2022 Nakajima Masao"/>
-      <meta name="keywords" content="ソレエマーレ, ソレ・エ・マーレ, ソレ エ マーレ, Sole e Mare, soleemare, 太陽と海, スフォリアテッラ, sfogliatella, sfogliatelle, 小田原, 根府川, 片浦, 湘南, 農園, 自家農園, Lemon, Limone, レモン, イタリア, イタリアンスイーツ, ドルチェ, お取り寄せ, マクアケ, Makuake"/>
-      
+      <meta name="keywords" content={KEYWORDS}/>
+
       {/* Open Graph meta tags for social media */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title}/>
-      <meta property="og:site_name" content={title} />
+      <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
-      <meta property="og:image" content="https://sole-e-mare.com/images/soleemare_icon.png" />
+      <meta property="og:image" content={OG_IMAGE} />
       <meta property="og:locale" content="ja_JP" />
       <meta property="article:publisher" content="https://www.facebook.com/soleemaredolce" />
       <link rel="canonical" href={url} />
-      
+
       {/* Twitter Card meta tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
@@ -57,7 +56,7 @@ const HomeHead: NextPage = () => {
       <meta name="twitter:url" content={url} />
       <meta name="twitter:site" content="@soleemare_dolce" />
       <meta name="twitter:creator" content="@Nakajima_Masao" />
-      <meta name="twitter:image" content="https://sole-e-mare.com/images/keyvisual.png" />
+      <meta name="twitter:image" content={TWITTER_IMAGE} />
       
       {/* Windows tile icons */}
       <meta name="msapplication-square70x70logo" content="https://sole-e-mare.com/favicons/site-tile-70x70.png"/>
@@ -117,5 +116,3 @@ const HomeHead: NextPage = () => {
     </Head>
   )
 }
-
-export default HomeHead

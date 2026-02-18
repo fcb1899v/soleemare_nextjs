@@ -13,7 +13,7 @@
  * - HomePicture component for product display
  * - HomeTitle component for section titles
  * - HomeConstant for product data
- * - HomeFunction for scroll detection
+ * - useLayout (useOnScreen) for scroll detection
  */
 
 import { NextPage } from 'next';
@@ -21,7 +21,7 @@ import { CSSProperties, RefObject, useEffect, useRef, useState } from 'react'
 import HomeTitle from '../Common/Title';
 import HomePicture from './HomePicture';
 import { homeProducts } from '../../utils/HomeConstant';
-import { useOnScreen } from '../../utils/HomeFunction';
+import { useOnScreen } from '../../hooks/useLayout';
 
 /**
  * Props interface

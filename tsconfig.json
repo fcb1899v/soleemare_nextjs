@@ -20,16 +20,13 @@
     "jsx": "react-jsx",
     "incremental": true,
     "typeRoots": [
-      "./node_modules/@types",
-      "./custom-typings"
+      "./node_modules/@types"
     ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "src/react-scroll.d.ts",
-    "pages/api/sendgrid.js"
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"

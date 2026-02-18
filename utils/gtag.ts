@@ -1,6 +1,6 @@
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 
-// PV 数の計測
+// Track page views
 export const pageview = (url: string) => {
   if (!GA_ID) return;
   window.gtag("config", GA_ID, {
@@ -8,7 +8,7 @@ export const pageview = (url: string) => {
   });
 };
 
-// GA イベントの発火
+// Fire GA event
 export const event = ({
   action,
   category,

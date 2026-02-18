@@ -14,7 +14,7 @@
  * - Common components (Head, Splash, Header, Footer, BlueBorder)
  * - Home components (HomeTop, HomeProduct, HomeFeature, HomeSNS, HomeShopify)
  * - HomeConstant for Shopify product data
- * - HomeFunction for window size detection
+ * - useLayout (useWindowSize) for window size detection
  */
 
 import type { NextPage } from 'next'
@@ -29,13 +29,14 @@ import HomeShopify from '../components/Home/HomeShopify'
 import Footer from '../components/Common/Footer'
 import BlueBorder from '../components/Common/BlueBorder'
 import { shopifyItems } from '../utils/HomeConstant'
-import { useWindowSize } from '../utils/HomeFunction'
+import { useWindowSize } from '../hooks/useLayout'
 
 /**
  * Main component
  * Home page with all sections and components
  */
 const Main: NextPage = () => {
+  const width = useWindowSize()[0]
 
   return (<div lang={"ja"}>
     {/* SEO and meta tags */}
@@ -43,29 +44,29 @@ const Main: NextPage = () => {
     {/* Loading splash screen */}
     <Splash/>
     {/* Navigation header */}
-    <Header width={useWindowSize()[0]} isHome={true}/>
+    <Header width={width} isHome={true}/>
     {/* Main content area */}
     <main style={{marginTop: 60}}>
       {/* Hero section with carousel */}
-      <HomeTop width={useWindowSize()[0]}/>
+      <HomeTop width={width}/>
       <BlueBorder/>
       {/* Product showcase section */}
-      <HomeProduct width={useWindowSize()[0]}/>
+      <HomeProduct width={width}/>
       <BlueBorder/>
       {/* Shopify product section */}
-      <HomeShopify width={useWindowSize()[0]} item={shopifyItems[0]}/>
+      <HomeShopify width={width} item={shopifyItems[0]}/>
       {/* Features section */}
-      <HomeFeature width={useWindowSize()[0]}/>
+      <HomeFeature width={width}/>
       <BlueBorder/>
       {/* Additional Shopify product section */}
-      <HomeShopify width={useWindowSize()[0]} item={shopifyItems[0]}/>
+      <HomeShopify width={width} item={shopifyItems[0]}/>
       {/* SNS and information section */}
-      <HomeSNS width={useWindowSize()[0]}/>
+      <HomeSNS width={width}/>
       {/* Final Shopify product section */}
-      <HomeShopify width={useWindowSize()[0]} item={shopifyItems[0]}/>
+      <HomeShopify width={width} item={shopifyItems[0]}/>
     </main>
     {/* Footer with navigation and social links */}
-    <Footer width={useWindowSize()[0]}/>
+    <Footer width={width}/>
   </div>)
 }
 

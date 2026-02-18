@@ -18,36 +18,37 @@
 import '../styles/globals.css'
 import 'swiper/css/bundle'
 import type { AppProps } from 'next/app'
-import { usePageView } from '../src/hooks/usePageView';
+import { usePageView } from '../hooks/usePageView'
+import ErrorBoundary from '../components/Common/ErrorBoundary'
 
 /**
  * MyApp component
- * Root application component with analytics and global styles
+ * Root application component with analytics, error boundary, and global styles
  */
 function MyApp({ Component, pageProps }: AppProps) {
+  usePageView()
 
-  // Track page views for analytics
-  usePageView();
-  
-  return <>
-    {/* Google Analytics integration (conditional) */}
-    {process.env.NEXT_PUBLIC_GA_ID && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-              page_path: window.location.pathname,
-            });`,
-        }}/>
-      </>
-    )}
-    {/* Render the page component */}
-    <Component {...pageProps} />
-  </>
+  return (
+    <>
+      {process.env.NEXT_PUBLIC_GA_ID && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                page_path: window.location.pathname,
+              });`,
+          }} />
+        </>
+      )}
+      <ErrorBoundary>
+        <Component {...pageProps} />
+      </ErrorBoundary>
+    </>
+  )
 }
 
 export default MyApp;

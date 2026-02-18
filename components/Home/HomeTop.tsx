@@ -13,7 +13,7 @@
  * - Swiper for carousel functionality
  * - HomePicture component for product display
  * - HomeConstant for content data
- * - HomeFunction for scroll detection
+ * - useLayout (useOnScreen) for scroll detection
  */
 
 import { NextPage } from "next";
@@ -22,7 +22,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Navigation, EffectFade, Autoplay } from 'swiper/modules'
 import HomePicture from "./HomePicture";
 import { homeTop, homeCarousel } from "../../utils/HomeConstant";
-import { useOnScreen } from "../../utils/HomeFunction";
+import { useOnScreen } from '../../hooks/useLayout';
 
 /**
  * Props interface

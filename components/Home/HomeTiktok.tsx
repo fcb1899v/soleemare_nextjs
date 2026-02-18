@@ -1,92 +1,76 @@
 /**
  * HomeTiktok.tsx
- * 
- * Home page TikTok embed component
- * 
+ *
+ * Home page TikTok section component.
+ * Currently disabled: usage in HomeInfo is commented out (same pattern as SendGrid).
+ * To enable: uncomment the <HomeTiktok width={width}/> line in HomeInfo.tsx.
+ *
  * Features:
- * - Embeds TikTok creator profile widget
- * - Dynamic script loading for TikTok API
- * - Responsive design for different screen sizes
+ * - TikTok profile / embed area
  * - SNS link integration
- * 
- * Dependencies:
- * - TikTok Embed API
- * - HomeSNSLink component for SNS navigation
- * - HomeConstant for SNS data
+ * - Styling consistent with HomeTwitter / HomeInstagram
  */
 
 import { NextPage } from 'next'
-import { CSSProperties, useEffect, useState } from "react"
-import HomeSNSLink from './HomeSNSTitle';
-import { mySNS } from '../../utils/HomeConstant';
+import { CSSProperties, useEffect, useState } from 'react'
+import HomeSNSLink from './HomeSNSTitle'
+import { mySNS } from '../../utils/HomeConstant'
+import BlueBorder from '../Common/BlueBorder'
 
-/**
- * Props interface
- * @param width - Screen width for responsive design
- */
-interface Props  {
+interface Props {
   width: number
 }
 
-/**
- * HomeTiktok component
- * Displays embedded TikTok creator profile with SNS navigation
- */
-const HomeTiktok: NextPage<Props> = ({width}) => {
+const TIKTOK_SNS_INDEX = 4
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+const HomeTiktok: NextPage<Props> = ({ width }) => {
+  const [scriptLoaded, setScriptLoaded] = useState(false)
 
-  // SNS index for TikTok
-  const snsNumber = 4;
+  useEffect(() => {
+    if (scriptLoaded) return
+    const s = document.createElement('script')
+    s.src = 'https://www.tiktok.com/embed.js'
+    s.async = true
+    s.onload = () => setScriptLoaded(true)
+    document.body.appendChild(s)
+    return () => {
+      if (s.parentNode) s.parentNode.removeChild(s)
+    }
+  }, [scriptLoaded])
 
-  // TikTok widget loading state
-  const [isLoadwidgets, setLoadwidgets] = useState(false);
-
-  /**
-   * Embedded TikTok component
-   * Loads TikTok embed script and renders creator profile
-   */
-  const EmbededTiktok = () => {
-    useEffect(() => {
-      if (!isLoadwidgets) {
-        const s = document.createElement("script");
-        s.setAttribute("src", "https://www.tiktok.com/embed.js");
-        document.body.appendChild(s);
-        setLoadwidgets(true);
-      }
-    }, []);
-    return (
-      <blockquote className="tiktok-embed" cite="https://www.tiktok.com/@sole_e_mare_dolce" data-unique-id="sole_e_mare_dolce" data-embed-type="creator">
-        <section>
-          <a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@sole_e_mare_dolce?refer=creator_embed"></a> 
-        </section> 
-      </blockquote> 
-    );
-  };
-  
-  // Style definitions
-  const tiktokStyle: CSSProperties = { 
-    width: "100%",
-    margin: "0 auto",
-    padding: "30px 0 40px",
-    color: "var(--black)",
-    textShadow: "1px 2px 3px var(--white)",
-    position: "relative",
-    background: "linear-gradient(to right bottom, var(--yellow), var(--orange))",  
+  const tiktokStyle: CSSProperties = {
+    width: '100%',
+    margin: '0 auto',
+    padding: '30px 0 40px',
+    color: 'var(--black)',
+    textShadow: '1px 2px 3px var(--white)',
+    position: 'relative',
+    background: 'linear-gradient(to right bottom, var(--yellow), var(--orange))',
   }
 
   return (
-    <div style={tiktokStyle}>
-      {/* SNS navigation link */}
-      <HomeSNSLink sns={mySNS[snsNumber]} isDark={true}/>
-      {/* TikTok creator profile embed */}
-      <EmbededTiktok/>
+    <div>
+      <div style={tiktokStyle}>
+        <HomeSNSLink sns={mySNS[TIKTOK_SNS_INDEX]} isDark={true} />
+        <div className="tiktok-embed" style={{ maxWidth: 325, margin: '0 auto' }}>
+          <blockquote
+            className="tiktok-embed"
+            cite="https://www.tiktok.com/@soleemare_dolce"
+            data-video-id=""
+            data-embed-from="embed_page"
+            style={{ margin: 0 }}
+          >
+            <section>
+              <a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@soleemare_dolce">
+                @soleemare_dolce
+              </a>
+            </section>
+          </blockquote>
+        </div>
+      </div>
+      <BlueBorder />
     </div>
-  );
-};
+  )
+}
 
 export default HomeTiktok
-  
-  

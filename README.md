@@ -9,35 +9,33 @@ This project is a Next.js-based website that integrates with the predecessor `we
 ### Key Features
 
 - **Responsive Design**: Compatible with mobile, tablet, and desktop
-- **Shopify Integration**: Product sales functionality with Shopify Buy SDK
+- **Shopify Integration**: Product sales functionality with Shopify Storefront API
 - **Social Media Integration**: Instagram, Twitter, TikTok, and other social media platforms
 - **Contact Form**: Customer inquiry reception with Google Forms integration
-- **Email Service**: SendGrid integration for automated email responses
 - **Firebase Hosting**: Static site deployment with Firebase Hosting
 
 ### Technology Stack
 
-- **Framework**: Next.js 15.4.5
-- **Language**: TypeScript 5.9.2
-- **Styling**: Material-UI (MUI) 7.2.0
+- **Framework**: Next.js 16.x
+- **Language**: TypeScript 5.x
+- **Styling**: Material-UI (MUI) 7.x
 - **Hosting**: Firebase Hosting (static export)
-- **E-commerce**: Shopify Buy SDK 3.0.7
-- **Animation**: Swiper 11.2.10
-- **Email**: SendGrid 8.1.5
+- **E-commerce**: Shopify Storefront API (@shopify/storefront-api-client)
+- **Animation**: Swiper 12.x
 - **Social Media**: Instagram Graph API, Twitter Timeline
 
 ## Development Environment Setup
 
 ### Prerequisites
 
-- Node.js (v18 or higher recommended)
+- Node.js v22.x (see `.nvmrc`; CI uses Node 22)
 - npm or yarn
 - Firebase CLI (for deployment)
 
 ### Installation
 
 ```bash
-# Install dependencies
+# Install dependencies (Node 22 recommended; run `nvm use` if using nvm)
 npm install
 
 # Set up environment variables
@@ -59,12 +57,10 @@ The following environment variables are required:
 - **NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN**: Shopify Storefront API access token
 - **NEXT_PUBLIC_SHOPIFY_SFOGLIATELLA_ID**: Product ID
 
-#### Social Media APIs
-- **NEXT_PUBLIC_INSTA_ID**: Instagram user ID
-- **NEXT_PUBLIC_INSTA_TOKEN**: Facebook Graph API access token
-
-#### Email Service
-- **NEXT_PUBLIC_SENDGRID_APIKEY**: SendGrid API key
+#### Social Media (Instagram)
+- **NEXT_PUBLIC_INSTA_ID**: Instagram user ID (required for static export)
+- **NEXT_PUBLIC_INSTA_TOKEN**: Facebook Graph API access token (required for static export)
+- **INSTA_ID** / **INSTA_TOKEN**: Same values, server-only; optional, used by `/api/instagram` in dev
 
 #### Google Analytics
 - **NEXT_PUBLIC_GA_ID**: Google Analytics measurement ID
@@ -72,12 +68,15 @@ The following environment variables are required:
 #### Google Forms
 - **NEXT_PUBLIC_GOOGLE_FORM**: Google Form ID for contact form
 
-#### How to obtain Shopify API tokens:
+#### Optional (when using API routes in dev)
+- **SENDGRID_API_KEY**: SendGrid API key (server-only; for `/api/sendgrid`)
 
-1. Log in to Shopify admin panel
-2. Apps > Private apps > Create new app
-3. Enable Storefront API permissions
-4. Copy the access token and set it in `.env.local`
+#### How to obtain Shopify API tokens
+
+1. Log in to Shopify admin
+2. **Settings** → **Apps and sales channels** → **Develop apps** (or **Apps** → **Develop apps**), then create an app
+3. Enable **Storefront API** (or **Sales channel** API) and copy the access token
+4. Set the token in `.env.local`
 
 Please refer to the `env.example` file for details.
 
@@ -108,19 +107,20 @@ npm run deploy
 ```
 soleemare-webpage/
 ├── components/          # React components
-│   ├── Common/         # Common components (Header, Footer, etc.)
-│   ├── Home/           # Home page components
-│   ├── Inquiry/        # Contact page components
-│   └── PrivacyPolicy/  # Privacy policy page components
-├── pages/              # Next.js pages and API routes
-│   └── api/            # API endpoints (CORS, SendGrid, etc.)
-├── public/             # Static files (images, fonts, etc.)
-├── styles/             # Global styles (globals.css)
-├── utils/              # Utility functions and constants
-├── src/                # Source code
-│   └── hooks/          # Custom React hooks
-├── lib/                # Library configurations (gtag.ts)
-└── firebase.json       # Firebase hosting configuration
+│   ├── Common/         # Header, Footer, Head, ErrorBoundary, etc.
+│   ├── Home/           # Home page sections (Top, Product, Feature, SNS, Shopify, etc.)
+│   ├── Inquiry/        # Contact form
+│   └── PrivacyPolicy/  # Privacy policy content
+├── pages/               # Next.js pages and API routes
+│   └── api/             # API routes (instagram, sendgrid)
+├── hooks/               # React hooks (usePageView, useLayout)
+├── utils/               # Constants and utilities (gtag, HomeConstant, InquiryConstant, PolicyConstant)
+├── public/              # Static assets (images, fonts, favicons)
+├── styles/              # Global CSS (globals.css)
+├── env.example          # Example environment variables (copy to .env.local)
+├── next.config.js
+├── tsconfig.json
+└── firebase.json        # Firebase Hosting config
 ```
 
 ## Deployment
@@ -136,7 +136,7 @@ The project uses Next.js static export for Firebase Hosting:
 
 ### GitHub Actions
 
-Automatic deployment to Firebase Hosting occurs when pushing to the main branch.
+Automatic deployment to Firebase Hosting runs on push to `main` (see `.github/workflows/firebase-hosting-merge.yml`). Node 22 is used in CI.
 
 ### Manual Deployment
 
@@ -154,15 +154,14 @@ npm run deploy
 - Real-time inventory status
 
 ### Social Media Integration
-- Instagram feed display with Graph API
+- Instagram feed display (Graph API; fallback to client fetch when using static export)
 - Twitter timeline embedding
-- TikTok creator profile embedding
+- TikTok section (implemented but commented out in `HomeInfo`; uncomment to enable)
 - SNS navigation links
 
 ### Contact Form
 - Google Forms integration
 - Form validation
-- Automated email responses via SendGrid
 - Success/error message handling
 
 ### Responsive Design
@@ -177,7 +176,7 @@ This project is a private project.
 
 ## Author
 
-2022 Nakajima Masao
+2022–2026 Nakajima Masao
 
 ---
 

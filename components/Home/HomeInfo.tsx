@@ -13,7 +13,7 @@
  * - HomeTitle component for section titles
  * - HomeInstagram component for Instagram feed
  * - HomeTwitter component for Twitter timeline
- * - HomeTiktok component for TikTok content (commented out)
+ * - HomeTiktok component for TikTok (currently disabled; see comment below)
  * - HomeConstant for information data
  */
 
@@ -82,6 +82,7 @@ const HomeSNS: NextPage<Props> = ({width}) => {
       <div>
         <HomeInstagram width={width}/>
         <HomeTwitter width={width}/>
+        {/* TikTok (currently disabled; same pattern as SendGrid – uncomment to show) */}
         {/* <HomeTiktok width={width}/> */}
       </div>
     </section>
