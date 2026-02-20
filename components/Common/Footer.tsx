@@ -13,7 +13,7 @@
  * Dependencies:
  * - SNSButtons component for social media links
  * - BlueBorder component for styling
- * - HomeConstant for footer menu data
+ * - homeConstant for footer menu data
  * - Next.js Link component for navigation
  */
 
@@ -22,7 +22,8 @@ import { CSSProperties } from 'react';
 import Link from 'next/link';
 import SnsButtons from "./SNSButtons";
 import BlueBorder from './BlueBorder';
-import { myFooterMenu } from '../../utils/HomeConstant';
+import { myFooterMenu } from '../../utils/homeConstant';
+import { getBreakpointFlags } from '../../utils/commonConstant';
 
 /**
  * Props interface
@@ -38,9 +39,7 @@ interface Props {
  */
 const Footer: NextPage<Props> = ({width}) => {
   
-  // Responsive breakpoint detection
-  const isSP = (width < 600);
-  const isPC = (width > 1024);
+  const { isSP, isPC } = getBreakpointFlags(width);
 
   // Smooth scroll to top function
   const onScrollTop = () => window.scroll({ top: 0, behavior: 'smooth' });

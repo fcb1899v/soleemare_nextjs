@@ -13,14 +13,15 @@
  * 
  * Dependencies:
  * - SNSButtons component for social media links
- * - HomeConstant for menu data
+ * - homeConstant for menu data
  * - Next.js Link component for navigation
  */
 
 import { NextPage } from "next"
 import Link from "next/link";
 import { CSSProperties, useState } from "react";
-import { myFooterMenu, myHeaderMenu } from "../../utils/HomeConstant";
+import { myFooterMenu, myHeaderMenu } from "../../utils/homeConstant";
+import { BREAKPOINT_HEADER_LOGO, getBreakpointFlags } from "../../utils/commonConstant";
 import SNSButtons from "./SNSButtons";
 
 /**
@@ -39,9 +40,7 @@ interface Props {
  */
 const Header: NextPage<Props> = ({ width, isHome }) => {
   
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Mobile menu state
   const [openMenu, setOpenMenu] = useState(false);
@@ -74,14 +73,14 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
   const headerTitleStyle: CSSProperties = {
     height: 35,
     margin: 10,
-    padding: (width > 360) ? 0: "5px 0 0 20px", 
+    padding: (width > BREAKPOINT_HEADER_LOGO) ? 0: "5px 0 0 20px", 
   }
   const headerMenuStyle: CSSProperties = {
-    display: (isPC && isHome) ? "flex": "block", 
-    height: "100vh",
-    backgroundColor: !openMenu ? "transparent": "rgba(244, 245, 240, 0.95)",
-    paddingTop: (isPC && isHome) ? 15: 50,
-    margin: (isPC && isHome) ? "0 100px 0 auto": "-10px auto 0 auto",
+    display: (isPC && isHome) ? "flex" : "block",
+    height: openMenu && !isPC ? "100vh" : "auto",
+    backgroundColor: !openMenu ? "transparent" : "rgba(244, 245, 240, 0.95)",
+    paddingTop: (isPC && isHome) ? 15 : 50,
+    margin: (isPC && isHome) ? "0 100px 0 auto" : "-10px auto 0 auto",
     columnGap: 15,
     zIndex: 999,
   }
@@ -125,7 +124,7 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
       </div>}
       {/* Logo and title (hidden when menu is open) */}
       {(!openMenu) && <Link href="/" style={{margin: (isPC && isHome) ? 0: "0 auto"}}>
-        {(width > 360) && <img style={headerLogoStyle} src="../images/soleemare_icon.png" alt="ソレ・エ・マーレ"/>}
+        {(width > BREAKPOINT_HEADER_LOGO) && <img style={headerLogoStyle} src="../images/soleemare_icon.png" alt="ソレ・エ・マーレ"/>}
         <img style={headerTitleStyle} src="../images/soleemare.png" alt="ソレ・エ・マーレ"/>
       </Link>}
       {/* Navigation menu */}

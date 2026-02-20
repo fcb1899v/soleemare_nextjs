@@ -16,6 +16,7 @@
 
 import { NextPage } from 'next'
 import { CSSProperties } from 'react'
+import { BREAKPOINT_SP, getBreakpointFlags } from '../../utils/commonConstant'
 
 /**
  * Props interface
@@ -37,9 +38,7 @@ interface Props  {
  */
 const HomeImage: NextPage<Props> = ({ width, color, title, image }) => {
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Style definitions
   const border: CSSProperties = { 
@@ -49,7 +48,7 @@ const HomeImage: NextPage<Props> = ({ width, color, title, image }) => {
     position: "relative",
     padding: "6px 6px 0px 6px",
     margin: "0 auto",
-    maxWidth: 600,
+    maxWidth: BREAKPOINT_SP,
   }
   const borderImage: CSSProperties = { 
     width: "100%", 

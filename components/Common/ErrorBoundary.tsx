@@ -36,6 +36,8 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div
+          role="alert"
+          aria-live="assertive"
           style={{
             minHeight: '60vh',
             display: 'flex',

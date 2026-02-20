@@ -14,18 +14,19 @@
  * - Facebook Graph API for Instagram data
  * - HomeSNSLink component for SNS navigation
  * - BlueBorder component for styling
- * - HomeConstant for SNS data
+ * - homeConstant for SNS data
  * 
  * In dev: uses /api/instagram (INSTA_ID, INSTA_TOKEN server-side).
  * In production static export: API routes are unavailable, so falls back to
- * client-side fetch with NEXT_PUBLIC_INSTA_ID and NEXT_PUBLIC_INSTA_TOKEN.
+ * client-side fetch with INSTA_ID and INSTA_TOKEN.
  */
 
 import { NextPage } from 'next';
 import Link from 'next/link';
 import React, { useState, useEffect, CSSProperties } from 'react'
 import HomeSNSLink from './HomeSNSTitle';
-import { mySNS } from '../../utils/HomeConstant';
+import { mySNS } from '../../utils/homeConstant';
+import { getBreakpointFlags } from '../../utils/commonConstant';
 import BlueBorder from '../Common/BlueBorder';
 
 /**
@@ -52,8 +53,8 @@ async function fetchInstaItems(): Promise<Array<Record<string, unknown>>> {
   }
 
   // Fallback: direct Graph API (required for static export; token is client-visible)
-  const userId = process.env.NEXT_PUBLIC_INSTA_ID;
-  const token = process.env.NEXT_PUBLIC_INSTA_TOKEN;
+  const userId = process.env.INSTA_ID;
+  const token = process.env.INSTA_TOKEN;
   if (!userId || !token) return [];
 
   try {
@@ -73,9 +74,7 @@ async function fetchInstaItems(): Promise<Array<Record<string, unknown>>> {
  */
 const HomeInstagram: NextPage<Props> = ({width}) => {
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // SNS index for Instagram
   const snsNumber = 2;

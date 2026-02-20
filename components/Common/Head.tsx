@@ -35,7 +35,7 @@ export default function PageHead({ title = DEFAULT_TITLE, description = DEFAULT_
       <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta name="format-detection" content="email=no,telephone=no,address=no"/>
-      <meta name="author" content="2022 Nakajima Masao"/>
+      <meta name="author" content="2022–2026 Nakajima Masao"/>
       <meta name="keywords" content={KEYWORDS}/>
 
       {/* Open Graph meta tags for social media */}

@@ -13,11 +13,12 @@
  * Dependencies:
  * - HomePicture component for feature display
  * - HomeTitle component for section titles
- * - HomeConstant for feature data
+ * - homeConstant for feature data
  */
 
 import { NextPage } from 'next'
-import { homeFeatures } from '../../utils/HomeConstant';
+import { homeFeatures } from '../../utils/homeConstant';
+import { getBreakpointFlags } from '../../utils/commonConstant';
 import { CSSProperties, RefObject, useEffect, useRef, useState } from 'react';
 import HomePicture from './HomePicture';
 import HomeTitle from '../Common/Title';
@@ -61,9 +62,7 @@ const useOnScreen = (ref: RefObject<Element | null>) => {
  */
 const HomeFeature: NextPage<Props> = ({ width }) => {
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Scroll animation setup
   const blockRef = useRef<HTMLDivElement>(null);

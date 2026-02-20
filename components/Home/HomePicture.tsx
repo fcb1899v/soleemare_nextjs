@@ -18,6 +18,7 @@
 import { Button } from '@mui/material'
 import { NextPage } from 'next'
 import { CSSProperties, useState } from 'react'
+import { BREAKPOINT_SP, getBreakpointFlags } from '../../utils/commonConstant'
 import HomeImage from './HomeImage'
 
 /**
@@ -49,9 +50,7 @@ interface Props  {
  */
 const HomePicture: NextPage<Props> = ({ width, color, title, image, features, message }) => {
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Expandable content state
   const [showChild, setShowChild] = useState(false);
@@ -71,7 +70,7 @@ const HomePicture: NextPage<Props> = ({ width, color, title, image, features, me
     position: "relative",
     padding: "6px 6px 0px 6px",
     margin: "0 auto",
-    maxWidth: 600,
+    maxWidth: BREAKPOINT_SP,
   }
   const borderImage: CSSProperties = { 
     width: "100%", 
@@ -111,7 +110,7 @@ const HomePicture: NextPage<Props> = ({ width, color, title, image, features, me
       {/* Product image display */}
       <HomeImage width={width} color={color} title={title} image={image}/>
       {/* Product information and expandable content */}
-      <div style={{ margin: "20px auto 0px", padding: 10, maxWidth: 600, }}>
+      <div style={{ margin: "20px auto 0px", padding: 10, maxWidth: BREAKPOINT_SP, }}>
         {/* Product features */}
         <h5 style={{ paddingBottom: showChild ? "5px": "0px" }}>{features}</h5>
         {/* Expandable message content */}

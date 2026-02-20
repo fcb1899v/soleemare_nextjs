@@ -7,6 +7,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sgMail from '@sendgrid/mail'
+import { escapeHtml, isValidEmail } from '../../utils/emailValidation'
 
 // Server-only: do not use NEXT_PUBLIC_ so the key is never exposed to the client
 const apiKey = process.env.SENDGRID_API_KEY ?? ''
@@ -22,25 +23,14 @@ type SendgridResponseBody = {
   error: string
 }
 
-/** Escape HTML to prevent injection in email body */
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-}
-
-/** Basic email format check */
-function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254
-}
-
 export default async function sendEmail(req: NextApiRequest, res: NextApiResponse<SendgridResponseBody>) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
     return res.status(405).json({ error: 'Method not allowed' })
+  }
+
+  if (!apiKey || apiKey.trim() === '') {
+    return res.status(503).json({ error: 'Email service not configured' })
   }
 
   const body = (req.body ?? {}) as SendgridRequestBody
@@ -114,7 +104,10 @@ export default async function sendEmail(req: NextApiRequest, res: NextApiRespons
         </div>
       `,
     })
-  } catch {
+  } catch (err) {
+    if (process.env.NODE_ENV === 'development') {
+      console.error('SendGrid send error:', err)
+    }
     return res.status(500).json({ error: 'Failed to send email' })
   }
 

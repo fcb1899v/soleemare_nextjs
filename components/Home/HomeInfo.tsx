@@ -14,7 +14,7 @@
  * - HomeInstagram component for Instagram feed
  * - HomeTwitter component for Twitter timeline
  * - HomeTiktok component for TikTok (currently disabled; see comment below)
- * - HomeConstant for information data
+ * - homeConstant for information data
  */
 
 import { NextPage } from 'next'
@@ -23,7 +23,8 @@ import HomeInstagram from './HomeInstagram'
 import HomeTwitter from './HomeTwitter'
 import HomeTiktok from './HomeTiktok'
 import { CSSProperties } from 'react'
-import { infoMessage } from '../../utils/HomeConstant'
+import { infoMessage } from '../../utils/homeConstant'
+import { getBreakpointFlags } from '../../utils/commonConstant'
 
 /**
  * Props interface
@@ -39,9 +40,7 @@ interface Props  {
  */
 const HomeSNS: NextPage<Props> = ({width}) => {
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Style definitions
   const borderStyle: CSSProperties = {

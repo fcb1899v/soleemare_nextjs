@@ -12,7 +12,7 @@
  * Dependencies:
  * - Swiper for carousel functionality
  * - HomePicture component for product display
- * - HomeConstant for content data
+ * - homeConstant for content data
  * - useLayout (useOnScreen) for scroll detection
  */
 
@@ -21,7 +21,8 @@ import { CSSProperties, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Navigation, EffectFade, Autoplay } from 'swiper/modules'
 import HomePicture from "./HomePicture";
-import { homeTop, homeCarousel } from "../../utils/HomeConstant";
+import { homeTop, homeCarousel } from "../../utils/homeConstant";
+import { getBreakpointFlags } from '../../utils/commonConstant';
 import { useOnScreen } from '../../hooks/useLayout';
 
 /**
@@ -37,9 +38,7 @@ interface Props {
  * Displays hero carousel and product showcase sections
  */
 const HomeTop: NextPage<Props> = ({width}) => {
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Scroll animation setup
   const blockRef = useRef<HTMLDivElement>(null);

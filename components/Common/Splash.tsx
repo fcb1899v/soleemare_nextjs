@@ -36,7 +36,7 @@ const Splash: NextPage = () => {
     }, 3000);
   }, []);
   
-  // Style definitions
+  // Style definitions: when not loading, allow clicks to pass through so form/links work
   const splashStyle: CSSProperties = {
     position: "fixed",
     width: "100vw",
@@ -46,6 +46,7 @@ const Splash: NextPage = () => {
     zIndex: 9999,
     backgroundColor: "var(--white)",
     transition: "all 3s ease",
+    pointerEvents: isLoad ? "auto" : "none",
   }
 
   const splashImageStyle: CSSProperties = {

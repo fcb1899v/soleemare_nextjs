@@ -16,6 +16,7 @@
 import { NextPage } from 'next'
 import { CSSProperties } from 'react';
 import { privacyPolicy } from '../../utils/PolicyConstant';
+import { getBreakpointFlags } from '../../utils/commonConstant';
 
 /**
  * Props interface
@@ -31,9 +32,7 @@ interface Props  {
  */
 const PolicyBody: NextPage<Props> = ({width}) => { 
     
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Style definitions
   const policyStyle: CSSProperties = {

@@ -9,8 +9,8 @@
  * - Checkout URL for purchase
  *
  * Required environment variables:
- * - NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN: Shopify store domain
- * - NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN: Shopify Storefront API access token
+ * - SHOPIFY_STORE_DOMAIN: Shopify store domain
+ * - SHOPIFY_ACCESS_TOKEN: Shopify Storefront API access token
  */
 
 import { NextPage } from 'next'
@@ -18,6 +18,7 @@ import Link from 'next/link';
 import { CSSProperties, useEffect, useMemo, useState } from 'react';
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
 import { CircularProgress, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { BREAKPOINT_PC, getBreakpointFlags } from '../../utils/commonConstant';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import HomeImage from './HomeImage';
@@ -152,7 +153,7 @@ function createCustomFetch(): (url: string, init?: RequestInit) => Promise<Respo
 }
 
 const HomeShopify: NextPage<Props> = ({ width, item }) => {
-  const isSP = width < 600;
+  const { isSP } = getBreakpointFlags(width);
   const productID = `gid://shopify/Product/${item.id}`;
 
   const [salesProduct, setSalesProduct] = useState<ShopifyProduct | null>(null);
@@ -164,8 +165,8 @@ const HomeShopify: NextPage<Props> = ({ width, item }) => {
 
   const updateQuantity = (e: SelectChangeEvent<number>) => setQuantity(Number(e.target.value));
 
-  const shopifyDomain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
-  const shopifyToken = process.env.NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN;
+  const shopifyDomain = process.env.SHOPIFY_STORE_DOMAIN;
+  const shopifyToken = process.env.SHOPIFY_ACCESS_TOKEN;
   const normalizedDomain = shopifyDomain
     ? shopifyDomain.replace(/^https?:\/\//i, '').split('/')[0].trim()
     : '';
@@ -184,7 +185,7 @@ const HomeShopify: NextPage<Props> = ({ width, item }) => {
     if (typeof window === 'undefined') return;
     if (!normalizedDomain || !shopifyToken) {
       setError(
-        'Shopify environment variables are not set. Please configure NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN and NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN.'
+        'Shopify environment variables are not set. Please configure SHOPIFY_STORE_DOMAIN and SHOPIFY_ACCESS_TOKEN.'
       );
       return;
     }
@@ -269,8 +270,8 @@ const HomeShopify: NextPage<Props> = ({ width, item }) => {
         if (isDev) console.error('[Shopify] API error:', err);
         if (message === 'Failed to fetch') {
           setError(
-            'Shopify への接続に失敗しました（Failed to fetch）。確認: 1) NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN は「ストア名.myshopify.com」形式のみ（https:// なし）、' +
-              '2) NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN、3) ネットワーク・ブラウザのコンソールで [Shopify] のログを確認。'
+            'Shopify への接続に失敗しました（Failed to fetch）。確認: 1) SHOPIFY_STORE_DOMAIN は「ストア名.myshopify.com」形式のみ（https:// なし）、' +
+              '2) SHOPIFY_ACCESS_TOKEN、3) ネットワーク・ブラウザのコンソールで [Shopify] のログを確認。'
           );
         } else {
           setError(`Shopify API error: ${message}`);
@@ -299,7 +300,7 @@ const HomeShopify: NextPage<Props> = ({ width, item }) => {
         <h3 style={{ color: '#856404', margin: '0 0 10px 0' }}>Shopify Configuration Error</h3>
         <p style={{ color: '#856404', margin: '0', fontSize: '14px' }}>{error}</p>
         <p style={{ color: '#856404', margin: '10px 0 0 0', fontSize: '12px' }}>
-          Required environment variables: NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN, NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN
+          Required environment variables: SHOPIFY_STORE_DOMAIN, SHOPIFY_ACCESS_TOKEN
         </p>
       </div>
     );
@@ -366,7 +367,7 @@ const HomeShopify: NextPage<Props> = ({ width, item }) => {
           pauseOnMouseEnter: false,
           stopOnLastSlide: false,
         }}
-        breakpoints={{ 960: { slidesPerView: 2 } }}
+        breakpoints={{ [BREAKPOINT_PC]: { slidesPerView: 2 } }}
         modules={[Autoplay]}
       >
         {salesProduct.images.map((image) => (

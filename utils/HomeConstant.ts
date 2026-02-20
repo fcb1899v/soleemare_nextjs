@@ -1,8 +1,8 @@
 /**
- * utils/HomeConstant.ts
- * 
+ * utils/homeConstant.ts
+ *
  * Home page content and configuration constants
- * 
+ *
  * Features:
  * - Information messages and announcements
  * - Shopify product configuration
@@ -10,7 +10,7 @@
  * - Product features and descriptions
  * - SNS configuration
  * - Menu items and navigation
- * 
+ *
  * Content:
  * - Japanese and Italian bilingual content
  * - Product descriptions and features
@@ -27,12 +27,12 @@ export const infoMessage = [
 // Shopify product configuration
 export const shopifyItems = [
   {
-    id: `${process.env.NEXT_PUBLIC_SHOPIFY_SFOGLIATELLA_ID}`,
+    id: `${process.env.SHOPIFY_SFOGLIATELLA_ID}`,
     unit: '箱',
     variant: 0,
   }
 ]
-    
+
 // Home page carousel content (responsive)
 export const homeCarousel = (isSP: boolean) => [
   {
@@ -75,7 +75,7 @@ export const homeTop = [
 // Home page features section content
 export const homeFeatures = [
   {
-    title: '自家農園の柑橘を贅沢に使用', 
+    title: '自家農園の柑橘を贅沢に使用',
     image: ["/images/farm1.jpg", "/images/farm2.jpg",],
     features: [
       '　当店のスフォリアテッラは、爽やかな酸味と芳醇な香りが特徴の自家農園のこだわりの柑橘を贅沢に使用しています。',
@@ -87,24 +87,24 @@ export const homeFeatures = [
     ],
   },
   {
-    title: '心を込めた手作りスイーツ', 
+    title: '心を込めた手作りスイーツ',
     image: ["/images/sfogliatella1.jpg", "/images/crust.jpg",],
     features: [
       '　当店のスフォリアテッラは、ひとつひとつ心を込めて手作りしています。',
       '　スフォリアテッラの生地作りの工程は、繊細な技術が必要なため、量産が難しいと言われています。',
-    ],    
+    ],
     message: [
       ['　柑橘の収穫から始まり、生地やクリームの原材料の仕込み、生地作り、焼成、パッケージまでの全工程を一貫生産しています。',],
       ['　何度も試作を重ねながら、生地作りの技術を習得し、また、生地の原材料や厚み、焼成温度および焼成時間を試行錯誤することで、独特のパリパリ食感と香り高い風味を実現しました。',],
     ],
-  }, 
+  },
   {
-    title: 'こだわりの厳選素材', 
+    title: 'こだわりの厳選素材',
     image: ["/images/cream.jpg", "/images/lard.jpg",],
     features: [
       '　当店のスフォリアテッラは、イタリア伝統のフレッシュチーズ「リコッタチーズ」を使用しています。',
       '　当店のスフォリアテッラは、独特のパリパリ食感を実現するために国産無添加ラードを使用しています。',
-    ],    
+    ],
     message: [
       [
         '　リコッタチーズに、自家製柑橘ピール、北海道産てんさい糖、イタリア産セモリナ小麦粉、オーガニックシナモンなどの厳選素材を加えて、スフォリアテッラ用のクリームが完成します。',
@@ -125,13 +125,13 @@ export const homeFeatures = [
 
 // Home page products section content
 export const homeProducts = [
-  { 
+  {
     title: [
       ["スフォリアテッラ", "Sfogliatella"],
       ["", ""]
     ],
     image: [
-      "/images/sfogliatella3.jpg", 
+      "/images/sfogliatella3.jpg",
       "/images/sfogliatella2.jpg",
     ],
     features: [
@@ -149,79 +149,76 @@ export const homeProducts = [
       ],
     ],
   }
-] 
+]
 
 export const myHeaderMenu = [
-    {
-      title: "トップ",
-      link: "top",
-    },
-    {
-      title: "商品紹介",
-      link:  "products",
-    },
-    {
-      title: "当店のこだわり",
-      link: "features",
-    },
-    {
-      title: "お知らせ",
-      link: "info",
-    },
-  ]
-  
-  export const myFooterMenu = [
-    {
-      title: "ホーム",
-      link: "/",
-    },
-    {
-      title: "お問い合わせ",
-      link: "/inquiry",
-    },
-    {
-      title: "プライバシーポリシー",
-      link: "/privacypolicy",
-    },
-  ]
+  {
+    title: "トップ",
+    link: "top",
+  },
+  {
+    title: "商品紹介",
+    link: "products",
+  },
+  {
+    title: "当店のこだわり",
+    link: "features",
+  },
+  {
+    title: "お知らせ",
+    link: "info",
+  },
+]
 
-  export const mySNS = [
-    {
-      title: "X",
-      image: [`/sns/x_w.png`, `/sns/x_b.png`],
-      link: "https://twitter.com/soleemare_dolce",
-    },
-    {
-      title: "Makuake",
-      image: ["/sns/makuake_logo.png", "/sns/makuake_logo.png"],
-      link: "https://www.makuake.com/project/sole_e_mare/",
-    },
-    {
-      title: "Instagram",
-      image: [`/sns/instagram_w.svg`, `/sns/instagram_b.svg`],
-      link: "https://www.instagram.com/soleemare_dolce/",
-    },
-    {
-      title: "Line",
-      image: ["/sns/line_w.svg", `/sns/line_b.svg`],
-      link: "https://lin.ee/65M8hVl",
-    },
-    {
-      title: "Tiktok",
-      image: ["/sns/tiktok_w.svg", "/sns/tiktok_b.svg"],
-      link: "https://www.tiktok.com/@soleemare_dolce",
-    },
-    // {
-    //   title: "Facebook",
-    //   image: ["/sns/facebook_w.svg", "/sns/facebook_b.svg"],
-    //   link: "https://www.facebook.com/soleemaredolce",
-    // },
-    //{
-    //   title: "Mercari",
-    //   image: ["/sns/mercari_w.png", "/sns/mercari_b.png"],
-    //   link: "https://mercari-shops.com/shops/jDp6gDDhYbMb8kTq8ZSWcX",
-    // },
-  ];
-  
+export const myFooterMenu = [
+  {
+    title: "ホーム",
+    link: "/",
+  },
+  {
+    title: "お問い合わせ",
+    link: "/inquiry",
+  },
+  {
+    title: "プライバシーポリシー",
+    link: "/privacypolicy",
+  },
+]
 
-  
+export const mySNS = [
+  {
+    title: "X",
+    image: [`/sns/x_w.png`, `/sns/x_b.png`],
+    link: "https://twitter.com/soleemare_dolce",
+  },
+  {
+    title: "Makuake",
+    image: ["/sns/makuake_logo.png", "/sns/makuake_logo.png"],
+    link: "https://www.makuake.com/project/sole_e_mare/",
+  },
+  {
+    title: "Instagram",
+    image: [`/sns/instagram_w.svg`, `/sns/instagram_b.svg`],
+    link: "https://www.instagram.com/soleemare_dolce/",
+  },
+  {
+    title: "Line",
+    image: ["/sns/line_w.svg", `/sns/line_b.svg`],
+    link: "https://lin.ee/65M8hVl",
+  },
+  {
+    title: "Tiktok",
+    image: ["/sns/tiktok_w.svg", "/sns/tiktok_b.svg"],
+    link: "https://www.tiktok.com/@soleemare_dolce",
+  },
+  // {
+  //   title: "Facebook",
+  //   image: ["/sns/facebook_w.svg", "/sns/facebook_b.svg"],
+  //   link: "https://www.facebook.com/soleemaredolce",
+  // },
+  // {
+  //   title: "Mercari",
+  //   image: ["/sns/mercari_w.png", "/sns/mercari_b.png"],
+  //   link: "https://mercari-shops.com/shops/jDp6gDDhYbMb8kTq8ZSWcX",
+  // },
+]

@@ -53,20 +53,24 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 The following environment variables are required:
 
 #### Shopify Configuration
-- **NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN**: Your Shopify store domain
-- **NEXT_PUBLIC_SHOPIFY_ACCESS_TOKEN**: Shopify Storefront API access token
-- **NEXT_PUBLIC_SHOPIFY_SFOGLIATELLA_ID**: Product ID
+- **SHOPIFY_STORE_DOMAIN**: Your Shopify store domain
+- **SHOPIFY_ACCESS_TOKEN**: Shopify Storefront API access token
+- **SHOPIFY_SFOGLIATELLA_ID**: Product ID
 
 #### Social Media (Instagram)
-- **NEXT_PUBLIC_INSTA_ID**: Instagram user ID (required for static export)
-- **NEXT_PUBLIC_INSTA_TOKEN**: Facebook Graph API access token (required for static export)
-- **INSTA_ID** / **INSTA_TOKEN**: Same values, server-only; optional, used by `/api/instagram` in dev
+- **INSTA_ID**: Instagram user ID (required for static export)
+- **INSTA_TOKEN**: Facebook Graph API access token (required for static export)
 
 #### Google Analytics
-- **NEXT_PUBLIC_GA_ID**: Google Analytics measurement ID
+- **GA_ID**: Google Analytics measurement ID
 
 #### Google Forms
-- **NEXT_PUBLIC_GOOGLE_FORM**: Google Form ID for contact form
+- **GOOGLE_FORM**: Google Form ID for the contact form submission.
+
+#### reCAPTCHA v2 (optional)
+- **RECAPTCHA_V2_SITE_KEY**: Site key for the "I'm not a robot" checkbox on the contact form. Get keys at [Google reCAPTCHA Admin](https://www.google.com/recaptcha/admin).
+- **RECAPTCHA_V2_SECRET_KEY**: For server-side verification (not used in the current client-only implementation).
+- **Setup**: Set `RECAPTCHA_V2_SITE_KEY=your_site_key` in `.env`, then restart the dev server (`npm run dev`).
 
 #### Optional (when using API routes in dev)
 - **SENDGRID_API_KEY**: SendGrid API key (server-only; for `/api/sendgrid`)
@@ -86,7 +90,7 @@ Please refer to the `env.example` file for details.
 # Start development server
 npm run dev
 
-# Build for production
+# Build for production (webpack; production build does static export)
 npm run build
 
 # Start production server
@@ -95,7 +99,13 @@ npm run start
 # Run linter
 npm run lint
 
-# Static export (for Firebase Hosting)
+# Run unit tests (Vitest)
+npm run test
+npm run test:watch   # watch mode for development
+
+# Static export for Firebase Hosting
+# Runs "next build"; in production (NODE_ENV=production) outputs static files to out/
+# Use this for deployment (e.g. npm run deploy runs export then firebase deploy)
 npm run export
 
 # Deploy to Firebase
@@ -114,7 +124,8 @@ soleemare-webpage/
 ├── pages/               # Next.js pages and API routes
 │   └── api/             # API routes (instagram, sendgrid)
 ├── hooks/               # React hooks (usePageView, useLayout)
-├── utils/               # Constants and utilities (gtag, HomeConstant, InquiryConstant, PolicyConstant)
+├── utils/               # Constants and utilities (commonConstant, homeConstant, inquiryConstant, PolicyConstant, gtag, emailValidation)
+├── docs/                # Documentation and sample scripts (e.g. FormSubmitAutoReply.gs for Forms auto-reply)
 ├── public/              # Static assets (images, fonts, favicons)
 ├── styles/              # Global CSS (globals.css)
 ├── env.example          # Example environment variables (copy to .env.local)
@@ -131,8 +142,8 @@ This project is deployed using Firebase Hosting with static export.
 
 The project uses Next.js static export for Firebase Hosting:
 
-1. `npm run export` - Builds static files in `out/` directory
-2. `npm run deploy` - Deploys to Firebase Hosting
+1. `npm run export` - Runs `next build`; in production mode outputs static files to the `out/` directory
+2. `npm run deploy` - Runs `npm run export` then deploys `out/` to Firebase Hosting
 
 ### GitHub Actions
 
@@ -160,15 +171,17 @@ npm run deploy
 - SNS navigation links
 
 ### Contact Form
-- Google Forms integration
-- Form validation
-- Success/error message handling
+- Google Forms integration (formResponse POST)
+- reCAPTCHA v2 (optional)
+- Form validation and success/error messages
+- **Auto-reply email**: You can send automatic reply emails by setting an Apps Script "On form submit" trigger on the spreadsheet linked to the form. See the sample script in `docs/FormSubmitAutoReply.gs`.
 
 ### Responsive Design
-- Mobile-first approach
-- Breakpoint-based layouts
-- Touch-friendly interactions
-- Optimized images for different screen sizes
+- Breakpoints: SP when `width < 600px`, PC when `width > 1024px` (defined in `utils/commonConstant.ts`; use `getBreakpointFlags(width)` in components).
+- Layout updates on window resize and device orientation change (`useWindowSize` and `orientationchange` listener).
+- Mobile-first, touch-friendly.
+
+**Note:** Static export uses `images.unoptimized: true` in Next.js, so image optimization is not applied at build time. Pre-optimize assets (e.g. WebP, appropriate dimensions) in `public/` as needed.
 
 ## License
 

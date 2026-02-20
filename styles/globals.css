@@ -75,10 +75,10 @@ h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; }
 .fixed_center { position: fixed; justify-content: center; align-items: center; }
 .placeCenter { position: absolute; width: 100%; top: 45%; left: 50%;  transform: translate(-50%, -50%); } 
 
-/* Animation State Classes */
+/* Animation State Classes (Splash) */
 .loading { opacity: 1; }
-.loaded { opacity: 0; }
-.vanish { display: none; }
+.loaded { opacity: 0; pointer-events: none; } /* allow interaction with content below while fading */
+.vanish { display: none; pointer-events: none; }
 
 /* Animation Keyframes */
 @keyframes animationZoom { 50% { transform:scale(1.5) } }

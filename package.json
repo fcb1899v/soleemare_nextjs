@@ -34,7 +34,9 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
-    "deploy": "npm run export && firebase deploy"
+    "deploy": "npm run export && firebase deploy",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -73,7 +75,8 @@
     "sass": "^1.97.3",
     "svgo": "^4.0.0",
     "typescript": "^5.9.3",
-    "webpack-dev-server": "^5.2.3"
+    "webpack-dev-server": "^5.2.3",
+    "vitest": "^3.2.4"
   },
   "overrides": {
     "ajv": ">=8.18.0"

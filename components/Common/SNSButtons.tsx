@@ -11,12 +11,13 @@
  * 
  * Dependencies:
  * - Next.js Link component for navigation
- * - HomeConstant for SNS data
+ * - homeConstant for SNS data
  */
 
 import { NextPage } from 'next'
 import Link from 'next/link';
-import { mySNS } from '../../utils/HomeConstant';
+import { mySNS } from '../../utils/homeConstant';
+import { getBreakpointFlags } from '../../utils/commonConstant';
 import { CSSProperties } from 'react';
 
 /**
@@ -33,9 +34,7 @@ interface Props {
  */
 const SNSButtons: NextPage<Props> = ({width}) => {
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Style definitions
   const snsStyle: CSSProperties = { 

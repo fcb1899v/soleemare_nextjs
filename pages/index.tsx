@@ -13,7 +13,7 @@
  * Dependencies:
  * - Common components (Head, Splash, Header, Footer, BlueBorder)
  * - Home components (HomeTop, HomeProduct, HomeFeature, HomeSNS, HomeShopify)
- * - HomeConstant for Shopify product data
+ * - homeConstant for Shopify product data
  * - useLayout (useWindowSize) for window size detection
  */
 
@@ -28,7 +28,7 @@ import HomeSNS from '../components/Home/HomeInfo'
 import HomeShopify from '../components/Home/HomeShopify'
 import Footer from '../components/Common/Footer'
 import BlueBorder from '../components/Common/BlueBorder'
-import { shopifyItems } from '../utils/HomeConstant'
+import { shopifyItems } from '../utils/homeConstant'
 import { useWindowSize } from '../hooks/useLayout'
 
 /**

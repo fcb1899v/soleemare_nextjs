@@ -15,7 +15,8 @@
  */
 
 import { NextPage } from 'next';
-import React, { CSSProperties, } from 'react'
+import React, { CSSProperties } from 'react';
+import { getBreakpointFlags } from '../../utils/commonConstant';
 
 /**
  * Props interface
@@ -35,9 +36,7 @@ interface Props  {
  */
 const HomeTitle: NextPage<Props> = ({width, title, index}) => {
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Style definitions
   const titleStyle: CSSProperties = {

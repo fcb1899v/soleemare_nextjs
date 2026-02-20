@@ -12,7 +12,7 @@
  * Dependencies:
  * - HomePicture component for product display
  * - HomeTitle component for section titles
- * - HomeConstant for product data
+ * - homeConstant for product data
  * - useLayout (useOnScreen) for scroll detection
  */
 
@@ -20,7 +20,8 @@ import { NextPage } from 'next';
 import { CSSProperties, RefObject, useEffect, useRef, useState } from 'react'
 import HomeTitle from '../Common/Title';
 import HomePicture from './HomePicture';
-import { homeProducts } from '../../utils/HomeConstant';
+import { homeProducts } from '../../utils/homeConstant';
+import { getBreakpointFlags } from '../../utils/commonConstant';
 import { useOnScreen } from '../../hooks/useLayout';
 
 /**
@@ -37,9 +38,7 @@ interface Props  {
  */
 const HomeProduct: NextPage<Props> = ({width}) => {
 
-  // Responsive breakpoint detection
-  const isSP = (width < 600)
-  const isPC = (width > 1024)
+  const { isSP, isPC } = getBreakpointFlags(width)
 
   // Scroll animation setup
   const blockRef = useRef<HTMLDivElement>(null);
@@ -73,7 +72,7 @@ const HomeProduct: NextPage<Props> = ({width}) => {
         <div ref={blockRef} style={productStyle} className={isPC ? "flex_center": undefined} key={`product_container_${i}`}> 
           {/* Product images and descriptions */}
           {homeProducts[i].image.map((_, j) => 
-            <HomePicture 
+            <HomePicture
               width={width}
               color={"linear-gradient(to right bottom, var(--yellow), var(--orange))"}
               title={homeProducts[i].title[j]}

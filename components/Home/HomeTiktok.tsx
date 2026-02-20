@@ -14,7 +14,7 @@
 import { NextPage } from 'next'
 import { CSSProperties, useEffect, useState } from 'react'
 import HomeSNSLink from './HomeSNSTitle'
-import { mySNS } from '../../utils/HomeConstant'
+import { mySNS } from '../../utils/homeConstant'
 import BlueBorder from '../Common/BlueBorder'
 
 interface Props {

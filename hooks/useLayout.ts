@@ -11,7 +11,8 @@ import { RefObject, useEffect, useLayoutEffect, useState } from 'react'
 
 /**
  * useWindowSize hook
- * Tracks window dimensions and updates on resize.
+ * Tracks window dimensions and updates on resize and orientation change.
+ * Ensures layout updates when the user rotates a smartphone or resizes the window.
  * @returns [width, height]
  */
 export const useWindowSize = (): number[] => {
@@ -21,8 +22,12 @@ export const useWindowSize = (): number[] => {
       setSize([window.innerWidth, window.innerHeight])
     }
     window.addEventListener('resize', updateSize)
+    window.addEventListener('orientationchange', updateSize)
     updateSize()
-    return () => window.removeEventListener('resize', updateSize)
+    return () => {
+      window.removeEventListener('resize', updateSize)
+      window.removeEventListener('orientationchange', updateSize)
+    }
   }, [])
   return size
 }
