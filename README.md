@@ -61,8 +61,20 @@ The following environment variables are required:
 - **INSTA_ID**: Instagram user ID (required for static export)
 - **INSTA_TOKEN**: Facebook Graph API access token (required for static export)
 
-#### Google Analytics
-- **GA_ID**: Google Analytics measurement ID
+#### Google Analytics / GTM
+- **GA_ID**: GA4 measurement ID (default: `G-YDLSD40144`). Used for web and GTM.
+- **GTM_ID**: Google Tag Manager container ID (default: `GTM-W4LC27CK`). Loaded in `_document` head and body.
+
+**Unifying GA4**: This project uses GA4 measurement ID **G-YDLSD40144** in code. If Firebase is linked to a different GA4 property, you can consolidate by linking Firebase to the GA4 property that has G-YDLSD40144.
+
+##### Linking Firebase to G-YDLSD40144
+
+1. Open your project in the [Firebase Console](https://console.firebase.google.com/).
+2. Go to **Project settings** (gear) → **Integrations**.
+3. In the **Google Analytics** card, check which GA4 property is currently linked.
+4. To switch to the property that has **G-YDLSD40144**:
+   - Unlink the current GA4 property, then use **Link** and choose “Link existing Google Analytics 4 property”, and select the property that contains G-YDLSD40144.  
+   **Note:** After changing the link, Firebase data is sent only to the new property. Historical data in the previous property will no longer be visible from Firebase. Export from GA4 first if you need to keep it.
 
 #### Google Forms
 - **GOOGLE_FORM**: Google Form ID for the contact form submission.

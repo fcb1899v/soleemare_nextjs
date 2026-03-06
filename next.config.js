@@ -12,6 +12,7 @@ module.exports = {
     INSTA_ID: process.env.INSTA_ID || '',
     INSTA_TOKEN: process.env.INSTA_TOKEN || '',
     GA_ID: process.env.GA_ID || '',
+    GTM_ID: process.env.GTM_ID || '',
     GOOGLE_FORM: (
       process.env.GOOGLE_FORM ||
       process.env.NEXT_PUBLIC_GOOGLE_FORM ||

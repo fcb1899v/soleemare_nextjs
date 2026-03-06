@@ -10,17 +10,19 @@
 
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { GA_ID, pageview } from '../utils/gtag'
+import { GA_ID, GTM_ID, pageview } from '../utils/gtag'
+
+const isAnalyticsEnabled = () => !!GA_ID || !!GTM_ID
 
 /**
  * usePageView hook
- * Tracks page views for Google Analytics when routes change.
+ * Tracks page views for Google Analytics / GTM when routes change.
  */
 export const usePageView = () => {
   const router = useRouter()
 
   useEffect(() => {
-    if (!GA_ID) return
+    if (!isAnalyticsEnabled()) return
 
     const handleRouteChange = (url: string, { shallow }: { shallow?: boolean }) => {
       if (!shallow) pageview(url)
