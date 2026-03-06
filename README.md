@@ -11,7 +11,9 @@ This project is a Next.js-based website that integrates with the predecessor `we
 - **Responsive Design**: Compatible with mobile, tablet, and desktop
 - **Shopify Integration**: Product sales functionality with Shopify Storefront API
 - **Social Media Integration**: Instagram, Twitter, TikTok, and other social media platforms
-- **Contact Form**: Customer inquiry reception with Google Forms integration
+- **Contact Form**: Customer inquiry reception with Google Forms integration (optional reCAPTCHA v2)
+- **Analytics**: Google Analytics 4 (GA4) and Google Tag Manager (GTM); page views and custom events, including SPA route changes via dataLayer
+- **Privacy Policy**: In-app privacy policy aligned with contact form, GA4/GTM, reCAPTCHA, and Shopify
 - **Firebase Hosting**: Static site deployment with Firebase Hosting
 
 ### Technology Stack
@@ -62,8 +64,9 @@ The following environment variables are required:
 - **INSTA_TOKEN**: Facebook Graph API access token (required for static export)
 
 #### Google Analytics / GTM
-- **GA_ID**: GA4 measurement ID (default: `G-YDLSD40144`). Used for web and GTM.
-- **GTM_ID**: Google Tag Manager container ID (default: `GTM-W4LC27CK`). Loaded in `_document` head and body.
+- **GA_ID**: GA4 measurement ID (default: `G-YDLSD40144`). Injected in `_document` `<head>` (gtag.js) per Google’s instructions.
+- **GTM_ID**: Google Tag Manager container ID (default: `GTM-W4LC27CK`). Injected in `_document` (script in `<head>`, noscript in `<body>`).
+- Page views are sent via gtag and, when GTM is set, also pushed to `dataLayer` so GTM can fire tags on SPA route changes (e.g. `/inquiry/`, `/privacypolicy/`).
 
 **Unifying GA4**: This project uses GA4 measurement ID **G-YDLSD40144** in code. If Firebase is linked to a different GA4 property, you can consolidate by linking Firebase to the GA4 property that has G-YDLSD40144.
 
