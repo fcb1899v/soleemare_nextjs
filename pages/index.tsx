@@ -18,7 +18,8 @@
  */
 
 import type { NextPage } from 'next'
-import Head from '../components/Common/Head'
+import Head from 'next/head'
+import PageHead from '../components/Common/Head'
 import Splash from '../components/Common/Splash'
 import Header from '../components/Common/Header'
 import HomeTop from '../components/Home/HomeTop'
@@ -40,7 +41,12 @@ const Main: NextPage = () => {
 
   return (<div lang={"ja"}>
     {/* SEO and meta tags */}
-    <Head/>
+    <PageHead />
+    {/* Preload LCP carousel images with high fetch priority */}
+    <Head>
+      <link rel="preload" as="image" href="/images/sfogliatella_pc.jpg" fetchPriority="high" media="(min-width: 600px)" />
+      <link rel="preload" as="image" href="/images/sfogliatella_mobile.jpg" fetchPriority="high" media="(max-width: 599px)" />
+    </Head>
     {/* Loading splash screen */}
     <Splash/>
     {/* Navigation header */}

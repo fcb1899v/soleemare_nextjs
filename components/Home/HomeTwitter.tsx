@@ -18,7 +18,7 @@
 
 import { NextPage } from 'next'
 import Link from 'next/link';
-import { CSSProperties, useEffect, useState } from "react"
+import { CSSProperties, useEffect, useRef, useState } from "react"
 import HomeSNSLink from './HomeSNSTitle';
 import { mySNS } from '../../utils/homeConstant';
 import { getBreakpointFlags } from '../../utils/commonConstant';
@@ -43,19 +43,31 @@ const HomeTwitter: NextPage<Props> = ({width}) => {
   // SNS index for Twitter
   const snsNumber = 0
 
-  // Twitter widget loading state
-  const [isLoadwidgets, setIsLoad] = useState(false);
-  
-  // Load Twitter widgets script dynamically
+  // Load Twitter widgets script only when this section is near viewport (reduces initial payload)
+  const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    if (!isLoadwidgets) {
-      const s = document.createElement("script");
-      s.setAttribute("src", "https://platform.twitter.com/widgets.js");
-      s.setAttribute("async", "");
-      document.body.appendChild(s);
-      setIsLoad(true);
-    }
-  }, [isLoadwidgets]);
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setShouldLoadWidget(true);
+      },
+      { rootMargin: '200px', threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoadWidget) return;
+    if (document.querySelector('script[src*="platform.twitter.com/widgets.js"]')) return;
+    const s = document.createElement('script');
+    s.src = 'https://platform.twitter.com/widgets.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }, [shouldLoadWidget]);
 
   // Style definitions
   const twitterStyle: CSSProperties = {
@@ -68,7 +80,7 @@ const HomeTwitter: NextPage<Props> = ({width}) => {
     background: "linear-gradient(to right bottom, var(--blue), var(--darkblue))", 
   }
 
-  return (<div>
+  return (<div ref={containerRef}>
     <div style={twitterStyle}>
       {/* SNS navigation link */}
       <HomeSNSLink sns={mySNS[snsNumber]} isDark={false}/>

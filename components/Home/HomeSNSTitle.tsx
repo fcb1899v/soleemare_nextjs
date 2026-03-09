@@ -59,7 +59,7 @@ const HomeSNSLink: NextPage<Props> = ({ sns, isDark }) => {
 
   return <Link className="flex_center" style={snsLinkStyle} href={sns.link} target="_blank" rel="noreferrer" >
     {/* SNS icon (light or dark version based on theme) */}
-    <img style={snsIconStyle} src={sns.image[isDark ? 1: 0]} alt={sns.title} />
+    <img style={snsIconStyle} src={sns.image[isDark ? 1: 0]} alt={sns.title} loading="lazy" decoding="async" />
   </Link>;
 };
 

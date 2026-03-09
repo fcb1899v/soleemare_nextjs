@@ -59,7 +59,7 @@ const SNSButtons: NextPage<Props> = ({width}) => {
     {/* Social media buttons */}
     {mySNS.map((_, i) => <ul style={snsButtonStyle} key={`sns_${i}`}>
       <Link href={mySNS[i].link} target="_blank" rel="noreferrer">
-        <img src={mySNS[i].image[0]} alt={mySNS[i].title} style={snsImageStyle}/>
+        <img src={mySNS[i].image[0]} alt={mySNS[i].title} style={snsImageStyle} loading="lazy" decoding="async" />
       </Link>
     </ul>)}
   </div>)

@@ -35,12 +35,12 @@
   /* https://color-pallet.spark-a.com/?s=イタリア*/
 }
 
-/* Custom Font Face Declarations */
-@font-face {font-family: 'Kleymisska'; src: url(../public/font/Kleymisska.ttf); }
-@font-face { font-family: 'NotoSansJP'; src: url(../public/font/NotoSansJP-Regular.otf); }
-@font-face { font-family: 'NotoSerifJP'; src: url(../public/font/NotoSerifCJKjp-Regular.otf); }
-@font-face { font-family: 'SourceHanSans'; src: url(../public/font/SourceHanSans-Regular.otf); }
-@font-face { font-family: 'SourceHanSerif'; src: url(../public/font/SourceHanSerif-Regular.otf); }
+/* Custom Font Face Declarations (font-display: swap to avoid invisible text while loading) */
+@font-face { font-family: 'Kleymisska'; src: url(../public/font/Kleymisska.ttf) format('truetype'); font-display: swap; }
+@font-face { font-family: 'NotoSansJP'; src: url(../public/font/NotoSansJP-Regular.otf) format('opentype'); font-display: swap; }
+@font-face { font-family: 'NotoSerifJP'; src: url(../public/font/NotoSerifCJKjp-Regular.otf) format('opentype'); font-display: swap; }
+@font-face { font-family: 'SourceHanSans'; src: url(../public/font/SourceHanSans-Regular.otf) format('opentype'); font-display: swap; }
+@font-face { font-family: 'SourceHanSerif'; src: url(../public/font/SourceHanSerif-Regular.otf) format('opentype'); font-display: swap; }
 
 /* Global Body Styles */
 body {

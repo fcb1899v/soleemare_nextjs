@@ -65,7 +65,7 @@ const HomeTitle: NextPage<Props> = ({width, title, index}) => {
   return (<div style={titleStyle}>
     <div className={isSP ? "block": "flex_center_wrap"} style={titleStringStyle}>
       {/* Decorative image (optional) */}
-      {(index > 0) && <img src={`/images/${index}.png`} alt={`image_${index}`} style={imageStyle}></img>}
+      {(index > 0) && <img src={`/images/${index}.png`} alt={`image_${index}`} style={imageStyle} loading="lazy" decoding="async" />}
       {/* Italian title */}
       {(title[1] != "") && <h2 style={itTitleStyle}>{title[1]}</h2>}
       {/* Japanese title */}

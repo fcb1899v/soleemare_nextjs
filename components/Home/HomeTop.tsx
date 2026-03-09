@@ -87,6 +87,7 @@ const HomeTop: NextPage<Props> = ({width}) => {
   
   const carouselImageStyle: CSSProperties = { 
     width: "100%",
+    height: "auto",
     animation: "animationZoom 50s ease-in-out forwards",
   }
 
@@ -95,7 +96,7 @@ const HomeTop: NextPage<Props> = ({width}) => {
       <div className={isPC ? "large_container": "container"}>
         {/* Hero carousel with autoplay and fade effects */}
         <Swiper
-          key="home-top-swiper"
+          key={`home-top-swiper-${isSP}`}
           modules={[Navigation, Pagination, EffectFade, Autoplay]}
           slidesPerView={1}
           autoplay={{
@@ -111,25 +112,35 @@ const HomeTop: NextPage<Props> = ({width}) => {
           effect={"fade"}
           fadeEffect={{ crossFade: true }}
           loop={true}
+          loopAdditionalSlides={2}
           style={carouselStyle}
         >
-          {homeCarousel(isSP).map((_, i: number) => (
+          {(() => {
+            const slides = homeCarousel(isSP)
+            const slidesForLoop = slides.length >= 2 ? slides : [...slides, ...slides]
+            return slidesForLoop.map((slide: { title: string[]; image: string }, i: number) => {
+            const imgSrc = slide.image
+            const isFirst = i === 0
+            return (
             <SwiperSlide key={`home_carousel_${i}`}>
-              <img 
-                className="animationZoom" 
-                style={carouselImageStyle} 
-                src={homeCarousel(isSP)[i].image} 
-                alt={homeCarousel(isSP)[i].title[0]}
+              <img
+                className="animationZoom"
+                style={carouselImageStyle}
+                src={imgSrc}
+                alt={slide.title[0]}
+                {...(isFirst ? { fetchPriority: 'high' as const } : { loading: 'lazy' as const })}
               />
               <div className="placeCenter">
                 <h3 style={carouselMessageStyle}>
                   自家農園の季節の柑橘を贅沢に使用した<br/>手作りイタリアンスイーツ
                 </h3>
-                <h1 style={carouselItTitleStyle}>{homeCarousel(isSP)[i].title[1]}</h1>
-                <h1 style={carouselJaTitleStyle}>{homeCarousel(isSP)[i].title[0]}</h1>
+                <h1 style={carouselItTitleStyle}>{slide.title[1]}</h1>
+                <h1 style={carouselJaTitleStyle}>{slide.title[0]}</h1>
               </div>
             </SwiperSlide>
-          ))}
+            )
+            })
+          })() }
         </Swiper>
         
         {/* Product showcase section with scroll animation */}

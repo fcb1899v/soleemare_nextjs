@@ -17,6 +17,7 @@
 import { NextPage } from 'next'
 import { CSSProperties } from 'react'
 import { BREAKPOINT_SP, getBreakpointFlags } from '../../utils/commonConstant'
+import { getImageBaseAndExt, getResponsiveSrcSet, CONTENT_IMAGE_SIZES } from '../../utils/imageUtils'
 
 /**
  * Props interface
@@ -24,19 +25,23 @@ import { BREAKPOINT_SP, getBreakpointFlags } from '../../utils/commonConstant'
  * @param color - Background gradient color
  * @param title - Array of titles [Japanese, Italian]
  * @param image - Image URL
+ * @param srcSet - Optional responsive srcSet (e.g. Shopify transform URLs)
+ * @param sizes - Optional sizes attribute when srcSet is used
  */
 interface Props  {
   width: number
   color: string 
   title: string[]
   image: string
+  srcSet?: string
+  sizes?: string
 }
   
 /**
  * HomeImage component
  * Displays images with overlay titles and responsive styling
  */
-const HomeImage: NextPage<Props> = ({ width, color, title, image }) => {
+const HomeImage: NextPage<Props> = ({ width, color, title, image, srcSet, sizes }) => {
 
   const { isSP, isPC } = getBreakpointFlags(width)
 
@@ -71,9 +76,34 @@ const HomeImage: NextPage<Props> = ({ width, color, title, image }) => {
     margin: 0,
   }
 
+  const isLocalImage = image.startsWith('/')
+  const { base, ext } = getImageBaseAndExt(image)
+
+  const imgEl = (
+    <img
+      style={borderImage}
+      src={image}
+      alt={title[0]}
+      loading="lazy"
+      decoding="async"
+      {...(srcSet && sizes && { srcSet, sizes })}
+      {...(isLocalImage && !srcSet && {
+        srcSet: getResponsiveSrcSet(base, ext),
+        sizes: CONTENT_IMAGE_SIZES,
+      })}
+    />
+  )
+
   return (<div style={border}>
-    {/* Product image */}
-    <img style={borderImage} src={image} alt={title[0]}/>
+    {isLocalImage ? (
+      <picture>
+        <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif')} sizes={CONTENT_IMAGE_SIZES} />
+        <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp')} sizes={CONTENT_IMAGE_SIZES} />
+        {imgEl}
+      </picture>
+    ) : (
+      imgEl
+    )}
     {/* Overlay titles (Japanese and Italian) */}
     <div className="placeCenter" style={borderTitle}>
       <h1 style={borderJaTitle}>{title[0]}</h1>

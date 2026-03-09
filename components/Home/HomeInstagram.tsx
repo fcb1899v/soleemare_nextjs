@@ -131,7 +131,7 @@ const HomeInstagram: NextPage<Props> = ({width}) => {
           {instaItems.map((item, i) => (
             <Link key={i} href={String(item.permalink ?? '')} style={instaLinkStyle} >
               {/* Instagram post image (video thumbnail for videos) */}
-              <img style={instaImageStyle} alt={`insta_image_${i}`} src={String((item.media_type === 'VIDEO') ? item.thumbnail_url : item.media_url)}/>
+              <img style={instaImageStyle} alt={`insta_image_${i}`} src={String((item.media_type === 'VIDEO') ? item.thumbnail_url : item.media_url)} loading="lazy" decoding="async" />
               {/* Like count display */}
               <div style={instaLikeStyle}>♥ {Number(item.like_count) || 0}</div>
             </Link>

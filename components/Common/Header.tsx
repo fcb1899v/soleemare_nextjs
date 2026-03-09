@@ -120,18 +120,18 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
     <div style={headerContainerStyle}>
       {/* Mobile hamburger menu button */}
       {(!isPC || !isHome) && <div style={menuOpenStyle} onClick={toMenu}>
-        <img src={`/images/${openMenu ? "close": "menu"}.svg`} alt="open"/>
+        <img src={`/images/${openMenu ? "close": "menu"}.svg`} alt="open" loading="lazy" decoding="async" />
       </div>}
       {/* Logo and title (hidden when menu is open) */}
       {(!openMenu) && <Link href="/" style={{margin: (isPC && isHome) ? 0: "0 auto"}}>
-        {(width > BREAKPOINT_HEADER_LOGO) && <img style={headerLogoStyle} src="../images/soleemare_icon.png" alt="ソレ・エ・マーレ"/>}
-        <img style={headerTitleStyle} src="../images/soleemare.png" alt="ソレ・エ・マーレ"/>
+        {(width > BREAKPOINT_HEADER_LOGO) && <img style={headerLogoStyle} src="../images/soleemare_icon.png" alt="ソレ・エ・マーレ" loading="lazy" decoding="async" />}
+        <img style={headerTitleStyle} src="../images/soleemare.png" alt="ソレ・エ・マーレ" loading="lazy" decoding="async" />
       </Link>}
       {/* Navigation menu */}
       {(isPC || openMenu) && <div style={headerMenuStyle} >
         {/* Logo in mobile menu */}
         {(!isPC || openMenu) && <Link href="/">
-          <img style={menuLogoStyle} src="../images/soleemare_logo.png" alt="ソレ・エ・マーレ"/>
+          <img style={menuLogoStyle} src="../images/soleemare_logo.png" alt="ソレ・エ・マーレ" loading="lazy" decoding="async" />
         </Link>}
         {/* Navigation links (home page only) */}
         {isHome && myHeaderMenu.map((_, i) => <div style={{padding: "10px 0"}} key={`menu_link_${i}`}>

@@ -33,7 +33,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
-    "export": "next build",
+    "export": "npm run generate-images && next build",
+    "generate-images": "node scripts/generate-responsive-images.mjs",
     "deploy": "npm run export && firebase deploy",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -75,11 +76,13 @@
     "sass": "^1.97.3",
     "svgo": "^4.0.0",
     "typescript": "^5.9.3",
-    "webpack-dev-server": "^5.2.3",
-    "vitest": "^3.2.4"
+    "sharp": "^0.33.5",
+    "vitest": "^3.2.4",
+    "webpack-dev-server": "^5.2.3"
   },
   "overrides": {
-    "ajv": ">=8.18.0"
+    "ajv": ">=8.18.0",
+    "@tootallnate/once": ">=3.0.1"
   },
   "browser": {
     "fs": false,

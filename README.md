@@ -136,12 +136,12 @@ soleemare-webpage/
 │   ├── Home/           # Home page sections (Top, Product, Feature, SNS, Shopify, etc.)
 │   ├── Inquiry/        # Contact form
 │   └── PrivacyPolicy/  # Privacy policy content
-├── pages/               # Next.js pages and API routes
+├── pages/               # Next.js pages and API routes (index, inquiry, privacypolicy, 404)
 │   └── api/             # API routes (instagram, sendgrid)
 ├── hooks/               # React hooks (usePageView, useLayout)
 ├── utils/               # Constants and utilities (commonConstant, homeConstant, inquiryConstant, PolicyConstant, gtag, emailValidation)
 ├── docs/                # Documentation and sample scripts (e.g. FormSubmitAutoReply.gs for Forms auto-reply)
-├── public/              # Static assets (images, fonts, favicons)
+├── public/              # Static assets (images, fonts, favicons, robots.txt, sitemap.xml)
 ├── styles/              # Global CSS (globals.css)
 ├── env.example          # Example environment variables (copy to .env.local)
 ├── next.config.js
@@ -191,10 +191,22 @@ npm run deploy
 - Form validation and success/error messages
 - **Auto-reply email**: You can send automatic reply emails by setting an Apps Script "On form submit" trigger on the spreadsheet linked to the form. See the sample script in `docs/FormSubmitAutoReply.gs`.
 
+### SEO & discovery
+- **robots.txt** and **sitemap.xml** in `public/` (copied to output root) for crawlers. Sitemap lists `/`, `/inquiry/`, `/privacypolicy/`.
+- **Custom 404 page** (`pages/404.tsx`) with link back to home when a route does not exist.
+
 ### Responsive Design
 - Breakpoints: SP when `width < 600px`, PC when `width > 1024px` (defined in `utils/commonConstant.ts`; use `getBreakpointFlags(width)` in components).
 - Layout updates on window resize and device orientation change (`useWindowSize` and `orientationchange` listener).
 - Mobile-first, touch-friendly.
+
+### Security & performance (Firebase Hosting)
+- **Security headers**: X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy for all responses.
+- **Cache**: Long-lived `Cache-Control` for `_next/static/**`, `font/**`, `images/**`, `favicons/**`, `sns/**` to improve PageSpeed (caching).
+- **Fonts**: `font-display: swap` in `globals.css` so text stays visible while fonts load.
+- **Images**: LCP carousel images are preloaded (with `media` so only the matching viewport image loads). Hero and feature images use `<picture>` with WebP `source`; if a `.webp` file exists next to the original (e.g. `sfogliatella_pc.webp` beside `sfogliatella_pc.jpg`), the browser uses it for smaller downloads. First carousel image has `fetchPriority="high"`; others use `loading="lazy"` and `decoding="async"`. `width`/`height` are set to reduce layout shift.
+
+**Responsive images (WebP/AVIF):** To fix "最新の画像形式" and "表示サイズに必要なサイズより大きい" (PageSpeed), **`npm run export`** (and **`npm run deploy`**) runs **`npm run generate-images`** first. That uses `sharp` to generate 800w, 1200w, 1920w variants in JPG/PNG, WebP, and AVIF from `public/images/` originals. The site uses `<picture>` with responsive `srcSet` and `sizes` so the browser picks the right size (e.g. 800w for ~721px display) and format (AVIF → WebP → original). Run `npm run generate-images` manually only if you add new images and want to test locally before export.
 
 **Note:** Static export uses `images.unoptimized: true` in Next.js, so image optimization is not applied at build time. Pre-optimize assets (e.g. WebP, appropriate dimensions) in `public/` as needed.
 

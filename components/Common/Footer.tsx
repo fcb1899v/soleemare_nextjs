@@ -76,7 +76,7 @@ const Footer: NextPage<Props> = ({width}) => {
       {/* Footer content */}
       <div className={isSP ? "block": "flex_center"} style={{paddingTop: isSP ? 10: 0, columnGap: 50}}>
         {/* Logo */}
-        <Link href="/"><img src="../images/soleemare_logo.png" alt="ソレ・エ・マーレ" style={footerLogoStyle}/></Link>
+        <Link href="/"><img src="../images/soleemare_logo.png" alt="ソレ・エ・マーレ" style={footerLogoStyle} loading="lazy" decoding="async" /></Link>
         <div style={{gap: 15, paddingTop: isSP ? 15: 30}}>
           {/* Social media buttons */}
           <SnsButtons width={width}/>

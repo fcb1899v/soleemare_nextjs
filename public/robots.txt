@@ -1,0 +1,5 @@
+# https://sole-e-mare.com
+User-agent: *
+Allow: /
+
+Sitemap: https://sole-e-mare.com/sitemap.xml
