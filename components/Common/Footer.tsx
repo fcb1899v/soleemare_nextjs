@@ -24,6 +24,7 @@ import SnsButtons from "./SNSButtons";
 import BlueBorder from './BlueBorder';
 import { myFooterMenu } from '../../utils/homeConstant';
 import { getBreakpointFlags } from '../../utils/commonConstant';
+import { getImageBaseAndExt, getResponsiveSrcSet, LOGO_WIDTH } from '../../utils/imageUtils';
 
 /**
  * Props interface
@@ -76,7 +77,20 @@ const Footer: NextPage<Props> = ({width}) => {
       {/* Footer content */}
       <div className={isSP ? "block": "flex_center"} style={{paddingTop: isSP ? 10: 0, columnGap: 50}}>
         {/* Logo */}
-        <Link href="/"><img src="../images/soleemare_logo.png" alt="ソレ・エ・マーレ" style={footerLogoStyle} loading="lazy" decoding="async" /></Link>
+        <Link href="/">
+          {(() => {
+            const logo = "/images/soleemare_logo.png";
+            const { base, ext } = getImageBaseAndExt(logo);
+            const w = [LOGO_WIDTH];
+            return (
+              <picture>
+                <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif', w)} />
+                <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp', w)} />
+                <img src={logo} srcSet={getResponsiveSrcSet(base, ext, w)} sizes="120px" alt="ソレ・エ・マーレ" style={footerLogoStyle} loading="lazy" decoding="async" />
+              </picture>
+            );
+          })()}
+        </Link>
         <div style={{gap: 15, paddingTop: isSP ? 15: 30}}>
           {/* Social media buttons */}
           <SnsButtons width={width}/>

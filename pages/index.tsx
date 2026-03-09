@@ -42,10 +42,10 @@ const Main: NextPage = () => {
   return (<div lang={"ja"}>
     {/* SEO and meta tags */}
     <PageHead />
-    {/* Preload LCP carousel images with high fetch priority */}
+    {/* Preload LCP carousel images (AVIF when available for smaller transfer) */}
     <Head>
-      <link rel="preload" as="image" href="/images/sfogliatella_pc.jpg" fetchPriority="high" media="(min-width: 600px)" />
-      <link rel="preload" as="image" href="/images/sfogliatella_mobile.jpg" fetchPriority="high" media="(max-width: 599px)" />
+      <link rel="preload" as="image" href="/images/sfogliatella_pc_1200.avif" fetchPriority="high" media="(min-width: 600px)" />
+      <link rel="preload" as="image" href="/images/sfogliatella_mobile_1200.avif" fetchPriority="high" media="(max-width: 599px)" />
     </Head>
     {/* Loading splash screen */}
     <Splash/>

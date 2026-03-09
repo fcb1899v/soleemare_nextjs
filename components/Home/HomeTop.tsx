@@ -23,6 +23,7 @@ import { Pagination, Navigation, EffectFade, Autoplay } from 'swiper/modules'
 import HomePicture from "./HomePicture";
 import { homeTop, homeCarousel } from "../../utils/homeConstant";
 import { getBreakpointFlags } from '../../utils/commonConstant';
+import { getImageBaseAndExt, getResponsiveSrcSet, CAROUSEL_SIZES } from '../../utils/imageUtils';
 import { useOnScreen } from '../../hooks/useLayout';
 
 /**
@@ -62,11 +63,21 @@ const HomeTop: NextPage<Props> = ({width}) => {
     transition: "opacity 2s ease-out, transform 2s ease-out",
   }
   
+  /** Wrapper reserves height to prevent CLS: SP=portrait 2/3, PC=landscape 3/2 */
+  const carouselWrapperStyle: CSSProperties = {
+    position: "relative",
+    aspectRatio: isSP ? "2/3" : "3/2",
+    minHeight: 280,
+    overflow: "hidden",
+    marginBottom: 20,
+  }
   const carouselStyle: CSSProperties = { 
     color: "#F4F5F0",
     textShadow: "1px 2px 3px var(--black)",
-    position: "relative",
-    marginBottom: 20
+    position: "absolute",
+    inset: 0,
+    width: "100%",
+    height: "100%",
   }
   
   const carouselJaTitleStyle: CSSProperties = {
@@ -85,51 +96,66 @@ const HomeTop: NextPage<Props> = ({width}) => {
     margin: 0,
   }
   
+  /** Fill slide without driving layout (size comes from wrapper) to avoid CLS */
   const carouselImageStyle: CSSProperties = { 
     width: "100%",
-    height: "auto",
+    height: "100%",
+    objectFit: "cover",
     animation: "animationZoom 50s ease-in-out forwards",
   }
 
   return (
     <section id="top">
       <div className={isPC ? "large_container": "container"}>
-        {/* Hero carousel with autoplay and fade effects */}
-        <Swiper
-          key={`home-top-swiper-${isSP}`}
-          modules={[Navigation, Pagination, EffectFade, Autoplay]}
-          slidesPerView={1}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: false,
-            stopOnLastSlide: false,
-          }}
-          speed={2000}
-          pagination={{ clickable: true }}
-          centeredSlides={true}
-          scrollbar={{ draggable: true }}
-          effect={"fade"}
-          fadeEffect={{ crossFade: true }}
-          loop={true}
-          loopAdditionalSlides={2}
-          style={carouselStyle}
-        >
+        {/* Hero carousel: wrapper reserves aspect-ratio space to prevent CLS */}
+        <div style={carouselWrapperStyle}>
+          <Swiper
+            key={`home-top-swiper-${isSP}`}
+            modules={[Navigation, Pagination, EffectFade, Autoplay]}
+            slidesPerView={1}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: false,
+              stopOnLastSlide: false,
+            }}
+            speed={2000}
+            pagination={{ clickable: true }}
+            centeredSlides={true}
+            scrollbar={{ draggable: true }}
+            effect={"fade"}
+            fadeEffect={{ crossFade: true }}
+            loop={true}
+            loopAdditionalSlides={2}
+            style={carouselStyle}
+          >
           {(() => {
             const slides = homeCarousel(isSP)
             const slidesForLoop = slides.length >= 2 ? slides : [...slides, ...slides]
             return slidesForLoop.map((slide: { title: string[]; image: string }, i: number) => {
             const imgSrc = slide.image
+            const { base, ext } = getImageBaseAndExt(imgSrc)
             const isFirst = i === 0
             return (
-            <SwiperSlide key={`home_carousel_${i}`}>
-              <img
-                className="animationZoom"
-                style={carouselImageStyle}
-                src={imgSrc}
-                alt={slide.title[0]}
-                {...(isFirst ? { fetchPriority: 'high' as const } : { loading: 'lazy' as const })}
-              />
+            <SwiperSlide key={`home_carousel_${i}`} style={{ position: "relative", height: "100%" }}>
+              <div style={{ position: "absolute", inset: 0 }}>
+                <picture style={{ display: "block", width: "100%", height: "100%" }}>
+                  <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif')} sizes={CAROUSEL_SIZES} />
+                  <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp')} sizes={CAROUSEL_SIZES} />
+                  <img
+                  className="animationZoom"
+                  style={carouselImageStyle}
+                  src={imgSrc}
+                  srcSet={getResponsiveSrcSet(base, ext)}
+                  sizes={CAROUSEL_SIZES}
+                  alt={slide.title[0]}
+                  width={1920}
+                  height={1280}
+                  decoding="async"
+                  {...(isFirst ? { fetchPriority: 'high' as const } : { loading: 'lazy' as const })}
+                  />
+                </picture>
+              </div>
               <div className="placeCenter">
                 <h3 style={carouselMessageStyle}>
                   自家農園の季節の柑橘を贅沢に使用した<br/>手作りイタリアンスイーツ
@@ -141,8 +167,9 @@ const HomeTop: NextPage<Props> = ({width}) => {
             )
             })
           })() }
-        </Swiper>
-        
+          </Swiper>
+        </div>
+
         {/* Product showcase section with scroll animation */}
         <div ref={blockRef} className={isPC ? "flex_center": undefined} style={topStyle}>
           {homeTop.map((_, i: number) => (

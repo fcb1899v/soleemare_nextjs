@@ -10,13 +10,13 @@
  * - Full screen overlay
  * 
  * Dependencies:
- * - Next.js Image component for optimized image loading
+ * - picture + responsive srcset (WebP/AVIF, 800w) for logo
  * - CSS transitions for smooth animations
  */
 
 import { NextPage } from "next";
-import React, {useState, useEffect, CSSProperties} from "react"
-import Image from "next/image"
+import React, { useState, useEffect, CSSProperties } from "react"
+import { getImageBaseAndExt, getResponsiveSrcSet, LOGO_WIDTH } from "../../utils/imageUtils"
 
 /**
  * Splash component
@@ -54,9 +54,16 @@ const Splash: NextPage = () => {
     height: 280,
   }
 
-  return <div style={splashStyle} className={isVanish ? "vanish": isLoad ? "loading": "loaded"}>
-    {/* Logo image with centered positioning */}
-    <Image className="placeCenter" style={splashImageStyle} width={500} height={500} src="/images/soleemare_logo.png" alt="Sole e Mare"/>
+  const logo = "/images/soleemare_logo.png"
+  const { base, ext } = getImageBaseAndExt(logo)
+  const w = [LOGO_WIDTH]
+
+  return <div style={splashStyle} className={isVanish ? "vanish" : isLoad ? "loading" : "loaded"}>
+    <picture className="placeCenter" style={splashImageStyle}>
+      <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif', w)} />
+      <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp', w)} />
+      <img src={logo} srcSet={getResponsiveSrcSet(base, ext, w)} sizes="280px" alt="Sole e Mare" width={280} height={280} decoding="async" style={{ width: 280, height: 280 }} />
+    </picture>
   </div>  
 }
 

@@ -33,8 +33,11 @@ export function getResponsiveSrcSet(
   return widths.map((w) => `${base}_${w}.${ext} ${w}w`).join(', ')
 }
 
-/** sizes for hero carousel: slot ~1150px on medium viewport, 1920 on large */
-export const CAROUSEL_SIZES = '(max-width: 600px) 100vw, (max-width: 1200px) 1150px, 1920px'
+/** sizes for hero carousel: hint ~1400px max so browser often picks 1200w, reducing LCP size */
+export const CAROUSEL_SIZES = '(max-width: 600px) 100vw, (max-width: 1200px) 1150px, 1400px'
 
 /** sizes for content images (e.g. 3:2 blocks) */
 export const CONTENT_IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1024px) 80vw, 1200px'
+
+/** Single width for small images (logos, icons); use with getResponsiveSrcSet(base, ext, [800]) */
+export const LOGO_WIDTH = 800

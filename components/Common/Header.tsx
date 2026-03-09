@@ -22,7 +22,21 @@ import Link from "next/link";
 import { CSSProperties, useState } from "react";
 import { myFooterMenu, myHeaderMenu } from "../../utils/homeConstant";
 import { BREAKPOINT_HEADER_LOGO, getBreakpointFlags } from "../../utils/commonConstant";
+import { getImageBaseAndExt, getResponsiveSrcSet, LOGO_WIDTH } from "../../utils/imageUtils";
 import SNSButtons from "./SNSButtons";
+
+const W_800 = [LOGO_WIDTH];
+
+function ResponsiveImg({ src, alt, sizes, style }: { src: string; alt: string; sizes: string; style: CSSProperties }) {
+  const { base, ext } = getImageBaseAndExt(src);
+  return (
+    <picture>
+      <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif', W_800)} />
+      <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp', W_800)} />
+      <img src={src} srcSet={getResponsiveSrcSet(base, ext, W_800)} sizes={sizes} alt={alt} loading="lazy" decoding="async" style={style} />
+    </picture>
+  );
+}
 
 /**
  * Props interface
@@ -124,14 +138,14 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
       </div>}
       {/* Logo and title (hidden when menu is open) */}
       {(!openMenu) && <Link href="/" style={{margin: (isPC && isHome) ? 0: "0 auto"}}>
-        {(width > BREAKPOINT_HEADER_LOGO) && <img style={headerLogoStyle} src="../images/soleemare_icon.png" alt="ソレ・エ・マーレ" loading="lazy" decoding="async" />}
-        <img style={headerTitleStyle} src="../images/soleemare.png" alt="ソレ・エ・マーレ" loading="lazy" decoding="async" />
+        {(width > BREAKPOINT_HEADER_LOGO) && <ResponsiveImg src="/images/soleemare_icon.png" alt="ソレ・エ・マーレ" sizes="40px" style={headerLogoStyle} />}
+        <ResponsiveImg src="/images/soleemare.png" alt="ソレ・エ・マーレ" sizes="211px" style={headerTitleStyle} />
       </Link>}
       {/* Navigation menu */}
       {(isPC || openMenu) && <div style={headerMenuStyle} >
         {/* Logo in mobile menu */}
         {(!isPC || openMenu) && <Link href="/">
-          <img style={menuLogoStyle} src="../images/soleemare_logo.png" alt="ソレ・エ・マーレ" loading="lazy" decoding="async" />
+          <ResponsiveImg src="/images/soleemare_logo.png" alt="ソレ・エ・マーレ" sizes="150px" style={menuLogoStyle} />
         </Link>}
         {/* Navigation links (home page only) */}
         {isHome && myHeaderMenu.map((_, i) => <div style={{padding: "10px 0"}} key={`menu_link_${i}`}>
