@@ -85,14 +85,16 @@ const HomeTwitter: NextPage<Props> = ({width}) => {
       {/* SNS navigation link */}
       <HomeSNSLink sns={mySNS[snsNumber]} isDark={false}/>
       {/* Twitter timeline embed */}
-      <Link className="twitter-timeline" 
-        data-height="1480" 
-        data-theme="light" 
+      <Link
+        className="twitter-timeline"
+        data-height="1480"
+        data-theme="light"
         data-lang="ja"
         data-conversation="none"
         data-align="center"
         data-chrome="noheader nofooter noborders"
         href="https://twitter.com/soleemare_dolce?ref_src=twsrc%5Etfw"
+        aria-label="Sole e Mare の Twitter タイムライン（@soleemare_dolce）"
       />
     </div>
     <BlueBorder/>

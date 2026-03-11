@@ -48,13 +48,21 @@ const Footer: NextPage<Props> = ({width}) => {
   // Style definitions
   const footerToTopTextStyle: CSSProperties = {
     margin: 0,
-    padding: "15px 0", 
+    padding: "15px 0",
     color: "var(--white)",
-    textAlign: "center"
+    textAlign: "center",
   }
-  const footerLogoStyle: CSSProperties = {
+  const footerLogoWrapperStyle: CSSProperties = {
+    display: "inline-block",
     width: 120,
-    paddingTop: isSP ? 20: 25,
+    aspectRatio: "1",
+    paddingTop: isSP ? 20 : 25,
+  }
+  const footerLogoImgStyle: CSSProperties = {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
+    display: "block",
   }
   const footerLinkStyle: CSSProperties = {
     color: "var(--black)", 
@@ -65,12 +73,13 @@ const Footer: NextPage<Props> = ({width}) => {
   const footerCopyRightStyle: CSSProperties = {
     fontSize: 14,
     padding: "10px 0 30px 0",
+    margin: 0,
   }
 
   return (<footer id="footer">
       {/* Mobile back to top button */}
       {isSP && <div style={{background: "linear-gradient(to bottom, var(--blue), var(--darkblue))"}} onClick={onScrollTop}>
-        <h4 style={footerToTopTextStyle}>ページトップへ戻る</h4> 
+        <p className="content-like-h4" style={footerToTopTextStyle}>ページトップへ戻る</p> 
       </div>}
       {/* Mobile border separator */}
       {isSP && <BlueBorder/>}
@@ -83,11 +92,13 @@ const Footer: NextPage<Props> = ({width}) => {
             const { base, ext } = getImageBaseAndExt(logo);
             const w = [LOGO_WIDTH];
             return (
-              <picture>
-                <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif', w)} />
-                <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp', w)} />
-                <img src={logo} srcSet={getResponsiveSrcSet(base, ext, w)} sizes="120px" alt="ソレ・エ・マーレ" style={footerLogoStyle} loading="lazy" decoding="async" />
-              </picture>
+              <span style={footerLogoWrapperStyle}>
+                <picture>
+                  <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif', w)} />
+                  <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp', w)} />
+                  <img src={logo} srcSet={getResponsiveSrcSet(base, ext, w)} sizes="120px" alt="ソレ・エ・マーレ" style={footerLogoImgStyle} loading="lazy" decoding="async" />
+                </picture>
+              </span>
             );
           })()}
         </Link>
@@ -101,7 +112,7 @@ const Footer: NextPage<Props> = ({width}) => {
             </div>)}
           </div>    
           {/* Copyright notice */}
-          <li style={footerCopyRightStyle}>©Sole e Mare. ALL RIGHTS RESERVED.</li>
+          <p style={footerCopyRightStyle}>©Sole e Mare. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>

@@ -84,10 +84,16 @@ const PolicyBody: NextPage<Props> = ({width}) => {
         {/* Section explanations and conditions */}
         {policy.explanation.map((explanation, j) => 
           <div key={`explanation_${i}_${j}`}>
-            <ul style={explanationStyle}>{explanation}</ul>
-            {/* Conditions list */}
-            {policy.condition[j].map((condition, k) => 
-              (condition != "") && <li key={`condition_${i}_${k}`} style={conditionStyle}>{condition}</li>
+            <ul style={{ listStyle: "none", paddingLeft: 0, margin: "5px 0" }}>
+              <li style={explanationStyle}>{explanation}</li>
+            </ul>
+            {/* Conditions list: wrap li in ul for valid list structure */}
+            {policy.condition[j].filter((c) => c !== "").length > 0 && (
+              <ul style={{ paddingLeft: 36, margin: "5px 0" }}>
+                {policy.condition[j].map((condition, k) =>
+                  condition !== "" ? <li key={`condition_${i}_${j}_${k}`} style={conditionStyle}>{condition}</li> : null
+                )}
+              </ul>
             )}
             {(policy.condition[j].join("").length > 0) && <br/>}
           </div>

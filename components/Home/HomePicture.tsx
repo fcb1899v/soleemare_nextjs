@@ -93,16 +93,28 @@ const HomePicture: NextPage<Props> = ({ width, color, title, image, features, me
     margin: 0,
   }
   const messageStyle: CSSProperties = {
-    height: showChild ? "auto" : "0px", 
+    height: showChild ? "auto" : "0px",
     color: showChild ? "black" : "transparent",
-    paddingBottom: showChild ? "5px": "0px",
+    paddingBottom: showChild ? "5px" : "0px",
+  }
+  const featuresStyle: CSSProperties = {
+    paddingBottom: showChild ? "5px" : "0px",
+  }
+  const readMoreTextStyle: CSSProperties = {
+    margin: 0,
+    fontWeight: 600,
+    color: "inherit",
+    textAlign: "center",
   }
   const buttonStyle: CSSProperties = {
     margin: "0 auto",
     paddingBottom: 30,
-    height: showChild ? "0px": "20px", 
+    height: showChild ? "0px" : "20px",
     display: showChild ? "none" : "block",
     textAlign: "center",
+    // Dark blue: contrast ~5:1 on white (WCAG AA for normal text)
+    color: "var(--darkblue)",
+    backgroundColor: "transparent",
   }
 
   return (
@@ -111,12 +123,16 @@ const HomePicture: NextPage<Props> = ({ width, color, title, image, features, me
       <HomeImage width={width} color={color} title={title} image={image}/>
       {/* Product information and expandable content */}
       <div style={{ margin: "20px auto 0px", padding: 10, maxWidth: BREAKPOINT_SP, }}>
-        {/* Product features */}
-        <h5 style={{ paddingBottom: showChild ? "5px": "0px" }}>{features}</h5>
+        {/* Product features (body text, same look as former h5) */}
+        <p className="content-like-h5" style={featuresStyle}>{features}</p>
         {/* Expandable message content */}
-        {message.map((_, i) => <h5 style={messageStyle} key={`blue_message_${i}`}>{message[i]}</h5>)}
+        {message.map((_, i) => (
+          <p className="content-like-h5" style={messageStyle} key={`blue_message_${i}`}>{message[i]}</p>
+        ))}
         {/* Read more button */}
-        <Button onClick={handleClick} style={buttonStyle}><h5>＋ 続きを読む</h5></Button>
+        <Button onClick={handleClick} style={buttonStyle}>
+          <span className="content-like-h5" style={readMoreTextStyle}>＋ 続きを読む</span>
+        </Button>
       </div>
     </div>
   );

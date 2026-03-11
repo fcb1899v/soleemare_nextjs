@@ -386,8 +386,16 @@ const HomeShopify: NextPage<Props> = ({ width, item }) => {
 
       <div className={isSP ? 'block' : 'flex_center'} style={{ margin: '0 auto 50px', columnGap: 50 }}>
         <FormControl variant="standard">
-          <InputLabel style={selectLabelStyle}>{`${salesProduct.title.split(' ')[0]}`}</InputLabel>
-          <Select style={selectAmountStyle} value={quantity} onChange={updateQuantity}>
+          <InputLabel id={`shopify-quantity-label-${salesProduct.id}`} style={selectLabelStyle}>
+            購入数量（{salesProduct.title.split(' ')[0]}）
+          </InputLabel>
+          <Select
+            style={selectAmountStyle}
+            value={quantity}
+            onChange={updateQuantity}
+            labelId={`shopify-quantity-label-${salesProduct.id}`}
+            id={`shopify-quantity-select-${salesProduct.id}`}
+          >
             {options.map((option) => (
               <MenuItem value={option} key={`${salesProduct.id}_${option}`}>
                 {`${option}${item.unit}：¥${Number(priceAmount * option + 980)} (送料込)`}

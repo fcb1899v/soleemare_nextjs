@@ -17,6 +17,7 @@
 import { NextPage } from 'next';
 import React, { CSSProperties } from 'react';
 import { getBreakpointFlags } from '../../utils/commonConstant';
+import { getImageBaseAndExt, getResponsiveSrcSet, LOGO_WIDTH } from '../../utils/imageUtils';
 
 /**
  * Props interface
@@ -64,8 +65,19 @@ const HomeTitle: NextPage<Props> = ({width, title, index}) => {
 
   return (<div style={titleStyle}>
     <div className={isSP ? "block": "flex_center_wrap"} style={titleStringStyle}>
-      {/* Decorative image (optional) */}
-      {(index > 0) && <img src={`/images/${index}.png`} alt={`image_${index}`} style={imageStyle} loading="lazy" decoding="async" />}
+      {/* Decorative image (optional): 800w + WebP/AVIF to reduce payload. Run `npm run generate-images` for variants. */}
+      {(index > 0) && (() => {
+        const src = `/images/${index}.png`;
+        const { base, ext } = getImageBaseAndExt(src);
+        const w = [LOGO_WIDTH];
+        return (
+          <picture>
+            <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif', w)} sizes="80px" />
+            <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp', w)} sizes="80px" />
+            <img src={src} srcSet={getResponsiveSrcSet(base, ext, w)} sizes="80px" alt={`image_${index}`} style={imageStyle} loading="lazy" decoding="async" width={80} height={80} />
+          </picture>
+        );
+      })()}
       {/* Italian title */}
       {(title[1] != "") && <h2 style={itTitleStyle}>{title[1]}</h2>}
       {/* Japanese title */}

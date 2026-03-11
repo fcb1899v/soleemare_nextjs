@@ -27,14 +27,17 @@ import SNSButtons from "./SNSButtons";
 
 const W_800 = [LOGO_WIDTH];
 
-function ResponsiveImg({ src, alt, sizes, style }: { src: string; alt: string; sizes: string; style: CSSProperties }) {
+/** Wrapper reserves space via aspect-ratio to avoid CLS; img fills with object-fit: contain so aspect ratio is preserved. */
+function ResponsiveImg({ src, alt, sizes, wrapperStyle, imgStyle }: { src: string; alt: string; sizes: string; wrapperStyle: CSSProperties; imgStyle: CSSProperties }) {
   const { base, ext } = getImageBaseAndExt(src);
   return (
-    <picture>
-      <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif', W_800)} />
-      <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp', W_800)} />
-      <img src={src} srcSet={getResponsiveSrcSet(base, ext, W_800)} sizes={sizes} alt={alt} loading="lazy" decoding="async" style={style} />
-    </picture>
+    <span style={wrapperStyle}>
+      <picture>
+        <source type="image/avif" srcSet={getResponsiveSrcSet(base, 'avif', W_800)} />
+        <source type="image/webp" srcSet={getResponsiveSrcSet(base, 'webp', W_800)} />
+        <img src={src} srcSet={getResponsiveSrcSet(base, ext, W_800)} sizes={sizes} alt={alt} style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", ...imgStyle }} loading="lazy" decoding="async" />
+      </picture>
+    </span>
   );
 }
 
@@ -80,14 +83,18 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
     margin: (isPC && isHome) ? "0 0 0 100px": 0,
     height: 60,
   }
-  const headerLogoStyle: CSSProperties = { 
+  const headerLogoWrapperStyle: CSSProperties = {
+    display: "inline-block",
     height: 40,
+    aspectRatio: "1",
     margin: "10px 10px 10px 0",
   }
-  const headerTitleStyle: CSSProperties = {
+  const headerTitleWrapperStyle: CSSProperties = {
+    display: "inline-block",
     height: 35,
+    aspectRatio: "800 / 133",
     margin: 10,
-    padding: (width > BREAKPOINT_HEADER_LOGO) ? 0: "5px 0 0 20px", 
+    padding: (width > BREAKPOINT_HEADER_LOGO) ? 0 : "5px 0 0 20px",
   }
   const headerMenuStyle: CSSProperties = {
     display: (isPC && isHome) ? "flex" : "block",
@@ -107,9 +114,11 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
     cursor: "pointer",
     zIndex: 1000,
   }
-  const menuLogoStyle: CSSProperties = {
-    width: 150, 
-    margin: "30px 0 10px", 
+  const menuLogoWrapperStyle: CSSProperties = {
+    display: "inline-block",
+    width: 150,
+    aspectRatio: "1",
+    margin: "30px 0 10px",
   }
   const menuButtonStyle: CSSProperties = {
     textDecoration: "none",
@@ -138,14 +147,14 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
       </div>}
       {/* Logo and title (hidden when menu is open) */}
       {(!openMenu) && <Link href="/" style={{margin: (isPC && isHome) ? 0: "0 auto"}}>
-        {(width > BREAKPOINT_HEADER_LOGO) && <ResponsiveImg src="/images/soleemare_icon.png" alt="ソレ・エ・マーレ" sizes="40px" style={headerLogoStyle} />}
-        <ResponsiveImg src="/images/soleemare.png" alt="ソレ・エ・マーレ" sizes="211px" style={headerTitleStyle} />
+        {(width > BREAKPOINT_HEADER_LOGO) && <ResponsiveImg src="/images/soleemare_icon.png" alt="ソレ・エ・マーレ" sizes="40px" wrapperStyle={headerLogoWrapperStyle} imgStyle={{}} />}
+        <ResponsiveImg src="/images/soleemare.png" alt="ソレ・エ・マーレ" sizes="211px" wrapperStyle={headerTitleWrapperStyle} imgStyle={{}} />
       </Link>}
       {/* Navigation menu */}
       {(isPC || openMenu) && <div style={headerMenuStyle} >
         {/* Logo in mobile menu */}
         {(!isPC || openMenu) && <Link href="/">
-          <ResponsiveImg src="/images/soleemare_logo.png" alt="ソレ・エ・マーレ" sizes="150px" style={menuLogoStyle} />
+          <ResponsiveImg src="/images/soleemare_logo.png" alt="ソレ・エ・マーレ" sizes="150px" wrapperStyle={menuLogoWrapperStyle} imgStyle={{}} />
         </Link>}
         {/* Navigation links (home page only) */}
         {isHome && myHeaderMenu.map((_, i) => <div style={{padding: "10px 0"}} key={`menu_link_${i}`}>
@@ -166,7 +175,7 @@ const Header: NextPage<Props> = ({ width, isHome }) => {
             </div>)}
           </div>
           {/* Copyright notice */}
-          <li style={{fontSize: 14}} key={"copyright"}>©Sole e Mare. ALL RIGHTS RESERVED.</li>
+          <p style={{fontSize: 14, margin: 0}} key={"copyright"}>©Sole e Mare. ALL RIGHTS RESERVED.</p>
         </div>}
       </div>}
     </div>

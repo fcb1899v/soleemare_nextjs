@@ -1,6 +1,6 @@
-# Target modern browsers only to avoid unnecessary polyfills (Array.at, Object.hasOwn, etc.)
-last 2 Chrome versions
-last 2 Firefox versions
-last 2 Safari versions
-last 2 Edge versions
+# Target modern browsers that support Array.at, Object.hasOwn, etc. (no polyfills needed)
+Chrome >= 93
+Firefox >= 92
+Safari >= 15.4
+Edge >= 93
 not IE 11

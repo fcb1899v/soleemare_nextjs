@@ -1,11 +1,13 @@
 /**
- * Deferred load of GTM and gtag (GA4) to reduce initial payload and improve LCP/FCP.
- * Scripts are injected after the page is idle (requestIdleCallback) or after load event.
+ * Deferred load of GTM and gtag (GA4) to reduce initial payload and unused-JS impact.
+ * Scripts load only after first user interaction (scroll/click/touch) or after 5s,
+ * so they are not part of the initial critical path.
  */
 
 import { GA_ID, GTM_ID, pageview } from './gtag';
 
 let loaded = false;
+const DEFER_MS = 5000;
 
 function injectGtag(): void {
   if (!GA_ID || typeof document === 'undefined') return;
@@ -50,25 +52,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   document.body.insertBefore(noscript, document.body.firstChild);
 }
 
-export function loadAnalytics(): void {
+function run(): void {
   if (loaded || (!GA_ID && !GTM_ID)) return;
   loaded = true;
+  injectGtag();
+  injectGTM();
+  if (typeof window !== 'undefined' && window.location?.pathname) {
+    pageview(window.location.pathname || '/');
+  }
+}
 
-  const run = (): void => {
-    injectGtag();
-    injectGTM();
-    if (typeof window !== 'undefined' && window.location?.pathname) {
-      pageview(window.location.pathname || '/');
+export function loadAnalytics(): void {
+  if (loaded || (!GA_ID && !GTM_ID)) return;
+
+  // Load on first interaction (scroll, click, touch, key) or after DEFER_MS
+  const schedule = (): void => {
+    if (loaded) return;
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(run, { timeout: 500 });
+    } else {
+      setTimeout(run, 0);
     }
   };
 
-  if (typeof requestIdleCallback !== 'undefined') {
-    requestIdleCallback(run, { timeout: 3500 });
-  } else {
-    if (document.readyState === 'complete') {
-      setTimeout(run, 1);
-    } else {
-      window.addEventListener('load', () => setTimeout(run, 1));
-    }
-  }
+  const one = (): void => {
+    window.removeEventListener('scroll', one);
+    window.removeEventListener('click', one);
+    window.removeEventListener('touchstart', one);
+    window.removeEventListener('keydown', one);
+    schedule();
+  };
+
+  window.addEventListener('scroll', one, { once: true });
+  window.addEventListener('click', one, { once: true });
+  window.addEventListener('touchstart', one, { once: true });
+  window.addEventListener('keydown', one, { once: true });
+  setTimeout(schedule, DEFER_MS);
 }

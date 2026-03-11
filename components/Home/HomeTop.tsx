@@ -63,14 +63,6 @@ const HomeTop: NextPage<Props> = ({width}) => {
     transition: "opacity 2s ease-out, transform 2s ease-out",
   }
   
-  /** Wrapper reserves height to prevent CLS: SP=portrait 2/3, PC=landscape 3/2 */
-  const carouselWrapperStyle: CSSProperties = {
-    position: "relative",
-    aspectRatio: isSP ? "2/3" : "3/2",
-    minHeight: 280,
-    overflow: "hidden",
-    marginBottom: 20,
-  }
   const carouselStyle: CSSProperties = { 
     color: "#F4F5F0",
     textShadow: "1px 2px 3px var(--black)",
@@ -91,7 +83,7 @@ const HomeTop: NextPage<Props> = ({width}) => {
     margin: isPC ? "50px 0": "10px 0 0 0",
   }
   
-  const carouselMessageStyle: CSSProperties = { 
+  const carouselMessageStyle: CSSProperties = {
     fontSize: "min(5vw, 30px)",
     margin: 0,
   }
@@ -107,8 +99,8 @@ const HomeTop: NextPage<Props> = ({width}) => {
   return (
     <section id="top">
       <div className={isPC ? "large_container": "container"}>
-        {/* Hero carousel: wrapper reserves aspect-ratio space to prevent CLS */}
-        <div style={carouselWrapperStyle}>
+        {/* Hero carousel: .hero_carousel_wrapper uses CSS media query for aspect-ratio (avoids CLS on hydration) */}
+        <div className="hero_carousel_wrapper">
           <Swiper
             key={`home-top-swiper-${isSP}`}
             modules={[Navigation, Pagination, EffectFade, Autoplay]}
@@ -157,9 +149,9 @@ const HomeTop: NextPage<Props> = ({width}) => {
                 </picture>
               </div>
               <div className="placeCenter">
-                <h3 style={carouselMessageStyle}>
+                <p className="content-like-h3" style={carouselMessageStyle}>
                   自家農園の季節の柑橘を贅沢に使用した<br/>手作りイタリアンスイーツ
-                </h3>
+                </p>
                 <h1 style={carouselItTitleStyle}>{slide.title[1]}</h1>
                 <h1 style={carouselJaTitleStyle}>{slide.title[0]}</h1>
               </div>

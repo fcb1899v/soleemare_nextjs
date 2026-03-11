@@ -78,8 +78,9 @@ const HomeFeature: NextPage<Props> = ({ width }) => {
   }, [blockRef, isVisible]);
 
   // Style definitions
+  // Use 800w WebP to reduce payload (~170KB jpg → smaller). Run `npm run generate-images` to create shikkui_800.webp.
   const featuresBackStyle: CSSProperties = {
-    backgroundImage: "linear-gradient(var(--transpgray), var(--transpgray)), url('/images/shikkui.jpg')",
+    backgroundImage: "linear-gradient(var(--transpgray), var(--transpgray)), url('/images/shikkui_800.webp')",
     margin: 0,
     padding: "10px 0",
   }

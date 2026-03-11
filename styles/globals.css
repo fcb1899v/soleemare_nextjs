@@ -35,12 +35,10 @@
   /* https://color-pallet.spark-a.com/?s=イタリア*/
 }
 
-/* Custom Font Face Declarations (font-display: swap to avoid invisible text while loading) */
-@font-face { font-family: 'Kleymisska'; src: url(../public/font/Kleymisska.ttf) format('truetype'); font-display: swap; }
-@font-face { font-family: 'NotoSansJP'; src: url(../public/font/NotoSansJP-Regular.otf) format('opentype'); font-display: swap; }
-@font-face { font-family: 'NotoSerifJP'; src: url(../public/font/NotoSerifCJKjp-Regular.otf) format('opentype'); font-display: swap; }
-@font-face { font-family: 'SourceHanSans'; src: url(../public/font/SourceHanSans-Regular.otf) format('opentype'); font-display: swap; }
-@font-face { font-family: 'SourceHanSerif'; src: url(../public/font/SourceHanSerif-Regular.otf) format('opentype'); font-display: swap; }
+/* Custom Font Face: only declare fonts that exist in public/font/ to avoid ERR_CONNECTION_FAILED. */
+@font-face { font-family: 'Kleymisska'; src: url(/font/Kleymisska.ttf) format('truetype'); font-display: swap; }
+@font-face { font-family: 'NotoSansJP'; src: url(/font/NotoSansJP-Regular.otf) format('opentype'); font-display: swap; }
+/* NotoSerifJP, SourceHanSans, SourceHanSerif: add @font-face here when the .otf files are in public/font/ and deployed. */
 
 /* Global Body Styles */
 body {
@@ -53,7 +51,13 @@ body {
 /* Section and Typography Styles */
 section { scroll-margin-top: 80px; }
 h1, h2, h3 { font-family: "游教科書体", 'SourceHanSerif', "YuKyokasho", "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", 'NotoSerifJP', serif; }
-h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; }
+h4 { font-family: "YuGothic", "Hiragino kaku Gothic ProN", 'SourceHanSans', 'NotoSansJP', "Meiryo", sans-serif; font-size: 18px; margin: 0; }
+h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; font-family: "YuGothic", "Hiragino kaku Gothic ProN", 'SourceHanSans', 'NotoSansJP', "Meiryo", sans-serif; }
+
+/* Same typography as h3/h4/h5 for non-heading elements (p, span) */
+.content-like-h3 { font-family: "游教科書体", 'SourceHanSerif', "YuKyokasho", "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", 'NotoSerifJP', serif; }
+.content-like-h4 { font-family: "YuGothic", "Hiragino kaku Gothic ProN", 'SourceHanSans', 'NotoSansJP', "Meiryo", sans-serif; font-size: 18px; margin: 0; }
+.content-like-h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; font-family: "YuGothic", "Hiragino kaku Gothic ProN", 'SourceHanSans', 'NotoSansJP', "Meiryo", sans-serif; }
 
 /* Swiper Carousel Customizations */
 .swiper-button-next,
@@ -65,6 +69,18 @@ h5 { margin: 0; font-size: 18px; font-weight: normal; text-align: left; }
 .twitter-timeline, .tiktok-embed { 
   width: calc(100vw - 30px) !important; max-width: 1000px !important;
   margin: 0px auto !important; padding-bottom: 15px !important;
+}
+
+/* Hero carousel wrapper: aspect-ratio by viewport (not JS) to avoid CLS on hydration */
+.hero_carousel_wrapper {
+  position: relative;
+  aspect-ratio: 3/2;
+  min-height: 280px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+@media (max-width: 599px) {
+  .hero_carousel_wrapper { aspect-ratio: 2/3; }
 }
 
 /* Layout Utility Classes */
